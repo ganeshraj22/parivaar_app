@@ -1,12 +1,5 @@
 streamlit
-replicate
-pdfplumber
-python-docx
 pandas
-transformers
-exifread
-requests
-pillow
 numpy
-plotly
-matplotlib
+gspread
+oauth2client
