@@ -79,7 +79,7 @@ Ambulance_By_Month.set_index('Date',inplace=True)
 # In[91]:
 
 
-st.altair_chart(Ambulance_By_Month['Total Patients Served'])
+st.pyplot(Ambulance_By_Month['Total Patients Served'])
 
 
 # In[ ]:
