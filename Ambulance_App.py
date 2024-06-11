@@ -78,8 +78,8 @@ Ambulance_By_Month.set_index('Date',inplace=True)
 
 fig,ax=plt.subplots(1,figsize=(15,5))
 ax2=ax.twinx()
-ax=Ambulance_By_Month['Total Distance Covered']
-ax2=Ambulance_By_Month['Total Patients Served']
+ax=[0,1,2]
+ax2=[10,15,30]
 
 # In[91]:
 
