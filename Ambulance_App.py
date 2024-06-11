@@ -64,8 +64,8 @@ Ambulance_By_Month=Ambulance_By_Month.reset_index(drop=False)
 # In[81]:
 
 
-#Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month.sort_values()
-Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year.sort_values()
+Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month
+Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year
 
 
 # In[90]:
