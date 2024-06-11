@@ -3,4 +3,4 @@ pandas
 numpy
 gspread
 oauth2client
-matplot.pyplot
+matplotlib.pyplot
