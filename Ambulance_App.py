@@ -79,7 +79,7 @@ Ambulance_By_Month.set_index('Date',inplace=True)
 # In[91]:
 
 
-st.dataframe(Ambulance_By_Month)
+st.bar_chart(Ambulance_By_Month)
 
 
 # In[ ]:
