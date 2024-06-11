@@ -79,7 +79,7 @@ Ambulance_By_Month.set_index('Date',inplace=True)
 # In[91]:
 
 
-st.pyplot(Ambulance_By_Month)
+st.pyplot(Ambulance_By_Month['Total Patients Served'])
 
 
 # In[ ]:
