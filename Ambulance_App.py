@@ -85,7 +85,7 @@ ax2=ax1.twinx()
 ax2.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Patients Served'],color='blue')
 plt.setp(ax1.get_xticklabels(), rotation=90, horizontalalignment='right')
 ax1.set_ylabel('Total Distance Covered')
-ax2.set_ylabel(''Total Patients Served')
+ax2.set_ylabel('Total Patients Served')
 plt.title('Ambulance Deployment By Month')
 st.pyplot(plt)
 
