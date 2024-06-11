@@ -77,9 +77,15 @@ Ambulance_By_Month=Ambulance_By_Month[['Date','Total Distance Covered','Total Pa
 Ambulance_By_Month.set_index('Date',inplace=True)
 
 # In[91]:
+fig=plt.figure()
 
+ax1=fig.add_subplot()
+ax1.plot(Ambulance_By_Month.index(),Ambulance_By_Month['Total Distance Covered'])
+ax2=ax1.twinx()
+ax2.plot(Ambulance_By_Month.index(),Ambulance_By_Month['Total Distance Covered']
+st.pyplot(plt)
 
-st.pyplot(Ambulance_By_Month[['Total Patients Served','Total Distance Covered']].plot.line().figure)
+#st.pyplot(Ambulance_By_Month[['Total Patients Served','Total Distance Covered']].plot.line().figure)
 #st.pyplot(Ambulance_By_Month['Total Distance Covered'].plot.line().figure)
 
 
