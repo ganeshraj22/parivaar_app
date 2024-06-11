@@ -79,7 +79,7 @@ Ambulance_By_Month.set_index('Date',inplace=True)
 # In[91]:
 
 
-st.pyplot(Ambulance_By_Month['Total Patients Served'].plot.line().figure)
+st.pyplot(Ambulance_By_Month['Total Patients Served'].plot.line(figsize=(15,2).figure)
 
 
 # In[ ]:
