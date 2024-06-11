@@ -82,7 +82,7 @@ fig=plt.figure()
 ax1=fig.add_subplot()
 ax1.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Distance Covered'])
 ax2=ax1.twinx()
-ax2.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Distance Covered'])
+ax2.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Patients Served'])
 st.pyplot(plt)
 
 #st.pyplot(Ambulance_By_Month[['Total Patients Served','Total Distance Covered']].plot.line().figure)
