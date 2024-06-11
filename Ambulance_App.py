@@ -76,10 +76,7 @@ Ambulance_By_Month=Ambulance_By_Month.sort_values(['Year','Month'])
 Ambulance_By_Month=Ambulance_By_Month[['Date','Total Distance Covered','Total Patients Served']]
 Ambulance_By_Month.set_index('Date',inplace=True)
 
-fig,ax=plt.subplots(1,figsize=(15,5))
-ax2=ax.twinx()
-ax=Ambulance_By_Month['Total Patients Served']
-ax2=Ambulance_By_Month['Total Distance Covered']
+fig=plt.plot(Ambulance_By_Month['Total Distance Covered'])
 
 # In[91]:
 
