@@ -83,7 +83,7 @@ ax1=fig.add_subplot()
 ax1.bar(Ambulance_By_Month.index,Ambulance_By_Month['Total Distance Covered'],color='cyan')
 ax2=ax1.twinx()
 ax2.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Patients Served'],color='blue')
-plt.xticks(rotation=90)
+fig.xticks(rotation=90)
 st.pyplot(plt)
 
 #st.pyplot(Ambulance_By_Month[['Total Patients Served','Total Distance Covered']].plot.line().figure)
