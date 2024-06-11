@@ -76,12 +76,10 @@ Ambulance_By_Month=Ambulance_By_Month.sort_values(['Year','Month'])
 Ambulance_By_Month=Ambulance_By_Month[['Date','Total Distance Covered','Total Patients Served']]
 Ambulance_By_Month.set_index('Date',inplace=True)
 
-fig=plt.plot(Ambulance_By_Month['Total Distance Covered'])
-
 # In[91]:
 
 
-st.pyplot(fig)
+st.pyplot()
 
 
 # In[ ]:
