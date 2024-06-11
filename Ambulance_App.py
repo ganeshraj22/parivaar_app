@@ -84,6 +84,7 @@ ax1.bar(Ambulance_By_Month.index,Ambulance_By_Month['Total Distance Covered'],co
 ax2=ax1.twinx()
 ax2.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Patients Served'],color='blue')
 plt.setp(ax1.get_xticklabels(), rotation=90, horizontalalignment='right')
+ax1.legend()
 st.pyplot(plt)
 
 #st.pyplot(Ambulance_By_Month[['Total Patients Served','Total Distance Covered']].plot.line().figure)
