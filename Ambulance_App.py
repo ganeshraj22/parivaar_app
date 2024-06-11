@@ -1,17 +1,89 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[2]:
+
+
 import gspread
 import pandas as pd
 import streamlit as st
 from oauth2client.service_account import ServiceAccountCredentials
 
+
+# In[3]:
+
+
 scope=['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-creds=ServiceAccountCredentials.from_json_keyfile_name(r'unique-bonbon-304011-585cc22859d3.json',scope)
+creds=ServiceAccountCredentials.from_json_keyfile_name(r'C:\Users\ganesh.param\Documents\unique-bonbon-304011-585cc22859d3.json',scope)
+
+
+# In[4]:
+
 
 client=gspread.authorize(creds)
-sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/1sJDmGeanUxdKd-2z_rxgWgTNwgXCd9t28iLtDbwKlkM/edit').sheet1
-sheet2=client.open_by_url(r'https://docs.google.com/spreadsheets/d/1sJDmGeanUxdKd-2z_rxgWgTNwgXCd9t28iLtDbwKlkM/edit').sheet1
+sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-h1X9vCILorUlLctMxSSDz1zhJmEo-o/edit?usp=sharing').sheet1
+
+
+# In[6]:
+
 
 ambulance_df=pd.DataFrame(sheet.get_all_records())
-ambulance_df_2=pd.DataFrame(sheet2.get_all_records())
-st.dataframe(ambulance_df)
-st.dataframe(ambulance_df_2)
+
+
+# In[7]:
+
+
+ambulance_df[['Total Distance Covered','Total Patients Served']]=ambulance_df[['Total Distance Covered','Total Patients Served']].replace('','0').fillna(0).astype(int)
+ambulance_df['Day']=ambulance_df['Day'].str.upper()
+
+
+# In[8]:
+
+
+Ambulance_By_Day=ambulance_df[ambulance_df['Day'].replace('',None).notnull()][['Total Distance Covered','Total Patients Served','Day']].groupby(by='Day').sum()
+
+
+# In[26]:
+
+
+ambulance_df['Date']=pd.to_datetime(ambulance_df['Date'].replace('',None))
+
+
+# In[79]:
+
+
+Ambulance_By_Month=ambulance_df[ambulance_df['Date'].notnull()].groupby(ambulance_df['Date'].dt.strftime('%b %Y'))[['Total Distance Covered','Total Patients Served']].sum()
+
+
+# In[80]:
+
+
+Ambulance_By_Month=Ambulance_By_Month.reset_index(drop=False)
+
+
+# In[81]:
+
+
+#Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month.sort_values()
+Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year.sort_values()
+
+
+# In[90]:
+
+
+Ambulance_By_Month=Ambulance_By_Month.sort_values(['Year','Month'])
+Ambulance_By_Month=Ambulance_By_Month[['Date','Total Distance Covered','Total Patients Served']]
+Ambulance_By_Month
+
+
+# In[91]:
+
+
+st.dataframe(Ambulance_By_Month)
+
+
+# In[ ]:
+
+
+
+
