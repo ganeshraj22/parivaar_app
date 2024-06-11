@@ -14,7 +14,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 
 scope=['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-creds=ServiceAccountCredentials.from_json_keyfile_name(r'C:\Users\ganesh.param\Documents\unique-bonbon-304011-585cc22859d3.json',scope)
+creds=ServiceAccountCredentials.from_json_keyfile_name(r'unique-bonbon-304011-585cc22859d3.json',scope)
 
 
 # In[4]:
