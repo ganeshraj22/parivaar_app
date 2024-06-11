@@ -80,9 +80,9 @@ Ambulance_By_Month.set_index('Date',inplace=True)
 fig=plt.figure()
 
 ax1=fig.add_subplot()
-ax1.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Distance Covered'])
+ax1.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Distance Covered'],color='orange')
 ax2=ax1.twinx()
-ax2.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Patients Served'])
+ax2.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Patients Served'],color='blue')
 st.pyplot(plt)
 
 #st.pyplot(Ambulance_By_Month[['Total Patients Served','Total Distance Covered']].plot.line().figure)
