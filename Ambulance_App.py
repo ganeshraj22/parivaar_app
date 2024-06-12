@@ -27,7 +27,7 @@ sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-
 Districts=[i.title for i in sheet]
 selected_district=st.selectbox('District',Districts)
 start_date=st.date_input("Start Date",min_value=datetime(2020,1,1),max_value=date.today())
-end_date=st.text_input("End Date",min_value=start_date,max_value=date.today())
+end_date=st.date_input("End Date",min_value=start_date,max_value=date.today())
 ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district)].get_values())
 #Selected_District=sheet[[i.title for i in sheet].index(selected_district)].title
 
