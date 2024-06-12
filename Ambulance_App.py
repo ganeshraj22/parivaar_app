@@ -39,8 +39,8 @@ def get_data(selected_district,date_range,sheet):
     Ambulance_By_Month=Ambulance_By_Month[['Date','Total Distance Covered','Total Patients Served']]
     Ambulance_By_Month.set_index('Date',inplace=True)
 
-    min_date=ambulance_df['Date'].min()
-    max_date=ambulance_df['Date'].max()
+    min_date=ambulance_df['Date'].min
+    max_date=ambulance_df['Date'].max
 
 
     fig=plt.figure()
