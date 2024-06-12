@@ -25,6 +25,8 @@ def get_data(selected_district,date_range,sheet):
     ambulance_df.columns=ambulance_df.iloc[0]
     ambulance_df=ambulance_df[1:] 
     ambulance_df['Date']=pd.to_datetime(ambulance_df['Date'].replace('',None))
+    min_date=ambulance_df['Date'].min
+    max_date=ambulance_df['Date'].max
     ambulance_df=ambulance_df[(ambulance_df['Date']>=start_date) & (ambulance_df['Date']<=end_date)]
     ambulance_df[['Total Distance Covered','Total Patients Served']]=ambulance_df[['Total Distance Covered','Total Patients Served']].replace('','0').fillna(0).astype(int)
     ambulance_df['Day']=ambulance_df['Day'].str.upper()
@@ -38,9 +40,6 @@ def get_data(selected_district,date_range,sheet):
     Ambulance_By_Month=Ambulance_By_Month.sort_values(['Year','Month'])
     Ambulance_By_Month=Ambulance_By_Month[['Date','Total Distance Covered','Total Patients Served']]
     Ambulance_By_Month.set_index('Date',inplace=True)
-
-    min_date=ambulance_df['Date'].min
-    max_date=ambulance_df['Date'].max
 
 
     fig=plt.figure()
