@@ -24,6 +24,7 @@ creds=ServiceAccountCredentials.from_json_keyfile_name(r'unique-bonbon-304011-58
 client=gspread.authorize(creds)
 sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-h1X9vCILorUlLctMxSSDz1zhJmEo-o/edit?usp=sharing').worksheets()
 ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index('Vidisha')].get_values())
+Selected_District=sheet[[i.title for i in sheet].index('Vidisha')].title
 
 # In[6]:
 
@@ -85,13 +86,11 @@ ax2.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Patients Served'],co
 plt.setp(ax1.get_xticklabels(), rotation=90, horizontalalignment='right')
 ax1.set_ylabel('Total Distance Covered')
 ax2.set_ylabel('Total Patients Served')
-plt.title('Alirajpur - Ambulance Deployment By Month')
+plt.title(r'{Selected_District} - Ambulance Deployment By Month')
 st.pyplot(plt)
 
 #st.pyplot(Ambulance_By_Month[['Total Patients Served','Total Distance Covered']].plot.line().figure)
 #st.pyplot(Ambulance_By_Month['Total Distance Covered'].plot.line().figure)
-
-options
 
 
 
