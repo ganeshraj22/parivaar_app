@@ -20,7 +20,7 @@ client=gspread.authorize(creds)
 sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-h1X9vCILorUlLctMxSSDz1zhJmEo-o/edit?usp=sharing').worksheets()
 Districts=[i.title for i in sheet]
 
-def get_data(selected_district):
+def get_data(selected_district,sheet):
     ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district)].get_values())
     ambulance_df.columns=ambulance_df.iloc[0]
     ambulance_df=ambulance_df[1:]
@@ -58,7 +58,7 @@ def get_data(selected_district):
 
 selected_district=st.selectbox('Select a district',Districts)
   
-st.pyplot(get_data(filter))
+st.pyplot(get_data(selected_district,sheet))
 
 
 st.sidebar.title("Select page")
