@@ -56,7 +56,7 @@ def get_data(selected_district):
 
     return plt
 
-selected_district=st.dropdown('Select a district',Districts])
+selected_district=st.dropdown('Select a district',Districts)
   
 st.pyplot(get_data(filter))
 
