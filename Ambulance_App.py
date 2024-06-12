@@ -20,7 +20,7 @@ Districts=[i.title for i in sheet]
 
 def get_data(selected_district,date_range,sheet):
     min_date=pd.to_datetime(date_range[0])
-    max_date=pd(to_datetime(date_range[1])
+    max_date=pd.to_datetime(date_range[1])
     ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district)].get_values())
     ambulance_df.columns=ambulance_df.iloc[0]
     ambulance_df=ambulance_df[1:] 
