@@ -52,7 +52,7 @@ def get_data(selected_district,date_range,sheet):
     plt.title(f'{selected_district} - Ambulance Deployment By Month')
     h1, l1 = ax1.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
-    ax1.legend(h1+h2, l1+l2, loc=0)
+    ax1.legend(h1+h2, l1+l2)
     if ambulance_df is None:
         print('No data to display')
     else:
