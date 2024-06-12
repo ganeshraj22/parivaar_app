@@ -19,15 +19,17 @@ sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-
 Districts=[i.title for i in sheet]
 
 def get_data(selected_district,date_range,sheet):
-    min_date=pd.to_datetime(date_range[0])
-    max_date=pd.to_datetime(date_range[1])
+    start_date=pd.to_datetime(date_range[0])
+    end_date=pd.to_datetime(date_range[1])
     ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district)].get_values())
     ambulance_df.columns=ambulance_df.iloc[0]
     ambulance_df=ambulance_df[1:] 
     ambulance_df['Date']=pd.to_datetime(ambulance_df['Date'].replace('',None))
-    ambulance_df=ambulance_df[(ambulance_df['Date']>=min_date) & (ambulance_df['Date']<=max_date)]
+    ambulance_df=ambulance_df[(ambulance_df['Date']>=start_date) & (ambulance_df['Date']<=end_date)]
     ambulance_df[['Total Distance Covered','Total Patients Served']]=ambulance_df[['Total Distance Covered','Total Patients Served']].replace('','0').fillna(0).astype(int)
     ambulance_df['Day']=ambulance_df['Day'].str.upper()
+    min_date=ambulance_df['Date'].min()
+    max_date=ambulance_df['Date'].max()
 
     Ambulance_By_Day=ambulance_df[ambulance_df['Day'].replace('',None).notnull()][['Total Distance Covered','Total Patients Served','Day']].groupby(by='Day').sum()
 
@@ -54,17 +56,22 @@ def get_data(selected_district,date_range,sheet):
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1+h2, l1+l2)
     if ambulance_df is None:
-        print('No data to display')
+        return None,
     else:
-        return plt
+        return 1,plt
 col1,col2=st.columns([1,1])
 with col1:
     selected_district=st.selectbox('Select a district',Districts)
 with col2:
     date_range=st.date_input('Enter date range',value=(datetime(2020,1,1),date.today()),key='date_range')
-  
-st.pyplot(get_data(selected_district,date_range,sheet))
 
+plt=get_data(selected_district,date_range,sheet)[0]
+min_date=get_data(selected_district,date_range,sheet)[1]
+max_date=get_data(selected_district,date_range,sheet)[2]
+if plt is True:
+    st.pyplot(get_data(plt))
+else:
+    print(f'No data to display. Data present only between {min_date} and {max_date})
 
 st.sidebar.title("Select page")
 page=st.sidebar.radio("",["District level"])
