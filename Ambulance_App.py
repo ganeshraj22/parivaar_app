@@ -19,10 +19,11 @@ sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-
 Districts=[i.title for i in sheet]
 
 def get_data(selected_district,date_range,sheet):
-    
+    min_date=date_range[0]
+    max_date=date_range[1]
     ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district)].get_values())
     ambulance_df.columns=ambulance_df.iloc[0]
-    ambulance_df=ambulance_df[1:]
+    ambulance_df=ambulance_df[1:][ambulance_df['Date']>=min_date & ambulance_df['Date']<=max_date]
     ambulance_df[['Total Distance Covered','Total Patients Served']]=ambulance_df[['Total Distance Covered','Total Patients Served']].replace('','0').fillna(0).astype(int)
     ambulance_df['Day']=ambulance_df['Day'].str.upper()
 
@@ -54,13 +55,11 @@ def get_data(selected_district,date_range,sheet):
     ax1.legend(h1+h2, l1+l2, loc=0)
 
     return plt
-col1,col2,col3=st.columns([1,1,1])
+col1,col2=st.columns([1,1])
 with col1:
     selected_district=st.selectbox('Select a district',Districts)
 with col2:
     date_range=st.date_input('Enter date range',value=(datetime(2020,1,1),date.today()),key='date_range')
-with col3:
-    print(date_range[0])
   
 st.pyplot(get_data(selected_district,date_range,sheet))
 
