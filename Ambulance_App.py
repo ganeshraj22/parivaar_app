@@ -22,8 +22,8 @@ creds=ServiceAccountCredentials.from_json_keyfile_name(r'unique-bonbon-304011-58
 
 
 client=gspread.authorize(creds)
-sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-h1X9vCILorUlLctMxSSDz1zhJmEo-o/edit?usp=sharing')
-
+sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-h1X9vCILorUlLctMxSSDz1zhJmEo-o/edit?usp=sharing').worksheets()
+ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index('Dhar')].get_values())
 
 # In[6]:
 
@@ -93,8 +93,7 @@ st.pyplot(plt)
 #st.pyplot(Ambulance_By_Month[['Total Patients Served','Total Distance Covered']].plot.line().figure)
 #st.pyplot(Ambulance_By_Month['Total Distance Covered'].plot.line().figure)
 
-
-# In[ ]:
+options
 
 
 
