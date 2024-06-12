@@ -19,8 +19,8 @@ sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-
 Districts=[i.title for i in sheet]
 
 def get_data(selected_district,date_range,sheet):
-    min_date=date_range[0].date
-    max_date=date_range[1].date
+    min_date=date_range[0]
+    max_date=date_range[1]
     ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district)].get_values())
     ambulance_df.columns=ambulance_df.iloc[0]
     ambulance_df=ambulance_df[1:] 
