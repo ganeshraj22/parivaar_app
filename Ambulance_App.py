@@ -56,9 +56,9 @@ def get_data(selected_district,date_range,sheet):
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1+h2, l1+l2)
     if ambulance_df is None:
-        return None,
+        return None, min_date, max_date
     else:
-        return 1,plt
+        return plt, min_date, max_date
 col1,col2=st.columns([1,1])
 with col1:
     selected_district=st.selectbox('Select a district',Districts)
@@ -71,7 +71,7 @@ max_date=get_data(selected_district,date_range,sheet)[2]
 if plt is True:
     st.pyplot(get_data(plt))
 else:
-    print(f'No data to display. Data present only between {min_date} and {max_date})
+    print(f'No data to display. Data present only between {min_date} and {max_date}')
 
 st.sidebar.title("Select page")
 page=st.sidebar.radio("",["District level"])
