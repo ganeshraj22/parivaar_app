@@ -53,8 +53,10 @@ def get_data(selected_district,date_range,sheet):
     h1, l1 = ax1.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1+h2, l1+l2, loc=0)
-
-    return plt
+    if ambulance_df is None:
+        return 'No data to display'
+    else:
+        return plt
 col1,col2=st.columns([1,1])
 with col1:
     selected_district=st.selectbox('Select a district',Districts)
