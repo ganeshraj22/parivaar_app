@@ -18,7 +18,8 @@ client=gspread.authorize(creds)
 sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-h1X9vCILorUlLctMxSSDz1zhJmEo-o/edit?usp=sharing').worksheets()
 Districts=[i.title for i in sheet]
 
-def get_data(selected_district,sheet):
+def get_data(selected_district,date_range,sheet):
+    
     ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district)].get_values())
     ambulance_df.columns=ambulance_df.iloc[0]
     ambulance_df=ambulance_df[1:]
@@ -56,6 +57,7 @@ def get_data(selected_district,sheet):
 
 selected_district=st.selectbox('Select a district',Districts)
 date_range=st.date_input('Enter date range',value=(datetime(2020,1,1),date.today()),key='date_range')
+print(date_range)
   
 st.pyplot(get_data(selected_district,sheet))
 
