@@ -22,14 +22,15 @@ creds=ServiceAccountCredentials.from_json_keyfile_name(r'unique-bonbon-304011-58
 
 
 client=gspread.authorize(creds)
-sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-h1X9vCILorUlLctMxSSDz1zhJmEo-o/edit?usp=sharing').sheet1
+sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-h1X9vCILorUlLctMxSSDz1zhJmEo-o/edit?usp=sharing')
 
 
 # In[6]:
 
 
-ambulance_df=pd.DataFrame(sheet.get_all_records())
-
+ambulance_df=pd.DataFrame(sheet.worksheet('Dhar').get_values())
+ambulance_df.columns=ambulance_df.iloc[0]
+ambulance_df=ambulance_df[1:]
 
 # In[7]:
 
