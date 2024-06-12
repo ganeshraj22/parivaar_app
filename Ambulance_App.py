@@ -55,7 +55,7 @@ def get_data(selected_district,sheet):
     return plt
 
 selected_district=st.selectbox('Select a district',Districts)
-date_range=st.date_input(value=(datetime(2020,1,1),date.today()))
+date_range=st.date_input('Enter date range',value=(datetime(2020,1,1),date.today()),key='date_range')
   
 st.pyplot(get_data(selected_district,sheet))
 
