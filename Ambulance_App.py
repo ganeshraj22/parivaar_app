@@ -59,7 +59,7 @@ selected_district=st.selectbox('Select a district',Districts)
 date_range=st.date_input('Enter date range',value=(datetime(2020,1,1),date.today()),key='date_range')
 print(date_range)
   
-st.pyplot(get_data(selected_district,sheet))
+st.pyplot(get_data(selected_district,date_range,sheet))
 
 
 st.sidebar.title("Select page")
