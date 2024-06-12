@@ -25,6 +25,7 @@ creds=ServiceAccountCredentials.from_json_keyfile_name(r'unique-bonbon-304011-58
 client=gspread.authorize(creds)
 sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-h1X9vCILorUlLctMxSSDz1zhJmEo-o/edit?usp=sharing').worksheets()
 Districts=[i.title for i in sheet]
+selected_district=st.selectbox('District',Districts)
 ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district)].get_values())
 #Selected_District=sheet[[i.title for i in sheet].index(selected_district)].title
 
@@ -34,7 +35,6 @@ ambulance_df.columns=ambulance_df.iloc[0]
 ambulance_df=ambulance_df[1:]
 min_date=ambulance_df['Date'].min()
 max_date=date.today()
-selected_district=st.selectbox('District',Districts)
 date_range=st.date_input("Enter the date range",value=(min_date,max_date),key='date_range')
 
 # In[7]:
