@@ -27,8 +27,6 @@ ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index('Dhar')].get_valu
 
 # In[6]:
 
-
-ambulance_df=pd.DataFrame(sheet.worksheet('Dhar').get_all_values())
 ambulance_df.columns=ambulance_df.iloc[0]
 ambulance_df=ambulance_df[1:]
 
