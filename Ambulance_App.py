@@ -55,7 +55,7 @@ def get_data(selected_district,date_range,sheet):
     h1, l1 = ax1.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1+h2, l1+l2)
-    if Ambulance_By_Month is None:
+    if Ambulance_By_Month.count()==0:
        return None, min_date, max_date
     else:
         return plt, min_date, max_date
