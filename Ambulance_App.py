@@ -86,7 +86,7 @@ ax2.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Patients Served'],co
 plt.setp(ax1.get_xticklabels(), rotation=90, horizontalalignment='right')
 ax1.set_ylabel('Total Distance Covered')
 ax2.set_ylabel('Total Patients Served')
-plt.title(r'{}.format(Selected_District} - Ambulance Deployment By Month')
+plt.title(r'{} - Ambulance Deployment By Month'.format(Selected_District))
 st.pyplot(plt)
 
 #st.pyplot(Ambulance_By_Month[['Total Patients Served','Total Distance Covered']].plot.line().figure)
