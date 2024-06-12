@@ -99,8 +99,8 @@ h2, l2 = ax2.get_legend_handles_labels()
 ax1.legend(h1+h2, l1+l2, loc=0)
 st.pyplot(plt)
 
-#st.pyplot(Ambulance_By_Month[['Total Patients Served','Total Distance Covered']].plot.line().figure)
-#st.pyplot(Ambulance_By_Month['Total Distance Covered'].plot.line().figure)
+st.sidebar.title("Select page")
+page=st.sidebar.radio("",[District level"])
 
 
 
