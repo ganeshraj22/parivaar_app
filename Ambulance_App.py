@@ -56,22 +56,21 @@ def get_data(selected_district,date_range,sheet):
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1+h2, l1+l2)
     if (Ambulance_By_Month.count()==0):
-       return 0, min_date, max_date
+       return 0, plt, min_date, max_date
     else:
-        return plt, min_date, max_date
+        return 1, plt, min_date, max_date
 col1,col2=st.columns([1,1])
 with col1:
     selected_district=st.selectbox('Select a district',Districts)
 with col2:
     date_range=st.date_input('Enter date range',value=(datetime(2020,1,1),date.today()),key='date_range')
 
-plt=get_data(selected_district,date_range,sheet)[0]
-min_date=get_data(selected_district,date_range,sheet)[1]
-max_date=get_data(selected_district,date_range,sheet)[2]
-if plt!=0:
-    st.pyplot(plt)
-else:
+
+(val,plt,min_date,max_date)=get_data(selected_district,date_range,sheet)
+if val==0:
     st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
+else:
+    st.pyplot(plt)
 
 
 st.sidebar.title("Select page")
