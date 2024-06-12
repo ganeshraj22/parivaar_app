@@ -28,7 +28,7 @@ sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-
 # In[6]:
 
 
-ambulance_df=pd.DataFrame(sheet.worksheet('Dhar').get_values())
+ambulance_df=pd.DataFrame(sheet.worksheet('Dhar').get_all_values())
 ambulance_df.columns=ambulance_df.iloc[0]
 ambulance_df=ambulance_df[1:]
 
