@@ -26,7 +26,7 @@ client=gspread.authorize(creds)
 sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-h1X9vCILorUlLctMxSSDz1zhJmEo-o/edit?usp=sharing').worksheets()
 Districts=[i.title for i in sheet]
 selected_district=st.selectbox('District',Districts)
-date_range=st.date_input("Enter the date range",value=(min_date(),max_date),key='date_range')
+date_range=st.date_input("Enter the date range",value=(datetime('2020,01,01'),max_date),key='date_range')
 ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district)].get_values())
 #Selected_District=sheet[[i.title for i in sheet].index(selected_district)].title
 
@@ -34,9 +34,6 @@ ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district
 
 ambulance_df.columns=ambulance_df.iloc[0]
 ambulance_df=ambulance_df[1:]
-min_date=ambulance_df['Date'].min()
-def min_date():
-   return min_date
 
 # In[7]:
 
@@ -100,7 +97,7 @@ ax1.legend(h1+h2, l1+l2, loc=0)
 st.pyplot(plt)
 
 st.sidebar.title("Select page")
-page=st.sidebar.radio("",[District level"])
+page=st.sidebar.radio("",["District level"])
 
 
 
