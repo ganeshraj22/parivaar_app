@@ -68,10 +68,12 @@ with col2:
 plt=get_data(selected_district,date_range,sheet)[0]
 min_date=get_data(selected_district,date_range,sheet)[1]
 max_date=get_data(selected_district,date_range,sheet)[2]
-if plt is True:
+if plt is None:
     st.pyplot(plt)
-else:
     st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
+else:
+    st.pyplot(plt)
+
 
 st.sidebar.title("Select page")
 page=st.sidebar.radio("",["District level"])
