@@ -90,6 +90,7 @@ ax1.set_ylabel('Total Distance Covered')
 ax2.set_ylabel('Total Patients Served')
 plt.title(f'{selected_district} - Ambulance Deployment By Month')
 ax1.legend()
+ax2.legend()
 st.pyplot(plt)
 
 #st.pyplot(Ambulance_By_Month[['Total Patients Served','Total Distance Covered']].plot.line().figure)
