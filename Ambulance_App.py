@@ -60,7 +60,7 @@ with col1:
 with col2:
     date_range=st.date_input('Enter date range',value=(datetime(2020,1,1),date.today()),key='date_range')
 with col3:
-    print(date_range)
+    print(date_range[0])
   
 st.pyplot(get_data(selected_district,date_range,sheet))
 
