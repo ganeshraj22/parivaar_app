@@ -12,8 +12,6 @@ import matplotlib.pyplot as plt
 from oauth2client.service_account import ServiceAccountCredentials
 
 
-# In[4]:
-
 scope=['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 creds=ServiceAccountCredentials.from_json_keyfile_name(r'unique-bonbon-304011-585cc22859d3.json',scope)
 client=gspread.authorize(creds)
@@ -57,6 +55,7 @@ def get_data(selected_district,sheet):
     return plt
 
 selected_district=st.selectbox('Select a district',Districts)
+date_range=st.date_input(value=(datetime(2020,1,1),date.today()))
   
 st.pyplot(get_data(selected_district,sheet))
 
