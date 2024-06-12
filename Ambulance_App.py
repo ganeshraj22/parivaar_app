@@ -54,7 +54,7 @@ def get_data(selected_district,date_range,sheet):
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1+h2, l1+l2, loc=0)
     if ambulance_df is None:
-        return 'No data to display'
+        print('No data to display')
     else:
         return plt
 col1,col2=st.columns([1,1])
