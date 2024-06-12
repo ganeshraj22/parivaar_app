@@ -26,7 +26,7 @@ client=gspread.authorize(creds)
 sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-h1X9vCILorUlLctMxSSDz1zhJmEo-o/edit?usp=sharing').worksheets()
 Districts=[i.title for i in sheet]
 selected_district=st.selectbox('District',Districts)
-start_date=st.sidebar.date_input("Start Date",min_value=datetime(2020,1,1),max_value=today())
+start_date=st.sidebar.date_input("Start Date",min_value=datetime(2020,1,1),max_value=date.today())
 end_date=st.sidebar.date_input("End Date",min_value=start_date,max_value=date.today())
 ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district)].get_values())
 #Selected_District=sheet[[i.title for i in sheet].index(selected_district)].title
