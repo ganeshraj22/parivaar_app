@@ -77,7 +77,7 @@ with col3:
     level_of_detail=st.selectbox('Select the level of detail',['Date','Month','Year'])
 
 
-(val,plt,min_date,max_date)=get_data(selected_district,date_range,sheet)
+(val,plt,min_date,max_date)=get_data(selected_district,date_range,level_of_detail,sheet)
 if val is True:
     st.pyplot(plt)
 else:
