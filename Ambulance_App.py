@@ -18,9 +18,17 @@ client=gspread.authorize(creds)
 sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-h1X9vCILorUlLctMxSSDz1zhJmEo-o/edit?usp=sharing').worksheets()
 Districts=[i.title for i in sheet]
 
-def get_data(selected_district,date_range,sheet):
+def get_data(selected_district,date_range,level_of_detail,sheet):
     start_date=pd.to_datetime(date_range[0])
     end_date=pd.to_datetime(date_range[1])
+    level_of_detail=f"'{level_of_detail}'"
+    a='0'
+    if level_of_detail=="'Date'":
+        a="'%d %b %Y'"
+    elif level_of_detail=="'Month'":
+        a="'%b %Y'"
+    else:
+        a="'%Y'"
     ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district)].get_values())
     ambulance_df.columns=ambulance_df.iloc[0]
     ambulance_df=ambulance_df[1:] 
@@ -33,11 +41,12 @@ def get_data(selected_district,date_range,sheet):
 
     Ambulance_By_Day=ambulance_df[ambulance_df['Day'].replace('',None).notnull()][['Total Distance Covered','Total Patients Served','Day']].groupby(by='Day').sum()
 
-    Ambulance_By_Month=ambulance_df[ambulance_df['Date'].notnull()].groupby(ambulance_df['Date'].dt.strftime('%b %Y'))[['Total Distance Covered','Total Patients Served']].sum()
+    Ambulance_By_Month=ambulance_df[ambulance_df['Date'].notnull()]
     Ambulance_By_Month=Ambulance_By_Month.reset_index(drop=False)
     Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month
     Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year
-    Ambulance_By_Month=Ambulance_By_Month.sort_values(['Year','Month'])
+    Ambulance_By_Month=Ambulance_By_Month.groupby(ambulance_df['Date'].dt.strftime(a))[['Total Distance Covered','Total Patients Served']].sum()
+    #Ambulance_By_Month=Ambulance_By_Month.sort_values(['Year','Month'])
     Ambulance_By_Month=Ambulance_By_Month[['Date','Total Distance Covered','Total Patients Served']]
     Ambulance_By_Month.set_index('Date',inplace=True)
 
@@ -59,11 +68,13 @@ def get_data(selected_district,date_range,sheet):
        return False, plt, min_date, max_date
     else:
         return True, plt, min_date, max_date
-col1,col2=st.columns([1,1])
+col1,col2=st.columns([1,1,1])
 with col1:
     selected_district=st.selectbox('Select a district',Districts)
 with col2:
     date_range=st.date_input('Enter date range',value=(datetime(2020,1,1),date.today()),key='date_range')
+with col3:
+    level_of_detail=st.selectbox('Select the level of detail',['Date','Month','Year'])
 
 
 (val,plt,min_date,max_date)=get_data(selected_district,date_range,sheet)
