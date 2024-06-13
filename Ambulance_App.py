@@ -55,10 +55,10 @@ def get_data(selected_district,date_range,sheet):
     h1, l1 = ax1.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1+h2, l1+l2)
-    #if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-    #   return None, min_date, max_date
-    #else:
-    return plt, min_date, max_date
+    if (Ambulance_By_Month['Total Distance Covered'].count()==0):
+       return False, plt, min_date, max_date
+    else:
+        return True, plt, min_date, max_date
 col1,col2=st.columns([1,1])
 with col1:
     selected_district=st.selectbox('Select a district',Districts)
@@ -66,11 +66,11 @@ with col2:
     date_range=st.date_input('Enter date range',value=(datetime(2020,1,1),date.today()),key='date_range')
 
 
-(plt,min_date,max_date)=get_data(selected_district,date_range,sheet)
-#if plt is True:
-st.pyplot(plt)
-#else:
-#    st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
+(val,plt,min_date,max_date)=get_data(selected_district,date_range,sheet)
+if val is True:
+    st.pyplot(plt)
+else:
+    st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
     
 
 
