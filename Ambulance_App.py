@@ -21,7 +21,7 @@ Districts=[i.title for i in sheet]
 def get_data(selected_district,date_range,level_of_detail,sheet):
     start_date=pd.to_datetime(date_range[0])
     end_date=pd.to_datetime(date_range[1])
-    level_of_detail=level_of_detail.lower()
+    #level_of_detail
     a='0'
     if level_of_detail=="date":
         a="%d %b %Y"
@@ -45,7 +45,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     Ambulance_By_Month=Ambulance_By_Month.reset_index(drop=False)
     Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month
     Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year
-    Ambulance_By_Month=Ambulance_By_Month.groupby(ambulance_df['Date'])[['Total Distance Covered','Total Patients Served']].sum()        
+    Ambulance_By_Month=Ambulance_By_Month.groupby(ambulance_df[level_of_detail])[['Total Distance Covered','Total Patients Served']].sum()        
     #Ambulance_By_Month.set_index('Date',inplace=True)
     Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']]
 
