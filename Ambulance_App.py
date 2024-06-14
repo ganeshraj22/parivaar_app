@@ -53,7 +53,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
     Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']]
 
-    fig=plt.figure(figsize=12,2)
+    fig=plt.figure(figsize=(12,2))
     
     ax1=fig.add_subplot()
     ax1.bar(Ambulance_By_Month.index,Ambulance_By_Month['Total Distance Covered'],color='cyan',label='Total Distance Covered')
