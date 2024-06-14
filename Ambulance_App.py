@@ -70,7 +70,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
        return False, plt, min_date, max_date
     else:
         return True, plt, min_date, max_date
-col1,col2,col3=st.columns([1,1,1])
+col1,col2,col3,col4,col5=st.columns([1,1,1,1,1])
 with col1:
     selected_district=st.selectbox('Select a district',Districts)
 with col2:
