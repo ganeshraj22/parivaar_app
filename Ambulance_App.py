@@ -26,9 +26,9 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     #level_of_detail=f"'{level_of_detail}'"
     a='0'
     if level_of_detail=="month":
-        a="%b %Y"
+        a="'%b %Y'"
     else:
-        a="%Y"
+        a="'%Y'"
     ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district)].get_values())
     ambulance_df.columns=ambulance_df.iloc[0]
     ambulance_df=ambulance_df[1:] 
@@ -45,7 +45,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     Ambulance_By_Month=Ambulance_By_Month.reset_index(drop=False)
     Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month.astype(str).str.pad(width=2,side='left',fillchar='0')
     Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year.astype(str)
-    Ambulance_By_Month['Date']=Ambulance_By_Month['Date'].dt.strftime('%b %Y')
+    Ambulance_By_Month['Date']=Ambulance_By_Month['Date'].dt.strftime(a)
     Ambulance_By_Month['Yrmo']=(Ambulance_By_Month['Year']+Ambulance_By_Month['Month']).astype(int)
     Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(int)
     Ambulance_By_Month=Ambulance_By_Month.groupby(['Date'])[['Total Distance Covered','Total Patients Served','Yrmo','Year']].agg({'Total Distance Covered':sum,'Total Patients Served':sum,'Yrmo':mean,'Year':mean})
