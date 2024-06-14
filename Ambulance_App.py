@@ -24,10 +24,10 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     level_of_detail=level_of_detail.lower()
     #level_of_detail=f"'{level_of_detail}'"
     a='0'
-    if level_of_detail=="Month":
+    if level_of_detail=="month":
         a="%b %Y"
     else:
-        a="%b %Y"
+        a="%Y"
     ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district)].get_values())
     ambulance_df.columns=ambulance_df.iloc[0]
     ambulance_df=ambulance_df[1:] 
