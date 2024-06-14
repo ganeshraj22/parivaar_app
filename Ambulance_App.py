@@ -93,7 +93,6 @@ page=st.sidebar.radio("",["District level"])
 st.markdown(f"""
 <style>
     .block-container {
-        padding-top:1 rem;
-        padding-bottom:1 rem;
+        padding-left:1 rem;
     }
 </style>""",unsafe_allow_html=True)
