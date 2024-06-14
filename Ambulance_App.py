@@ -89,13 +89,3 @@ with col1:
     
 st.sidebar.title("Select page")
 page=st.sidebar.radio("",["District level"])
-
-st.markdown(
-    f"""
-    <style>
-        .sidebar .sidebar-content {{
-            width:200 px;
-        }}
-    </style>
-    """,
-    unsafe_allow_html=True)
