@@ -53,7 +53,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
     Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']]
 
-    fig=plt.figure(figsize=(15,15))
+    fig=plt.figure()
     
     ax1=fig.add_subplot()
     ax1.bar(Ambulance_By_Month.index,Ambulance_By_Month['Total Distance Covered'],color='cyan',label='Total Distance Covered')
@@ -62,7 +62,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     plt.setp(ax1.get_xticklabels(), rotation=90, horizontalalignment='right')
     ax1.set_ylabel('Total Distance Covered')
     ax2.set_ylabel('Total Patients Served')
-    plt.title(f'{selected_district} - Ambulance Deployment By Month')
+    plt.title(f'{selected_district} - Kilometers Driven/Persons Served By Month')
     h1, l1 = ax1.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1+h2, l1+l2)
