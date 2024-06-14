@@ -86,6 +86,9 @@ with col1:
         st.pyplot(plt)
     else:
         st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
+    
+st.sidebar.title("Select page")
+page=st.sidebar.radio("",["District level"])
 
 st.markdown(
     f"""
@@ -96,8 +99,3 @@ st.markdown(
     </style>
     """,
     unsafe_allow_html=True)
-    
-
-
-st.sidebar.title("Select page")
-page=st.sidebar.radio("",["District level"])
