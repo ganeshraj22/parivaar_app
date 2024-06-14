@@ -20,10 +20,8 @@ sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-
 Districts=[i.title for i in sheet]
 
 def get_data(selected_district,date_range,level_of_detail,sheet):
-    full_start_date=f'{date_range[0]}-01'
-    full_end_date=f'{date_range[1]}-31'
-    start_date=pd.to_datetime(full_start_date)
-    end_date=pd.to_datetime(full_end_date)
+    start_date=pd.to_datetime(date_range[0])
+    end_date=pd.to_datetime(date_range[1])
     level_of_detail=level_of_detail.lower()
     #level_of_detail=f"'{level_of_detail}'"
     a='0'
@@ -76,7 +74,7 @@ col1,col2,col3=st.columns([1,1,1])
 with col1:
     selected_district=st.selectbox('Select a district',Districts)
 with col2:
-    date_range=st.date_input('Enter date range',value=(datetime(2020,1,1),date.today()),key='date_range',format='YYYY-MM')
+    date_range=st.date_input('Enter date range',value=(datetime(2020,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
 with col3:
     level_of_detail=st.selectbox('Select the level of detail',['Month','Year'])
 
