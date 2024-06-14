@@ -23,8 +23,6 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     end_date=pd.to_datetime(date_range[1])
     level_of_detail=f"'{level_of_detail}'"
     a='0'
-    if level_of_detail=="'Date'":
-        a="%d %b %Y"
     elif level_of_detail=="'Month'":
         a="%b %Y"
     else:
@@ -79,7 +77,7 @@ with col1:
 with col2:
     date_range=st.date_input('Enter date range',value=(datetime(2020,1,1),date.today()),key='date_range')
 with col3:
-    level_of_detail=st.selectbox('Select the level of detail',['Date','Month','Year'])
+    level_of_detail=st.selectbox('Select the level of detail',['Month','Year'])
 
 
 (val,plt,min_date,max_date)=get_data(selected_district,date_range,level_of_detail,sheet)
