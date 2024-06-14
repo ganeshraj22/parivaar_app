@@ -90,9 +90,10 @@ with col1:
 st.sidebar.title("Select page")
 page=st.sidebar.radio("",["District level"])
 
+st.markdown(f"""
 <style>
     .block-container {
         padding-top:1 rem;
         padding-bottom:1 rem;
     }
-</style>
+</style>""",unsafe_allow_html=True)
