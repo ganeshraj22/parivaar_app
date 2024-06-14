@@ -21,9 +21,12 @@ Districts=[i.title for i in sheet]
 def get_data(selected_district,date_range,level_of_detail,sheet):
     start_date=pd.to_datetime(date_range[0])
     end_date=pd.to_datetime(date_range[1])
+    level_of_detail=level_of_detail.lower()
     level_of_detail=f"'{level_of_detail}'"
     a='0'
-    if level_of_detail=="'Month'":
+    if level_of_detail=="'Date'":
+        a="%d %b %Y"
+    elif level_of_detail=="'Month'":
         a="%b %Y"
     else:
         a="%Y"
@@ -41,14 +44,12 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
 
     Ambulance_By_Month=ambulance_df[ambulance_df['Date'].notnull()]
     Ambulance_By_Month=Ambulance_By_Month.reset_index(drop=False)
-    #Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month
-    #Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year    
-    Ambulance_By_Month=Ambulance_By_Month.groupby(ambulance_df['Date'].dt.strftime(a))[['Total Distance Covered','Total Patients Served']].sum()        
-    Ambulance_By_Month.set_index('Date',inplace=True)
     Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month
     Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year
+    Ambulance_By_Month=Ambulance_By_Month.groupby(ambulance_df['Date'])[['Total Distance Covered','Total Patients Served']].sum()  
+      
+    #Ambulance_By_Month.set_index('Date',inplace=True)
     Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']]
-    
 
     fig=plt.figure()
     
@@ -63,37 +64,26 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     h1, l1 = ax1.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1+h2, l1+l2)
-    tick_labels=plt.gca().get_xticklabels()
-    tick_positions=[label.get_position() for label in tick_labels]
-
-    #texts=[plt.text(pos[0],pos[1],label.get_text(),ha='center',va='center') for pos, label in zip(tick_positions, tick_labels)]
-    #adjust_text(texts)
-    
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
        return False, plt, min_date, max_date
     else:
         return True, plt, min_date, max_date
-
 col1,col2,col3=st.columns([1,1,1])
 with col1:
     selected_district=st.selectbox('Select a district',Districts)
 with col2:
     date_range=st.date_input('Enter date range',value=(datetime(2020,1,1),date.today()),key='date_range')
 with col3:
-    level_of_detail=st.selectbox('Select the level of detail',['Month','Year'])
+    level_of_detail=st.selectbox('Select the level of detail',['Date','Month','Year'])
 
 
 (val,plt,min_date,max_date)=get_data(selected_district,date_range,level_of_detail,sheet)
 if val is True:
     st.pyplot(plt)
 else:
-    st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}.'")
+    st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
     
 
 
 st.sidebar.title("Select page")
 page=st.sidebar.radio("",["District level"])
-
-
-
-
