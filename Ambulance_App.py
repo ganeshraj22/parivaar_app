@@ -22,10 +22,9 @@ Districts=[i.title for i in sheet]
 def get_data(selected_district,date_range,level_of_detail,sheet):
     start_date=pd.to_datetime(date_range[0])
     end_date=pd.to_datetime(date_range[1])
-    level_of_detail=level_of_detail.lower()
-    #level_of_detail=f"'{level_of_detail}'"
+    level_of_detail_lower=level_of_detail.lower()
     a='0'
-    if level_of_detail=="month":
+    if level_of_detail_lower=="month":
         a="%b %Y"
     else:
         a="%Y"
