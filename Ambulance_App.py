@@ -94,7 +94,8 @@ st.markdown(
             width:375 px;
         }}
     </style>
-    """,unsafe allow html=True)
+    """,
+    unsafe_allow_html=True)
     
 
 
