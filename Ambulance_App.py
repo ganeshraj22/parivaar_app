@@ -62,10 +62,12 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     h1, l1 = ax1.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1+h2, l1+l2)
+    fig.set_tight_layout(True)
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
        return False, plt, min_date, max_date
     else:
         return True, plt, min_date, max_date
+
 col1,col2,col3=st.columns([1,1,1])
 with col1:
     selected_district=st.selectbox('Select a district',Districts)
