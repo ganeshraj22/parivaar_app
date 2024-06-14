@@ -9,6 +9,7 @@ import pandas as pd
 import streamlit as st
 from datetime import datetime, date
 import matplotlib.pyplot as plt
+from statistics import mean
 from oauth2client.service_account import ServiceAccountCredentials
 
 
