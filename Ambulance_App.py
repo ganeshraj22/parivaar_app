@@ -91,7 +91,7 @@ st.markdown(
     f"""
     <style>
         .sidebar .sidebar-content {{
-            width:200 px;
+            width:400 px;
         }}
     </style>
     """,
