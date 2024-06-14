@@ -74,7 +74,7 @@ col1,col2,col3=st.columns([1,1,1])
 with col1:
     selected_district=st.selectbox('Select a district',Districts)
 with col2:
-    date_range=st.date_input('Enter date range',value=(datetime(2020,1,1),date.today()),key='date_range',format='YYYY-MM')
+    date_range=st.date_input('Enter date range',value=(datetime(2020,1,1),date.today()),key='date_range',format='YYYY-MM-DD')
 with col3:
     level_of_detail=st.selectbox('Select the level of detail',['Month','Year'])
 
