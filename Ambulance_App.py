@@ -9,6 +9,7 @@ import pandas as pd
 import streamlit as st
 from datetime import datetime, date
 import matplotlib.pyplot as plt
+from adjustText import adjust_text
 from oauth2client.service_account import ServiceAccountCredentials
 
 
@@ -55,14 +56,19 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     ax1.bar(Ambulance_By_Month.index,Ambulance_By_Month['Total Distance Covered'],color='cyan',label='Total Distance Covered')
     ax2=ax1.twinx()
     ax2.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Patients Served'],color='blue',label='Total Patients Served')
-    #plt.setp(ax1.get_xticklabels(), rotation=90, horizontalalignment='right')
+    plt.setp(ax1.get_xticklabels(), rotation=90, horizontalalignment='right')
     ax1.set_ylabel('Total Distance Covered')
     ax2.set_ylabel('Total Patients Served')
     plt.title(f'{selected_district} - Ambulance Deployment By Month')
     h1, l1 = ax1.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1+h2, l1+l2)
-    fig.set_tight_layout(True)
+    tick_labels=plt.gca().get_xticklabels()
+    tick_positions=[label.get_position() for label in tick_labels]
+
+    texts=[plt.text(pos[0],pos[1],label.get_text(),ha='center',va='center') for pos, label in zip(tick_positions, tick_labels)]
+    adjust_text(texts)
+    
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
        return False, plt, min_date, max_date
     else:
