@@ -23,7 +23,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     end_date=pd.to_datetime(date_range[1])
     level_of_detail=f"'{level_of_detail}'"
     a='0'
-    elif level_of_detail=="'Month'":
+    if level_of_detail=="'Month'":
         a="%b %Y"
     else:
         a="%Y"
