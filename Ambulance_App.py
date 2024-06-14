@@ -80,7 +80,7 @@ with col3:
 
 
 (val,plt,min_date,max_date)=get_data(selected_district,date_range,level_of_detail,sheet)
-col1,col2=st.columns([1,1])
+col1,col2=st.columns([1.5,1.5)
 with col1:
     if val is True:
         st.pyplot(plt)
