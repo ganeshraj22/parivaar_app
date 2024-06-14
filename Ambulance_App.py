@@ -20,8 +20,8 @@ sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/17M6cIpJApxan-
 Districts=[i.title for i in sheet]
 
 def get_data(selected_district,date_range,level_of_detail,sheet):
-    full_start_date=f'{date_range[0]}-01'}
-    full_end_date=f'{date_range[1]}-31'}
+    full_start_date=f'{date_range[0]}-01'
+    full_end_date=f'{date_range[1]}-31'
     start_date=pd.to_datetime(full_start_date)
     end_date=pd.to_datetime(full_end_date)
     level_of_detail=level_of_detail.lower()
