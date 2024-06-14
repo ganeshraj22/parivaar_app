@@ -9,7 +9,7 @@ import pandas as pd
 import streamlit as st
 from datetime import datetime, date
 import matplotlib.pyplot as plt
-from adjustText import adjust_text
+#from adjustText import adjust_text
 from oauth2client.service_account import ServiceAccountCredentials
 
 
@@ -66,8 +66,8 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     tick_labels=plt.gca().get_xticklabels()
     tick_positions=[label.get_position() for label in tick_labels]
 
-    texts=[plt.text(pos[0],pos[1],label.get_text(),ha='center',va='center') for pos, label in zip(tick_positions, tick_labels)]
-    adjust_text(texts)
+    #texts=[plt.text(pos[0],pos[1],label.get_text(),ha='center',va='center') for pos, label in zip(tick_positions, tick_labels)]
+    #adjust_text(texts)
     
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
        return False, plt, min_date, max_date
