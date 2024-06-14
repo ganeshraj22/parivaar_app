@@ -80,10 +80,11 @@ with col3:
 
 
 (val,plt,min_date,max_date)=get_data(selected_district,date_range,level_of_detail,sheet)
-if val is True:
-    st.pyplot(plt)
-else:
-    st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
+col1,col2=st.columns([1,1])
+    if val is True:
+        st.pyplot(plt)
+    else:
+        st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
     
 
 
