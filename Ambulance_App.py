@@ -9,7 +9,6 @@ import pandas as pd
 import streamlit as st
 from datetime import datetime, date
 import matplotlib.pyplot as plt
-#from adjustText import adjust_text
 from oauth2client.service_account import ServiceAccountCredentials
 
 
