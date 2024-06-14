@@ -42,7 +42,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     Ambulance_By_Month=ambulance_df[ambulance_df['Date'].notnull()]
     Ambulance_By_Month=Ambulance_By_Month.reset_index(drop=False)
     Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month
-    Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year
+    Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year    
     Ambulance_By_Month=Ambulance_By_Month.groupby(ambulance_df['Date'].dt.strftime(a))[['Total Distance Covered','Total Patients Served']].sum()        
     #Ambulance_By_Month.set_index('Date',inplace=True)
     Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']]
