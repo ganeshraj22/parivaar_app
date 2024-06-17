@@ -86,10 +86,7 @@ with col1:
     else:
         st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
 with col2:
-    if val is True:
-        st.pyplot(plt)
-    else:
-        st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
+    st.write(f"Some chart/data to be added here'")
     
 st.sidebar.title("Select page")
 page=st.sidebar.radio("",["District level"])
