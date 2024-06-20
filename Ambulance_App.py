@@ -100,6 +100,8 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
                                   ambulance_df1.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[1]:'Total Distance Covered'},inplace=True)
     
     ambulance_df1['Date']=pd.to_datetime(ambulance_df1['Date'].replace('',None))
+    min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
+    max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
     ambulance_df1['Total Distance Covered']=pd.to_numeric(ambulance_df1['Total Distance Covered'])
     ambulance_df1['Total Patients Served']=pd.to_numeric(ambulance_df1['Total Patients Served'])
         
