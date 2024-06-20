@@ -94,26 +94,26 @@ def preprocess_data(ambulance_df):
   return ambulance_df[3:],total_distance_index,no_patients_index
 
 
-    (ambulance_df1, total_distance_index, no_patients_index)  = preprocess_data(ambulance_df)
+(ambulance_df1, total_distance_index, no_patients_index)  = preprocess_data(ambulance_df)
 
-    ambulance_df1.rename(columns={ambulance_df1.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[0]:'Total Patients Served',
+ambulance_df1.rename(columns={ambulance_df1.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[0]:'Total Patients Served',
                               ambulance_df1.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[1]:'Total Distance Covered'},inplace=True)
 
-    ambulance_df1['Date']=pd.to_datetime(ambulance_df1['Date'].replace('',None))
-    ambulance_df1['Total Distance Covered']=pd.to_numeric(ambulance_df1['Total Distance Covered'])
-    ambulance_df1['Total Patients Served']=pd.to_numeric(ambulance_df1['Total Patients Served'])
+ambulance_df1['Date']=pd.to_datetime(ambulance_df1['Date'].replace('',None))
+ambulance_df1['Total Distance Covered']=pd.to_numeric(ambulance_df1['Total Distance Covered'])
+ambulance_df1['Total Patients Served']=pd.to_numeric(ambulance_df1['Total Patients Served'])
     
-    Ambulance_By_Month=ambulance_df1[ambulance_df1['Date'].notnull()]
-    Ambulance_By_Month=Ambulance_By_Month.reset_index(drop=False)
-    Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month.astype(str).str.pad(width=2,side='left',fillchar='0')
-    Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year.astype(str)
-    Ambulance_By_Month['Date']=Ambulance_By_Month['Date'].dt.strftime('%b %Y')
-    Ambulance_By_Month['Yrmo']=(Ambulance_By_Month['Year']+Ambulance_By_Month['Month']).astype(int)
-    Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(int)
-    Ambulance_By_Month=Ambulance_By_Month.groupby(['Date'])[['Total Distance Covered','Total Patients Served','Yrmo','Year']].agg({'Total Distance Covered':sum,'Total Patients Served':sum,'Yrmo':mean,'Year':mean})
-    #Ambulance_By_Month.set_index('Date',inplace=True)
-    Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
-    Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Yrmo','Year']]
+Ambulance_By_Month=ambulance_df1[ambulance_df1['Date'].notnull()]
+Ambulance_By_Month=Ambulance_By_Month.reset_index(drop=False)
+Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month.astype(str).str.pad(width=2,side='left',fillchar='0')
+Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year.astype(str)
+Ambulance_By_Month['Date']=Ambulance_By_Month['Date'].dt.strftime('%b %Y')
+Ambulance_By_Month['Yrmo']=(Ambulance_By_Month['Year']+Ambulance_By_Month['Month']).astype(int)
+Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(int)
+Ambulance_By_Month=Ambulance_By_Month.groupby(['Date'])[['Total Distance Covered','Total Patients Served','Yrmo','Year']].agg({'Total Distance Covered':sum,'Total Patients Served':sum,'Yrmo':mean,'Year':mean})
+#Ambulance_By_Month.set_index('Date',inplace=True)
+Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
+Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Yrmo','Year']]
 
     fig=plt.figure()
     
