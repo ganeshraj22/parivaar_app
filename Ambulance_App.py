@@ -90,14 +90,14 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     
       # Drop empty rows
       ambulance_df.dropna(axis=0, how='all', inplace=True)
+
+      ambulance_df.rename(columns={ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[0]:'Total Patients Served',
+                                  ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[1]:'Total Distance Covered'},inplace=True)
     
       return ambulance_df[3:],total_distance_index,no_patients_index
     
     
     (ambulance_df1, total_distance_index, no_patients_index)  = preprocess_data(ambulance_df)
-    
-    ambulance_df1.rename(columns={ambulance_df1.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[0]:'Total Patients Served',
-                                  ambulance_df1.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[1]:'Total Distance Covered'},inplace=True)
     
     ambulance_df1['Date']=pd.to_datetime(ambulance_df1['Date'].replace('',None))
     min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
