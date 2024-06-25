@@ -141,7 +141,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
       return ambulance_df[3:], total_distance_index, no_patients_index
     
     
-   (ambulance_df1, total_distance_index, no_patients_index)  = preprocess_data(ambulance_df)
+(ambulance_df1, total_distance_index, no_patients_index)  = preprocess_data(ambulance_df)
     
    ambulance_df1['Date']=pd.to_datetime(ambulance_df1['Date'].replace('',None))
    min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
