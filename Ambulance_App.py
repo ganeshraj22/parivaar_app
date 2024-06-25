@@ -31,12 +31,11 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district)].get_values())
 
     def preprocess_data(ambulance_df):
-    
       # Replace values in the first row starting with 'Ambulance' with values from the rows below
       def replace_values(ambulance_df):
         for col in ambulance_df.columns:
             # Check if the element is a string before calling startswith
-            if isinstance(ambulance_df.at[0, col], str) and (ambulance_df.at[0, col].startswith('Ambulance') or ambulance_df.at[0, col].startswith('REC')):
+            if isinstance(ambulance_df.at[0, col], str) and ambulance_df.at[0, col].startswith('Ambulance'):
                 ambulance_df.at[0, col] = ambulance_df.at[1, col]
         return ambulance_df
     
@@ -52,7 +51,6 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
       first_row_list = ambulance_df.iloc[0].tolist()
     
       # Find index of 'Total Distance Covered(KM)' in the first row"
-    
       total_distance_list = ["Total Distance Covered", "Total Distance Covered(KM)","Total Distance Covered (KM)", "Total Distance", "Total KM"]
       no_of_patients_list = ["No. of patients served", "Total Patients Served", "Total Patients","Total no of Patients", "Total no of patients", "Total No. of patients served"]
     
@@ -70,30 +68,13 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
       columns_after_total_distance = ambulance_df.columns[no_patients_index:]
       # print(columns_after_total_distance)
     
+      # print("1st half", ambulance_df.iloc[0:, total_distance_index+1:no_patients_index])
+      # print("2nd half", ambulance_df.iloc[0:, 3:total_distance_index + 1].values)
+    
+    
+      # ambulance_df.iloc[:, total_distance_index+1:no_patients_index] = ambulance_df.iloc[:, 3:total_distance_index].values
+    
       ambulance_df.iloc[:, total_distance_index+1:no_patients_index] = ambulance_df.iloc[:, 3:total_distance_index].values
-    
-      for col in ambulance_df.columns[3:total_distance_index]:
-          ambulance_df.loc[0, col] = ambulance_df.loc[0, col] + ' (KM)'
-    
-        # Function to process the first row and strip till first (KM) from columns 3 to total_distance_index
-      def strip_till_first_km(data):
-          for i in range(3, total_distance_index):  # Loop through columns 
-              column_value = data[i]
-              index_km = column_value.find("(KM)")
-              if index_km != -1:
-                  data[i] = column_value[:index_km + len("(KM)")].strip()
-    
-      # Function to process the first row and strip till (KM) including deleting (KM)
-      def strip_till_km(data):
-          for i in range(total_distance_index+1, no_patients_index):  # Loop through columns 3 to 10 (index 2 to 9)
-              column_value = data[i]
-              index_km = column_value.find("(KM)")
-              if index_km != -1:
-                  # Find the substring before (KM) and remove (KM) itself
-                  data[i] = column_value[:index_km].rstrip()
-          
-      strip_till_first_km(ambulance_df.iloc[0])
-      strip_till_km(ambulance_df.iloc[0])
     
     
       # List of new column names
@@ -102,43 +83,30 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
       # Assign new column names to DataFrame
       ambulance_df.columns = ambulance_df.iloc[0]
       # Identify columns with empty string as name
-      empty_columns = [col for col in ambulance_df.columns if col == '' or col == ' ' or col == 'SN' or col == 'S. No.']
+      empty_columns = [col for col in ambulance_df.columns if col == '' or col == ' ' or col == 'SN']
     
       # Drop columns with empty string as name
       ambulance_df.drop(columns=empty_columns, inplace=True)
     
       # Drop empty rows
       ambulance_df.dropna(axis=0, how='all', inplace=True)
-    
+
       def convert_to_datetime(x):
-            try:
-                return pd.to_datetime(x)
-            except:
-                return pd.NaT
-    
-      ambulance_df.rename(columns={ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[0]:'Total Patients Served',
-                                  ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[1]:'Total Distance Covered(KM)'},inplace=True)
-    
-      ambulance_df.replace('-', '0', inplace=True)
-      ambulance_df.replace('--', '0', inplace=True)
-      ambulance_df.replace('', 0, inplace=True)
-      ambulance_df.fillna(0, inplace=True)
-    
-      columns_to_check = ambulance_df.columns[2:no_patients_index]
-      print(columns_to_check)
-    
-      # Check for 0 values in specified columns range
-      mask = ambulance_df[columns_to_check].eq(0).all(axis=1)
-    
-      # Filter out rows where NaN values exist in specified columns range
-      ambulance_df = ambulance_df[~mask]
+        try:
+            return pd.to_datetime(x)
+        except:
+            return pd.NaT
     
       ambulance_df['Date']=ambulance_df['Date'].apply(convert_to_datetime)
-      ambulance_df = ambulance_df[ambulance_df['Date'].notnull()]
-      ambulance_df['Total Distance Covered']=pd.to_numeric(ambulance_df['Total Distance Covered(KM)'])
+
+      ambulance_df.rename(columns={ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[0]:'Total Patients Served',
+                                  ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[1]:'Total Distance Covered'},inplace=True)
+
+      ambulance_df[ambulance_df.columns[:no_patients_index+10]].replace('-','0',inplace=True)  
+      ambulance_df['Total Distance Covered']=pd.to_numeric(ambulance_df['Total Distance Covered'])
       ambulance_df['Total Patients Served']=pd.to_numeric(ambulance_df['Total Patients Served'])
     
-      return ambulance_df[3:], total_distance_index, no_patients_index
+      return ambulance_df[3:],total_distance_index,no_patients_index
     
     
     (ambulance_df1, total_distance_index, no_patients_index)  = preprocess_data(ambulance_df)
@@ -146,9 +114,9 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     ambulance_df1['Date']=pd.to_datetime(ambulance_df1['Date'].replace('',None))
     min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
     max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
-    #ambulance_df1['Total Distance Covered']=pd.to_numeric(ambulance_df1['Total Distance Covered'])
-    #ambulance_df1['Total Patients Served']=pd.to_numeric(ambulance_df1['Total Patients Served'])
-		        
+    ambulance_df1['Total Distance Covered']=pd.to_numeric(ambulance_df1['Total Distance Covered'])
+    ambulance_df1['Total Patients Served']=pd.to_numeric(ambulance_df1['Total Patients Served'])
+        
     Ambulance_By_Month=ambulance_df1[ambulance_df1['Date'].notnull()]
     Ambulance_By_Month=Ambulance_By_Month.reset_index(drop=False)
     Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month.astype(str).str.pad(width=2,side='left',fillchar='0')
@@ -160,9 +128,9 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     #Ambulance_By_Month.set_index('Date',inplace=True)
     Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
     Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Yrmo','Year']]
- 	
+
     fig=plt.figure()
-		    
+    
     ax1=fig.add_subplot()
     ax1.bar(Ambulance_By_Month.index,Ambulance_By_Month['Total Distance Covered'],color='cyan',label='Total Distance Covered')
     ax2=ax1.twinx()
@@ -177,7 +145,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
        return False, plt, min_date, max_date
     else:
-       return True, plt, min_date, max_date
+        return True, plt, min_date, max_date
         
 col1,col2,col3=st.columns([1,1,1])
 with col1:
