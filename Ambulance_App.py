@@ -147,37 +147,37 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
     max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
     ambulance_df1['Total Distance Covered']=pd.to_numeric(ambulance_df1['Total Distance Covered'])
-	ambulance_df1['Total Patients Served']=pd.to_numeric(ambulance_df1['Total Patients Served'])
+    ambulance_df1['Total Patients Served']=pd.to_numeric(ambulance_df1['Total Patients Served'])
 		        
-	Ambulance_By_Month=ambulance_df1[ambulance_df1['Date'].notnull()]
-	Ambulance_By_Month=Ambulance_By_Month.reset_index(drop=False)
-	Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month.astype(str).str.pad(width=2,side='left',fillchar='0')
-	Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year.astype(str)
-	Ambulance_By_Month['Date']=Ambulance_By_Month['Date'].dt.strftime('%b %Y')
-	Ambulance_By_Month['Yrmo']=(Ambulance_By_Month['Year']+Ambulance_By_Month['Month']).astype(int)
-	Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(int)
-	Ambulance_By_Month=Ambulance_By_Month.groupby(['Date'])[['Total Distance Covered','Total Patients Served','Yrmo','Year']].agg({'Total Distance Covered':sum,'Total Patients Served':sum,'Yrmo':mean,'Year':mean})
-	#Ambulance_By_Month.set_index('Date',inplace=True)
-	Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
-	Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Yrmo','Year']]
-		
-	fig=plt.figure()
+    Ambulance_By_Month=ambulance_df1[ambulance_df1['Date'].notnull()]
+    Ambulance_By_Month=Ambulance_By_Month.reset_index(drop=False)
+    Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month.astype(str).str.pad(width=2,side='left',fillchar='0')
+    Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year.astype(str)
+    Ambulance_By_Month['Date']=Ambulance_By_Month['Date'].dt.strftime('%b %Y')
+    Ambulance_By_Month['Yrmo']=(Ambulance_By_Month['Year']+Ambulance_By_Month['Month']).astype(int)
+    Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(int)
+    Ambulance_By_Month=Ambulance_By_Month.groupby(['Date'])[['Total Distance Covered','Total Patients Served','Yrmo','Year']].agg({'Total Distance Covered':sum,'Total Patients Served':sum,'Yrmo':mean,'Year':mean})
+    #Ambulance_By_Month.set_index('Date',inplace=True)
+    Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
+    Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Yrmo','Year']]
+ 	
+    fig=plt.figure()
 		    
-	ax1=fig.add_subplot()
-	ax1.bar(Ambulance_By_Month.index,Ambulance_By_Month['Total Distance Covered'],color='cyan',label='Total Distance Covered')
-	ax2=ax1.twinx()
-	ax2.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Patients Served'],color='blue',label='Total Patients Served')
-	plt.setp(ax1.get_xticklabels(), rotation=90, horizontalalignment='right')
-	ax1.set_ylabel('Total Distance Covered')
-	ax2.set_ylabel('Total Patients Served')
-	plt.title(f'{selected_district} - Kilometers Driven/Persons Served By {level_of_detail}')
-	h1, l1 = ax1.get_legend_handles_labels()
-	h2, l2 = ax2.get_legend_handles_labels()
-	ax1.legend(h1+h2, l1+l2)
-	if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-	   return False, plt, min_date, max_date
-	else:
-	    return True, plt, min_date, max_date
+    ax1=fig.add_subplot()
+    ax1.bar(Ambulance_By_Month.index,Ambulance_By_Month['Total Distance Covered'],color='cyan',label='Total Distance Covered')
+    ax2=ax1.twinx()
+    ax2.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Patients Served'],color='blue',label='Total Patients Served')
+    plt.setp(ax1.get_xticklabels(), rotation=90, horizontalalignment='right')
+    ax1.set_ylabel('Total Distance Covered')
+    ax2.set_ylabel('Total Patients Served')
+    plt.title(f'{selected_district} - Kilometers Driven/Persons Served By {level_of_detail}')
+    h1, l1 = ax1.get_legend_handles_labels()
+    h2, l2 = ax2.get_legend_handles_labels()
+    ax1.legend(h1+h2, l1+l2)
+    if (Ambulance_By_Month['Total Distance Covered'].count()==0):
+       return False, plt, min_date, max_date
+    else:
+       return True, plt, min_date, max_date
         
 col1,col2,col3=st.columns([1,1,1])
 with col1:
