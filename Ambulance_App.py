@@ -102,7 +102,6 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
       ambulance_df.rename(columns={ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[0]:'Total Patients Served',
                                   ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[1]:'Total Distance Covered'},inplace=True)
 
-      ambulance_df[ambulance_df.columns[:no_patients_index+10]].replace('-','0',inplace=True)  
       ambulance_df['Total Distance Covered']=pd.to_numeric(ambulance_df['Total Distance Covered'])
       ambulance_df['Total Patients Served']=pd.to_numeric(ambulance_df['Total Patients Served'])
     
