@@ -193,9 +193,9 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
 
     fig1=plt.figure()    
     ax1=fig1.add_subplot()
-    ab,=ax1.bar(Ambulance_By_Month.index,Ambulance_By_Month['Total Distance Covered'],color='cyan',label='Total Distance Covered')
+    ab=ax1.bar(Ambulance_By_Month.index,Ambulance_By_Month['Total Distance Covered'],color='cyan',label='Total Distance Covered')
     ax2=ax1.twinx()
-    bc,=ax2.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Patients Served'],color='blue',label='Total Patients Served')
+    bc=ax2.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Patients Served'],color='blue',label='Total Patients Served')
     plt.setp(ax1.get_xticklabels(), rotation=90, horizontalalignment='right')
     ax1.set_ylabel('Total Distance Covered')
     ax2.set_ylabel('Total Patients Served')
