@@ -204,20 +204,11 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1+h2, l1+l2)
 
-    fig2=plt.figure()    
-    ax1=fig2.add_subplot()
-    ax1.plot(Ambulance_By_Month.index,Ambulance_By_Month['Admitted in Hospital'],color='green',label='Admitted in Hospital')
-    ax2=ax1.twinx()
-    ax2.plot(Ambulance_By_Month.index,Ambulance_By_Month['Discharged from Hospital'],color='orange',label='Discharged from Hospital')
-    plt.setp(ax1.get_xticklabels(), rotation=90, horizontalalignment='right')
-    ax1.set_ylabel('Admitted in Hospital')
-    ax2.set_ylabel('Discharged from Hospital')
-    ax1.autoscale(enable=True,axis='both',tight=True)
-    ax2.autoscale(enable=True,axis='both',tight=True)
-    plt.title(f'{selected_district} - Patients Admitted/Discharged By {level_of_detail}')
-    h1, l1 = ax1.get_legend_handles_labels()
-    h2, l2 = ax2.get_legend_handles_labels()
-    ax1.legend(h1+h2, l1+l2)
+    fig2,ax=plt.subplots()
+    ax.plot(Ambulance_By_Month.index,Ambulance_By_Month['Admitted in Hospital'],color='green',label='Admitted in Hospital')
+    ax.plot((Ambulance_By_Month.index,Ambulance_By_Month['Discharged from Hospital'],color='green',label='Discharged from Hospital')
+    ax.set_ylabel('Number Of Patients')
+    ax.legend()
    
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
        return False, fig1, fig2, min_date, max_date
