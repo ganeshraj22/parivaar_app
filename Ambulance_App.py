@@ -212,6 +212,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     plt.setp(ax1.get_xticklabels(), rotation=90, horizontalalignment='right')
     ax1.set_ylabel('Admitted in Hospital')
     ax2.set_ylabel('Discharged from Hospital')
+    plt.axis('equal')
     plt.title(f'{selected_district} - Patients Admitted/Discharged By {level_of_detail}')
     h1, l1 = ax1.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
