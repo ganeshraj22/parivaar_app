@@ -125,12 +125,12 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
       ambulance_df.rename(columns={ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[0]:'Total Patients Served',
                               ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[1]:'Total Distance Covered(KM)'},inplace=True)
 
-      ambulance_df.replace('-', '0', inplace=True)
+      """ambulance_df.replace('-', '0', inplace=True)
       ambulance_df.replace('--', '0', inplace=True)
       ambulance_df.replace('', 0, inplace=True)
       ambulance_df.fillna(0, inplace=True)
 
-      """columns_to_check = ambulance_df.columns[2:no_patients_index]
+      columns_to_check = ambulance_df.columns[2:no_patients_index]
 
       for col in columns_to_check:
         # print("col",col)
