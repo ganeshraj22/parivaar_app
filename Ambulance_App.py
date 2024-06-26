@@ -227,7 +227,7 @@ with col3:
 
 
 (val,fig1,fig2,min_date,max_date)=get_data(selected_district,date_range,level_of_detail,sheet)
-col1,col2=st.columns([1.2,1])
+col1,col2=st.columns([1.1,1])
 with col1:
     if val is True:
         st.pyplot(fig1)
