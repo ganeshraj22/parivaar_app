@@ -192,13 +192,13 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     Ambulance_By_Month['Date']=Ambulance_By_Month['Date'].dt.strftime('%b %Y')
     Ambulance_By_Month['Yrmo']=(Ambulance_By_Month['Year']+Ambulance_By_Month['Month']).astype(int)
     Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(int)
-    Ambulance_By_Month=Ambulance_By_Month.groupby(['Date'])[['Total Distance Covered','Total Patients Served','Yrmo','Year']].agg({'Total Distance Covered':sum,'Total Patients Served':sum,'Yrmo':mean,'Year':mean})
+    Ambulance_By_Month=Ambulance_By_Month.groupby(['Date'])[['Total Distance Covered','Total Patients Served','Yrmo','Year']].agg({'Total Distance Covered':sum,'Total Patients Served':sum,'Yrmo':mean,'Year':mean
+                                                                                                                                  'Admitted in Hospital':sum,'Discharged from Hospital':sum})
     #Ambulance_By_Month.set_index('Date',inplace=True)
     Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
-    Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Yrmo','Year']]
+    Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
 
-    fig=plt.figure()
-    
+    fig=plt.figure()    
     ax1=fig.add_subplot()
     ax1.bar(Ambulance_By_Month.index,Ambulance_By_Month['Total Distance Covered'],color='cyan',label='Total Distance Covered')
     ax2=ax1.twinx()
@@ -210,10 +210,12 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     h1, l1 = ax1.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1+h2, l1+l2)
+
+    
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-       return False, plt, min_date, max_date
+       return False, fig, min_date, max_date
     else:
-        return True, plt, min_date, max_date
+        return True, fig, min_date, max_date
         
 col1,col2,col3=st.columns([1,1,1])
 with col1:
@@ -228,11 +230,11 @@ with col3:
 col1,col2=st.columns([1,1])
 with col1:
     if val is True:
-        st.pyplot(plt)
+        st.pyplot(fig)
     else:
         st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
 with col2:
-    st.pyplot(plt)
+    st.pyplot(fig)
 
 col1,col2=st.columns([1,1])
 with col1:
