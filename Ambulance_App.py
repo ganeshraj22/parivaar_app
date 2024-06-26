@@ -51,9 +51,10 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
       first_row_list = ambulance_df.iloc[0].tolist()
     
       # Find index of 'Total Distance Covered(KM)' in the first row"
+    
       total_distance_list = ["Total Distance Covered", "Total Distance Covered(KM)","Total Distance Covered (KM)", "Total Distance", "Total KM"]
       no_of_patients_list = ["No. of patients served", "Total Patients Served", "Total Patients","Total no of Patients", "Total no of patients", "Total No. of patients served"]
-
+    
       distance_column = find_elements_in_another_list(first_row_list, total_distance_list)
       patient_column = find_elements_in_another_list(first_row_list, no_of_patients_list)
     
@@ -63,24 +64,17 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
       # print("no_patients_index  ",no_patients_index)
     
       # Rearrange the columns
-      # Rearrange the columns
       columns_before_total_distance = ambulance_df.columns[:total_distance_index + 1]
       # print(columns_before_total_distance)
       columns_after_total_distance = ambulance_df.columns[no_patients_index:]
       # print(columns_after_total_distance)
-
-      # print("1st half", ambulance_df.iloc[0:, total_distance_index+1:no_patients_index])
-      # print("2nd half", ambulance_df.iloc[0:, 3:total_distance_index + 1].values)
     
+      ambulance_df.iloc[:, total_distance_index+1:no_patients_index] = ambulance_df.iloc[:, 3:total_distance_index].values
     
-      # ambulance_df.iloc[:, total_distance_index+1:no_patients_index] = ambulance_df.iloc[:, 3:total_distance_index].values
-    
-      ambulance_df.iloc[:, total_distance_index+1:no_patients_index] = ambulance_df.iloc[:, 3:total_distance_index].values 
-
       for col in ambulance_df.columns[3:total_distance_index]:
           ambulance_df.loc[0, col] = ambulance_df.loc[0, col] + ' (KM)'
-          
-            # Function to process the first row and strip till first (KM) from columns 3 to total_distance_index
+    
+        # Function to process the first row and strip till first (KM) from columns 3 to total_distance_index
       def strip_till_first_km(data):
           for i in range(3, total_distance_index):  # Loop through columns
               column_value = data[i]
@@ -99,7 +93,8 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     
       strip_till_first_km(ambulance_df.iloc[0])
       strip_till_km(ambulance_df.iloc[0])
-
+    
+    
       # List of new column names
       # ambulance_df.iloc[0]
     
@@ -120,10 +115,8 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
             except:
                 return pd.NaT
     
-      ambulance_df['Date']=ambulance_df['Date'].apply(convert_to_datetime)
-
       ambulance_df.rename(columns={ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[0]:'Total Patients Served',
-                              ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[1]:'Total Distance Covered(KM)'},inplace=True)
+                                  ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[1]:'Total Distance Covered(KM)'},inplace=True)
     
       return ambulance_df[3:],total_distance_index,no_patients_index
     
