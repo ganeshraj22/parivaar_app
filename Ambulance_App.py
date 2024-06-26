@@ -130,7 +130,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
       ambulance_df.replace('', 0, inplace=True)
       ambulance_df.fillna(0, inplace=True)
 
-      columns_to_check = ambulance_df.columns[2:no_patients_index]
+      """columns_to_check = ambulance_df.columns[2:no_patients_index]
 
       for col in columns_to_check:
         # print("col",col)
@@ -155,7 +155,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
       # ambulance_df['Total Distance Covered']=pd.to_numeric(ambulance_df['Total Distance Covered(KM)'])
       # ambulance_df['Total Patients Served']=pd.to_numeric(ambulance_df['Total Patients Served'])
 
-      df_reset = ambulance_df[:-1].reset_index(drop=True)
+      df_reset = ambulance_df[:-1].reset_index(drop=True)"""
     
       return ambulance_df[3:],total_distance_index,no_patients_index
     
