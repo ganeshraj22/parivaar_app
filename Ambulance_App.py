@@ -197,8 +197,8 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
     Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
 
-    fig=plt.figure()    
-    ax1=fig.add_subplot()
+    fig1=plt.figure()    
+    ax1=fig1.add_subplot()
     ax1.bar(Ambulance_By_Month.index,Ambulance_By_Month['Total Distance Covered'],color='cyan',label='Total Distance Covered')
     ax2=ax1.twinx()
     ax2.plot(Ambulance_By_Month.index,Ambulance_By_Month['Total Patients Served'],color='blue',label='Total Patients Served')
@@ -209,12 +209,12 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     h1, l1 = ax1.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1+h2, l1+l2)
-
-    
+    fig1=fig1.savefig('fig1.png')
+   
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-       return False, fig, min_date, max_date
+       return False, fig1, min_date, max_date
     else:
-        return True, fig, min_date, max_date
+        return True, fig1, min_date, max_date
         
 col1,col2,col3=st.columns([1,1,1])
 with col1:
@@ -229,7 +229,7 @@ with col3:
 col1,col2=st.columns([1,1])
 with col1:
     if val is True:
-        st.pyplot(fig)
+        st.image(fig1)
     else:
         st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
 with col2:
