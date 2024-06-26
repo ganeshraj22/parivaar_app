@@ -203,11 +203,24 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     h1, l1 = ax1.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1+h2, l1+l2)
+
+    fig2=plt.figure()    
+    ax1=fig2.add_subplot()
+    ax1.plot(Ambulance_By_Month.index,Ambulance_By_Month['Admitted in Hospital'],color='green',label='Admitted in Hospital')
+    ax2=ax1.twinx()
+    ax2.plot(Ambulance_By_Month.index,Ambulance_By_Month['Discharged from Hospital'],color='orange',label='Discharged from Hospital')
+    plt.setp(ax1.get_xticklabels(), rotation=90, horizontalalignment='right')
+    ax1.set_ylabel('Admitted in Hospital')
+    ax2.set_ylabel('Discharged from Hospital')
+    plt.title(f'{selected_district} - Patients Admitted/Discharged By {level_of_detail}')
+    h1, l1 = ax1.get_legend_handles_labels()
+    h2, l2 = ax2.get_legend_handles_labels()
+    ax1.legend(h1+h2, l1+l2)
    
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-       return False, fig1, min_date, max_date
+       return False, fig1, fig2, min_date, max_date
     else:
-        return True, fig1, min_date, max_date
+        return True, fig1, fig2, min_date, max_date
         
 col1,col2,col3=st.columns([1,1,1])
 with col1:
@@ -218,11 +231,11 @@ with col3:
     level_of_detail=st.selectbox('Select the level of detail',['Month','Year'])
 
 
-(val,plt,min_date,max_date)=get_data(selected_district,date_range,level_of_detail,sheet)
+(val,fig1,fig2,min_date,max_date)=get_data(selected_district,date_range,level_of_detail,sheet)
 col1,col2=st.columns([1,1])
 with col1:
     if val is True:
-        st.pyplot(plt)
+        st.pyplot(fig1)
     else:
         st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
 with col2:
