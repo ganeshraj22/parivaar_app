@@ -209,7 +209,7 @@ with col1:
     else:
         st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
 with col2:
-    st.write(f"Some chart/data to be added here")
+    st.pyplot(plt)
 
 col1,col2=st.columns([1,1])
 with col1:
