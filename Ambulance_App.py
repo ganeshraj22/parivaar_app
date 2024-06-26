@@ -209,7 +209,6 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     h1, l1 = ax1.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1+h2, l1+l2)
-    fig1.savefig('fig1.png')
    
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
        return False, fig1, min_date, max_date
