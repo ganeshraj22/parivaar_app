@@ -117,8 +117,38 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     
       ambulance_df.rename(columns={ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[0]:'Total Patients Served',
                                   ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[1]:'Total Distance Covered(KM)'},inplace=True)
+
+      ambulance_df.replace('-', '0', inplace=True)
+      ambulance_df.replace('--', '0', inplace=True)
+      ambulance_df.replace('', 0, inplace=True)
+      ambulance_df.fillna(0, inplace=True)
     
-      return ambulance_df[3:],total_distance_index,no_patients_index
+      columns_to_check = ambulance_df.columns[2:no_patients_index]
+    
+      for col in columns_to_check:
+        # print("col",col)
+        ambulance_df[col] = ambulance_df[col].str.replace(r'\D', '', regex=True)
+        # ambulance_df[col] = ambulance_df[col].apply(lambda x: x.replace(r'\D', '', regex=True) if isinstance(x, str) else x)
+            # Fill empty strings with '0' before converting to integer
+        ambulance_df[col] = ambulance_df[col].replace('', '0')  # Add this line
+            # Fill NaN values with 0 before converting to integer
+        ambulance_df[col] = ambulance_df[col].fillna(0)  # Add this line
+    
+      # Convert selected columns to integer type
+      ambulance_df[columns_to_check] = ambulance_df[columns_to_check].astype(int)
+    
+      # Check for 0 values in specified columns range
+      mask = ambulance_df[columns_to_check].eq(0).all(axis=1)
+    
+      # Filter out rows where NaN values exist in specified columns range
+      ambulance_df = ambulance_df[~mask]
+    
+      ambulance_df['Date']=ambulance_df['Date'].apply(convert_to_datetime)
+      ambulance_df = ambulance_df[ambulance_df['Date'].notnull()]
+
+      df_reset = ambulance_df[:-1].reset_index(drop=True)
+        
+      return df_reset,total_distance_index,no_patients_index
     
     
     (ambulance_df1, total_distance_index, no_patients_index)  = preprocess_data(ambulance_df)
