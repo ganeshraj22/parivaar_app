@@ -229,7 +229,7 @@ with col3:
 col1,col2=st.columns([1,1])
 with col1:
     if val is True:
-        st.image(fig1)
+        st.image(plt)
     else:
         st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
 with col2:
