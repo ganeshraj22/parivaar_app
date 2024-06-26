@@ -131,11 +131,11 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
       ambulance_df['Admitted in Hospital']=ambulance_df['Admitted in Hospital'].apply(add_values_with_plus)
       ambulance_df['Discharged from Hospital']=ambulance_df['Discharged from Hospital'].apply(add_values_with_plus)
       
-      for i in range(ambulance_df.shape[0]):
+      """for i in range(ambulance_df.shape[0]):
           if ambulance_df['Admitted in Hospital'][i].isnumeric()==False:
               ambulance_df['Admitted in Hospital'][i]=0
           if ambulance_df['Discharged from Hospital'][i].isnumeric()==False:
-              ambulance_df['Discharged from Hospital'][i]=0
+              ambulance_df['Discharged from Hospital'][i]=0"""
           
       ambulance_df.rename(columns={ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[0]:'Total Patients Served',
                                 ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[1]:'Total Distance Covered(KM)'},inplace=True)
