@@ -168,7 +168,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
       
       df_reset = ambulance_df[:-1].reset_index(drop=True)
 
-      df_reset.to_excel(f"preprocessed_data.xlsx")
+      df_reset.to_excel("preprocessed_data.xlsx",index=False)
         
       return df_reset,total_distance_index,no_patients_index
     
