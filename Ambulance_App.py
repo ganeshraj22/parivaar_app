@@ -165,9 +165,6 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
       
       ambulance_df['Total Distance Covered']=pd.to_numeric(ambulance_df['Total Distance Covered(KM)'])
       ambulance_df['Total Patients Served']=pd.to_numeric(ambulance_df['Total Patients Served'])
-
-      ambulance_df['Date']=pd.to_datetime(ambulance_df['Date'].replace('',None))
-      ambulance_df=ambulance_df[ambulance_df['Date'].notnull()]
       
       df_reset = ambulance_df[:-1].reset_index(drop=True)
         
