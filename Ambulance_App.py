@@ -18,7 +18,7 @@ scope=['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/
 creds=ServiceAccountCredentials.from_json_keyfile_name(r'unique-bonbon-304011-585cc22859d3.json',scope)
 client=gspread.authorize(creds)
 sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/1CfLVfjrmV2K6wMEg6G-q2_Im2uP7sZ2GsVw0ZzmiJ0k/edit?usp=sharing').worksheets()
-Districts=[i.title for i in sheet[6:]]
+Districts=[i.title.split('-')[0] for i in sheet[6:]]
 
 def get_data(selected_district,date_range,level_of_detail,sheet):
     start_date=pd.to_datetime(date_range[0])
