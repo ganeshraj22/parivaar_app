@@ -235,7 +235,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
 
     plt.figure(figsize=(160,120))
     fig4,ax4=plt.subplots()
-    ax4.pie(Disease_Type_Pie,labels=Disease_Type_Pie.index,autopct='%1.1f%%',startangle=90)
+    ax4.pie(Disease_Type_Pie,labels=Disease_Type_Pie.index,autopct='%1.1f%%',startangle=60)
     #fig4.legend(Disease_Type_Pie_Pie.index,loc='right')
    
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
