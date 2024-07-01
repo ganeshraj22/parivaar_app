@@ -272,7 +272,7 @@ with col1:
         #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
 with col2:
     if val is True:
-        st.pyplot(fig3)
+        st.pyplot(fig4)
     
 st.sidebar.title("Select page")
 page=st.sidebar.radio("",["District level"])
