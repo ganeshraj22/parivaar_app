@@ -166,9 +166,9 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
       ambulance_df['Total Distance Covered']=pd.to_numeric(ambulance_df['Total Distance Covered(KM)'])
       ambulance_df['Total Patients Served']=pd.to_numeric(ambulance_df['Total Patients Served'])
 
-      filtered_ambulance_df=ambulance_df[(ambulance_df['Date']>=start_date)&(ambulance_df['Date']<=end_date)]
+      #ambulance_df=ambulance_df[(ambulance_df['Date']>=start_date)&(ambulance_df['Date']<=end_date)]
       
-      df_reset = filtered_ambulance_df[:-1].reset_index(drop=True)
+      df_reset = ambulance_df[:-1].reset_index(drop=True)
         
       return df_reset,total_distance_index,no_patients_index
     
