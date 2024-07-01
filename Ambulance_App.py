@@ -217,7 +217,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
 
     fig3,ax3=plt.subplots()
     ax3.pie(Patients_Pie,labels=Patients_Pie.index,autopct='%1.1f%%',startangle=90)
-    fig3.legend(Patients_Pie.index,loc='right')
+    #fig3.legend(Patients_Pie.index,loc='right')
    
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
        return False, fig1, fig2, fig3, min_date, max_date
