@@ -192,6 +192,8 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
     Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
 
+    Patients_Pie=ambulance_df1.iloc[:,total_distance_index:no_patients_index-1].sum()
+
     fig1=plt.figure()    
     ax1=fig1.add_subplot()
     ax1.bar(Ambulance_By_Month.index,Ambulance_By_Month['Total Distance Covered'],color='cyan',label='Total Distance Covered')
@@ -212,11 +214,13 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     ax.set_ylabel('Number Of Patients')
     plt.title(f'{selected_district} - Number of Patients Admitted/Discharged By {level_of_detail}')
     ax.legend()
+
+    fig3=plt.pie(Patients_Pie)
    
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-       return False, fig1, fig2, min_date, max_date
+       return False, fig1, fig2, fig3, min_date, max_date
     else:
-        return True, fig1, fig2, min_date, max_date
+        return True, fig1, fig2, fig3, min_date, max_date
         
 col1,col2,col3=st.columns([1,1,1])
 with col1:
@@ -227,7 +231,7 @@ with col3:
     level_of_detail=st.selectbox('Select the level of detail',['Month','Year'])
 
 
-(val,fig1,fig2,min_date,max_date)=get_data(selected_district,date_range,level_of_detail,sheet)
+(val,fig1,fig2,fig3,min_date,max_date)=get_data(selected_district,date_range,level_of_detail,sheet)
 col1,col2=st.columns([1.15,1])
 with col1:
     if val is True:
@@ -242,7 +246,10 @@ with col2:
 
 col1,col2=st.columns([1,1])
 with col1:
-    st.write(f"Some chart/data to be added here")
+    if val is True:
+        st.pyplot(fig3)
+    else:
+        st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
 with col2:
     st.write(f"Some chart/data to be added here")
     
