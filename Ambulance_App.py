@@ -215,7 +215,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     plt.title(f'{selected_district} - Number of Patients Admitted/Discharged By {level_of_detail}')
     ax.legend()
 
-    fig3,ax3=plt.subsplots()
+    fig3,ax3=plt.subplots()
     ax3.pie(Patients_Pie)
     ax3.legend()
    
