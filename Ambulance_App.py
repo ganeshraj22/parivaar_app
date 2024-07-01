@@ -70,7 +70,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
       columns_after_total_distance = ambulance_df.columns[no_patients_index:]
       # print(columns_after_total_distance)
       
-      ambulance_df.iloc[:, total_distance_index+1:no_patients_index] = ambulance_df.iloc[:, 3:total_distance_index].values
+      ambulance_df.iloc[:3, total_distance_index+1:no_patients_index] = ambulance_df.iloc[:3, 3:total_distance_index].values
       
       for col in ambulance_df.columns[3:total_distance_index]:
         ambulance_df.loc[0, col] = ambulance_df.loc[0, col] + ' (KM)'
