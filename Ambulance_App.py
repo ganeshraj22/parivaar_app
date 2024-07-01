@@ -215,7 +215,9 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     plt.title(f'{selected_district} - Number of Patients Admitted/Discharged By {level_of_detail}')
     ax.legend()
 
-    fig3=plt.pie(Patients_Pie)
+    fig3,ax3=plt.subsplots()
+    ax3.pie(Patients_Pie)
+    ax3.legend()
    
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
        return False, fig1, fig2, fig3, min_date, max_date
