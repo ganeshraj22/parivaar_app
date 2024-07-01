@@ -238,9 +238,9 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     #fig4.legend(Disease_Type_Pie_Pie.index,loc='right')
    
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-       return False, fig1, fig2, fig3, min_date, max_date
+       return False, fig1, fig2, fig3, fig4, min_date, max_date
     else:
-        return True, fig1, fig2, fig3, min_date, max_date
+        return True, fig1, fig2, fig3, fig4, min_date, max_date
         
 col1,col2,col3=st.columns([1,1,1])
 with col1:
@@ -251,7 +251,7 @@ with col3:
     level_of_detail=st.selectbox('Select the level of detail',['Month','Year'])
 
 
-(val,fig1,fig2,fig3,min_date,max_date)=get_data(selected_district,date_range,level_of_detail,sheet)
+(val,fig1,fig2,fig3,fig4,min_date,max_date)=get_data(selected_district,date_range,level_of_detail,sheet)
 col1,col2=st.columns([1.15,1])
 with col1:
     if val is True:
