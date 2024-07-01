@@ -184,6 +184,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
         
     #Ambulance_By_Month=ambulance_df1[ambulance_df1['Date'].notnull()]
     Ambulance_By_Month=ambulance_df1.reset_index(drop=False)
+    Ambulance_By_Month=Ambulance_By_Month[(Ambulance_By_Month['Date']>=start_date)&(Ambulance_By_Month['Date']<=end_date)]
     Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month.astype(str).str.pad(width=2,side='left',fillchar='0')
     Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year.astype(str)
     Ambulance_By_Month['Date']=Ambulance_By_Month['Date'].dt.strftime(a)
