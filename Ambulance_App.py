@@ -246,15 +246,15 @@ with col1:
 with col2:
     if val is True:
         st.pyplot(fig2)
-    else:
-        st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
+    #else:
+        #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
 
 col1,col2=st.columns([1,1])
 with col1:
     if val is True:
         st.pyplot(fig3)
-    else:
-        st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
+    #else:
+        #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
 with col2:
     st.write(f"Some chart/data to be added here")
     
