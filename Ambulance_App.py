@@ -233,7 +233,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     ax3.pie(Patients_Pie,labels=Patients_Pie.index,autopct='%1.1f%%')
     #fig3.legend(Patients_Pie.index,loc='right')
 
-    plt.figure(figsize=(8,6))
+    plt.figure(figsize=(15,12))
     fig4,ax4=plt.subplots()
     ax4.pie(Disease_Type_Pie,labels=Disease_Type_Pie.index,autopct='%1.1f%%')
     #fig4.legend(Disease_Type_Pie_Pie.index,loc='right')
