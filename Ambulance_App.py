@@ -267,7 +267,7 @@ with col2:
     #else:
         #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
 
-col1,col2=st.columns([max((Number_Of_PHC/9),0.9),1])
+col1,col2=st.columns([max((Number_Of_PHC/8),0.9),1])
 with col1:
     if val is True:
         st.pyplot(fig3)
