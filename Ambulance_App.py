@@ -171,7 +171,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
       ambulance_df['Total Distance Covered']=pd.to_numeric(ambulance_df['Total Distance Covered(KM)'])
       ambulance_df['Total Patients Served']=pd.to_numeric(ambulance_df['Total Patients Served'])
       ambulance_df['Total Accident Cases']=pd.to_numeric(ambulance_df['Total Accident Cases'])
-      ambulance_df['Total Pregnancy/Delivery Cases']=pd.to_numeric(ambulance_df['Total Pregnancy/Delivery Cases'])
+      ambulance_df['Total Pregnancy Cases']=pd.to_numeric(ambulance_df['Total Pregnancy Cases'])
       ambulance_df['Any Sickness']=pd.to_numeric(ambulance_df['Any Sickness'])
       ambulance_df['Other Cases']=pd.to_numeric(ambulance_df['Other Cases'])
       ambulance_df['Eye Camp Patients']=pd.to_numeric(ambulance_df['Eye Camp Patients'])
