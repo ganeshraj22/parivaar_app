@@ -206,6 +206,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
 
     Patients_Pie=ambulance_df1.iloc[:,total_distance_index:no_patients_index-1].sum()
+    Disease_Type_Pie=ambulance_df1.iloc[:,no_patients_index+5:no_patients_index+10].sum()
 
     fig1=plt.figure()    
     ax1=fig1.add_subplot()
@@ -232,9 +233,9 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     ax3.pie(Patients_Pie,labels=Patients_Pie.index,autopct='%1.1f%%')
     #fig3.legend(Patients_Pie.index,loc='right')
 
-    fig4,ax3=plt.subplots()
-    ax3.pie(Patients_Pie,labels=Patients_Pie.index,autopct='%1.1f%%')
-    #fig3.legend(Patients_Pie.index,loc='right')
+    fig4,ax4=plt.subplots()
+    ax4.pie(Disease_Type_Pie_Pie,labels=Disease_Type_Pie.index,autopct='%1.1f%%')
+    #fig4.legend(Disease_Type_Pie_Pie.index,loc='right')
    
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
        return False, fig1, fig2, fig3, min_date, max_date
