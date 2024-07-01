@@ -134,6 +134,11 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
           
       ambulance_df.rename(columns={ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[0]:'Total Patients Served',
                                 ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[1]:'Total Distance Covered(KM)'},inplace=True)
+
+      old_col_names=ambulance_df.iloc[:,no_patients_index+5:no_patients_index+10].columns
+      new_col_names=['Total Accident Cases', 'Total Pregnancy/Delivery Cases', 'Any Sickness', 'Other Cases','Eye Camp Patients']
+
+      ambulance_df.rename(columns=dict(zip(old_col_names,new_col_names)),inplace=True)
       
       ambulance_df.replace('-', '0', inplace=True)
       ambulance_df.replace('--', '0', inplace=True)
@@ -165,6 +170,11 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
       
       ambulance_df['Total Distance Covered']=pd.to_numeric(ambulance_df['Total Distance Covered(KM)'])
       ambulance_df['Total Patients Served']=pd.to_numeric(ambulance_df['Total Patients Served'])
+      ambulance_df['Total Accident Cases']=pd.to_numeric(ambulance_df['Total Accident Cases'])
+      ambulance_df['Total Pregnancy/Delivery Cases']=pd.to_numeric(ambulance_df['Total Pregnancy/Delivery Cases'])
+      ambulance_df['Any Sickness']=pd.to_numeric(ambulance_df['Any Sickness'])
+      ambulance_df['Other Cases']=pd.to_numeric(ambulance_df['Other Cases'])
+      ambulance_df['Eye Camp Patients']=pd.to_numeric(ambulance_df['Eye Camp Patients'])
 
       #ambulance_df=ambulance_df[(ambulance_df['Date']>=start_date)&(ambulance_df['Date']<=end_date)]
       
@@ -221,6 +231,10 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     fig3,ax3=plt.subplots()
     ax3.pie(Patients_Pie,labels=Patients_Pie.index,autopct='%1.1f%%')
     #fig3.legend(Patients_Pie.index,loc='right')
+
+    fig4,ax3=plt.subplots()
+    ax3.pie(Patients_Pie,labels=Patients_Pie.index,autopct='%1.1f%%')
+    #fig3.legend(Patients_Pie.index,loc='right')
    
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
        return False, fig1, fig2, fig3, min_date, max_date
@@ -256,7 +270,8 @@ with col1:
     #else:
         #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
 with col2:
-    st.write(f"Some chart/data to be added here")
+    if val is True:
+        st.pyplot(fig3)
     
 st.sidebar.title("Select page")
 page=st.sidebar.radio("",["District level"])
