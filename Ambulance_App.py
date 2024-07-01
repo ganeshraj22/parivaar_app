@@ -136,7 +136,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
                                 ambulance_df.iloc[:,[no_patients_index-1,total_distance_index-1]].columns[1]:'Total Distance Covered(KM)'},inplace=True)
 
       old_col_names=ambulance_df.iloc[:,no_patients_index+5:no_patients_index+10].columns
-      new_col_names=['Total Accident Cases', 'Total Pregnancy/Delivery Cases', 'Any Sickness', 'Other Cases','Eye Camp Patients']
+      new_col_names=['Total Accident Cases', 'Total Pregnancy Cases', 'Any Sickness', 'Other Cases','Eye Camp Patients']
 
       ambulance_df.rename(columns=dict(zip(old_col_names,new_col_names)),inplace=True)
       
