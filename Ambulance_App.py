@@ -204,7 +204,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     #Ambulance_By_Month.set_index('Date',inplace=True)
     Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
     Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
-    Summary_Total=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']].sum()
+    Summary_Total=Ambulance_By_Month[(ambulance_df1['Date']>=start_date)&(ambulance_df1['Date']<=end_date)][['Total Distance Covered','Total Patients Served']].sum()
 
     Number_Of_PHC=no_patients_index-total_distance_index-1
     Patients_Pie=ambulance_df1[(ambulance_df1['Date']>=start_date)&(ambulance_df1['Date']<=end_date)].iloc[:,total_distance_index:no_patients_index-1].sum()
