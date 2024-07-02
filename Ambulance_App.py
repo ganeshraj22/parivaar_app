@@ -207,8 +207,8 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     Summary_Total=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']].sum()
 
     Number_Of_PHC=no_patients_index-total_distance_index-1
-    Patients_Pie=ambulance_df1[(ambulance_df1['Date']>=start_date)&(ambulance_df1['Date']<=end_date)].iloc[:,total_distance_index:no_patients_index-1].sum()
-    Disease_Type_Pie=ambulance_df1[(ambulance_df1['Date']>=start_date)&(ambulance_df1['Date']<=end_date)].iloc[:,no_patients_index+5:no_patients_index+10].sum()
+    Patients_Pie=ambulance_df1.iloc[:,total_distance_index:no_patients_index-1].sum()
+    Disease_Type_Pie=ambulance_df1.iloc[:,no_patients_index+5:no_patients_index+10].sum()
 
     fig1=plt.figure()    
     ax1=fig1.add_subplot()
