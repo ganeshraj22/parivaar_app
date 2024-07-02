@@ -204,7 +204,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     #Ambulance_By_Month.set_index('Date',inplace=True)
     Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
     Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
-    Summary_Total=Ambulance_By_Month[(ambulance_df1['Date']>=start_date)&(ambulance_df1['Date']<=end_date)][['Total Distance Covered','Total Patients Served']].sum()
+    #Summary_Total=Ambulance_By_Month[(ambulance_df1['Date']>=start_date)&(ambulance_df1['Date']<=end_date)][['Total Distance Covered','Total Patients Served']].sum()
 
     Number_Of_PHC=no_patients_index-total_distance_index-1
     Patients_Pie=ambulance_df1[(ambulance_df1['Date']>=start_date)&(ambulance_df1['Date']<=end_date)].iloc[:,total_distance_index:no_patients_index-1].sum()
@@ -243,9 +243,9 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     #fig4.legend(Disease_Type_Pie_Pie.index,loc='right')
    
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-       return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC, Summary_Total
+       return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC
     else:
-        return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC, Summary_Total
+        return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC
         
 col1,col2,col3=st.columns([1,1,1])
 with col1:
@@ -256,21 +256,21 @@ with col3:
     level_of_detail=st.selectbox('Select the level of detail',['Month','Year'])
 
 
-(val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total)=get_data(selected_district,date_range,level_of_detail,sheet)
+(val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC)=get_data(selected_district,date_range,level_of_detail,sheet)
 
-col1,col2,col3,col4=st.columns([1,1,1,1])
-with col1:
-    if val is True:
-        st.write(f"District: \n{selected_district.split('-')[0]}")
-with col2:
-    if val is True:
-        st.write(f"Total Distance Covered (KM): \n{Summary_Total.iloc[0]}")
-with col3:
-    if val is True:
-        st.write(f"Total Patients Served: \n{Summary_Total.iloc[1]}")
-with col4:
-    if val is True:
-        st.write(f"Number Of Ambulances: \n{Number_Of_PHC}")
+#col1,col2,col3,col4=st.columns([1,1,1,1])
+#with col1:
+    #if val is True:
+      #  st.write(f"District: \n{selected_district.split('-')[0]}")
+#with col2:
+ #   if val is True:
+  #      st.write(f"Total Distance Covered (KM): \n{Summary_Total.iloc[0]}")
+#with col3:
+ #   if val is True:
+  #      st.write(f"Total Patients Served: \n{Summary_Total.iloc[1]}")
+#with col4:
+ #   if val is True:
+  #      st.write(f"Number Of Ambulances: \n{Number_Of_PHC}")
 
 col1,col2=st.columns([1.15,1])
 with col1:
