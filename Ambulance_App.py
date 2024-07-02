@@ -260,7 +260,7 @@ with col3:
 
 col1,col2,col3,col4=st.columns([1,1,1,1])
 with col1:
-    st.write(f"District: \n{selected_district}")
+    st.write(f"District: \n{selected_district.split("-")[0]}")
 with col2:
     st.write(f"Total Distance Covered (KM): \n{Summary_Total.iloc[0]}")
 with col3:
