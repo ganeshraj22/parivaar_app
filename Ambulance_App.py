@@ -257,6 +257,8 @@ with col3:
 
 (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC)=get_data(selected_district,date_range,level_of_detail,sheet)
 
+col1,col2,col3=st.columns([1,1,1])
+
 col1,col2=st.columns([1.15,1])
 with col1:
     if val is True:
@@ -281,4 +283,4 @@ with col2:
         st.pyplot(fig4)
     
 st.sidebar.title("Select page")
-page=st.sidebar.radio("",["Overall Summary","District level"])
+page=st.sidebar.radio("",["Overall Summary","District Level"])
