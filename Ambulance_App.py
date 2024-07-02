@@ -272,10 +272,6 @@ with col4:
     if val is True:
         st.write(f"Number Of Ambulances: {Number_Of_PHC}")
 
-col1,col2,col3=st.columns([1,1,1])
-with col1:
-    st.write(f"District:/n{selected_district}")
-
 col1,col2=st.columns([1.15,1])
 with col1:
     if val is True:
