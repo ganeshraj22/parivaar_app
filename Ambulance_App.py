@@ -269,16 +269,16 @@ with col2:
     #else:
         #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
 
-col1,col2,col3=st.columns([0.01,1,0.01])
+col1,col2=st.columns([max((Number_Of_PHC/8.5),0.9),1])
 #col1=st.columns([1])
 with col2:
     if val is True:
         st.pyplot(fig3)
     #else:
         #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
-#with col2:
-    #if val is True:
-        #st.pyplot(fig4)
+with col2:
+    if val is True:
+        st.pyplot(fig4)
     
 st.sidebar.title("Select page")
 page=st.sidebar.radio("",["District level"])
