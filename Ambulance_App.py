@@ -231,13 +231,13 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     ax.legend()
 
     fig3,ax3=plt.subplots()
-    ax3.pie(Patients_Pie,labels=Patients_Pie.index,autopct='%1.1f%%',wedgeprops={'edgecolor':'black','width':0.5})
+    ax3.pie(Patients_Pie,labels=Patients_Pie.index,autopct='%1.1f%%',wedgeprops={'edgecolor':'black','width':0.7})
     plt.title(f'{selected_district.split("-")[0]} - Share of Patients Served By Location')
-    fig3.legend(Patients_Pie.index,loc='center')
+    #fig3.legend(Patients_Pie.index,loc='center')
 
     plt.figure(figsize=(160,120))
     fig4,ax4=plt.subplots()
-    ax4.pie(Disease_Type_Pie,labels=Disease_Type_Pie.index,autopct='%1.1f%%',startangle=100, wedgeprops={'edgecolor':'black','width':0.5})
+    ax4.pie(Disease_Type_Pie,labels=Disease_Type_Pie.index,autopct='%1.1f%%',startangle=100, wedgeprops={'edgecolor':'black','width':0.7})
     plt.title(f'{selected_district.split("-")[0]} - Share of Patients Served By Type Of Ailment')
     #fig4.legend(Disease_Type_Pie_Pie.index,loc='right')
    
