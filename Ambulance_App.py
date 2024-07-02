@@ -217,7 +217,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     plt.setp(ax1.get_xticklabels(), rotation=90, horizontalalignment='right')
     ax1.set_ylabel('Total Distance Covered')
     ax2.set_ylabel('Total Patients Served')
-    plt.title(f'{selected_district} - Kilometers Driven/Persons Served By {level_of_detail}')
+    plt.title(f'{selected_district.split("-")[0]} - Kilometers Driven/Persons Served By {level_of_detail}')
     h1, l1 = ax1.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1+h2, l1+l2)
@@ -232,13 +232,13 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
 
     fig3,ax3=plt.subplots()
     ax3.pie(Patients_Pie,labels=Patients_Pie.index,autopct='%1.1f%%')
-    plt.title(f'{selected_district} - Share of Patients Served By Location')
+    plt.title(f'{selected_district.split("-")[0]} - Share of Patients Served By Location')
     #fig3.legend(Patients_Pie.index,loc='right')
 
     plt.figure(figsize=(160,120))
     fig4,ax4=plt.subplots()
     ax4.pie(Disease_Type_Pie,labels=Disease_Type_Pie.index,autopct='%1.1f%%',startangle=100)
-    plt.title(f'{selected_district} - Share of Patients Served By Type Of Ailment')
+    plt.title(f'{selected_district.split("-")[0]} - Share of Patients Served By Type Of Ailment')
     #fig4.legend(Disease_Type_Pie_Pie.index,loc='right')
    
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
