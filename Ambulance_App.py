@@ -260,13 +260,17 @@ with col3:
 
 col1,col2,col3,col4=st.columns([1,1,1,1])
 with col1:
-    st.write(f"District: \n{selected_district.split('-')[0]}")
+    if val is True:
+        st.write(f"District: \n{selected_district.split('-')[0]}")
 with col2:
-    st.write(f"Total Distance Covered (KM): \n{Summary_Total.iloc[0]}")
+    if val is True:
+        st.write(f"Total Distance Covered (KM): \n{Summary_Total.iloc[0]}")
 with col3:
-    st.write(f"Total Patients Served: \n{Summary_Total.iloc[1]}")
+    if val is True:
+        st.write(f"Total Patients Served: \n{Summary_Total.iloc[1]}")
 with col4:
-    st.write(f"Number Of Ambulances: \n{Number_Of_PHC}")
+    if val is True:
+        st.write(f"Number Of Ambulances: \n{Number_Of_PHC}")
 
 col1,col2=st.columns([1.15,1])
 with col1:
