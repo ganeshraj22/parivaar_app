@@ -271,7 +271,7 @@ with col2:
 
 col1,col2=st.columns([max((Number_Of_PHC/8.5),0.9),1])
 #col1=st.columns([1])
-with col2:
+with col1:
     if val is True:
         st.pyplot(fig3)
     #else:
