@@ -281,4 +281,4 @@ with col2:
         st.pyplot(fig4)
     
 st.sidebar.title("Select page")
-page=st.sidebar.radio("",["District level"])
+page=st.sidebar.radio("",["Overall Summary","District level"])
