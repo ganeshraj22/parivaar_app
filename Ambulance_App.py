@@ -243,9 +243,9 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     #fig4.legend(Disease_Type_Pie_Pie.index,loc='right')
    
     if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-       return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC
+       return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total
     else:
-        return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC
+        return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total
         
 col1,col2,col3=st.columns([1,1,1])
 with col1:
@@ -256,7 +256,21 @@ with col3:
     level_of_detail=st.selectbox('Select the level of detail',['Month','Year'])
 
 
-(val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC)=get_data(selected_district,date_range,level_of_detail,sheet)
+(val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total)=get_data(selected_district,date_range,level_of_detail,sheet)
+
+col1,col2,col3,col4=st.columns([1,1,1,1])
+with col1:
+    if val is True:
+        st.write(f"District: {selected_district.split('-')[0]}")
+with col2:
+    if val is True:
+        st.write(f"Total Distance Covered (KM): {Summary_Total.iloc[0]}")
+with col3:
+    if val is True:
+        st.write(f"Total Patients Served: {Summary_Total.iloc[1]}")
+with col4:
+    if val is True:
+        st.write(f"Number Of Ambulances: {Number_Of_PHC}")
 
 col1,col2,col3=st.columns([1,1,1])
 with col1:
@@ -286,17 +300,3 @@ with col2:
     
 st.sidebar.title("Select page")
 page=st.sidebar.radio("",["Overall Summary","District Level"])
-
-#col1,col2,col3,col4=st.columns([1,1,1,1])
-#with col1:
-    #if val is True:
-      #  st.write(f"District: \n{selected_district.split('-')[0]}")
-#with col2:
- #   if val is True:
-  #      st.write(f"Total Distance Covered (KM): \n{Summary_Total.iloc[0]}")
-#with col3:
- #   if val is True:
-  #      st.write(f"Total Patients Served: \n{Summary_Total.iloc[1]}")
-#with col4:
- #   if val is True:
-  #      st.write(f"Number Of Ambulances: \n{Number_Of_PHC}")
