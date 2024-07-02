@@ -227,7 +227,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     ax.plot(Ambulance_By_Month.index,Ambulance_By_Month['Discharged from Hospital'],color='red',label='Discharged from Hospital')
     plt.setp(ax.get_xticklabels(), rotation=90, horizontalalignment='right')
     ax.set_ylabel('Number Of Patients')
-    plt.title(f'{selected_district.split('-')[0]} - Number of Patients Admitted/Discharged By {level_of_detail}')
+    plt.title(f'{selected_district.split()[0]} - Number of Patients Admitted/Discharged By {level_of_detail}')
     ax.legend()
 
     fig3,ax3=plt.subplots()
