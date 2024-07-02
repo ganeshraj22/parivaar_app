@@ -232,6 +232,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
 
     fig3,ax3=plt.subplots()
     ax3.pie(Patients_Pie,labels=Patients_Pie.index,autopct='%1.1f%%')
+    plt.title(f'{selected_district} - Share of Patients Served By Location')
     #fig3.legend(Patients_Pie.index,loc='right')
 
     plt.figure(figsize=(160,120))
