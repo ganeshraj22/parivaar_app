@@ -262,9 +262,9 @@ col1,col2,col3=st.columns([1,1,1])
 with col1:
     st.write(f"District:\n{selected_district}")
 with col2:
-    st.write(f"Total Distance Covered (KM):\n{Summary_Total[0]}")
+    st.write(f"Total Distance Covered (KM):\n{Summary_Total.iloc[0]}")
 with col3:
-    st.write(f"Total Patients Served:\n{Summary_Total[1]}")
+    st.write(f"Total Patients Served:\n{Summary_Total.iloc[1]}")
 
 col1,col2=st.columns([1.15,1])
 with col1:
