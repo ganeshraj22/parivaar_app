@@ -204,6 +204,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
     #Ambulance_By_Month.set_index('Date',inplace=True)
     Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
     Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
+    Summary_Total=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']].sum()
 
     Number_Of_PHC=no_patients_index-total_distance_index-1
     Patients_Pie=ambulance_df1[(ambulance_df1['Date']>=start_date)&(ambulance_df1['Date']<=end_date)].iloc[:,total_distance_index:no_patients_index-1].sum()
@@ -258,6 +259,8 @@ with col3:
 (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC)=get_data(selected_district,date_range,level_of_detail,sheet)
 
 col1,col2,col3=st.columns([1,1,1])
+with col1:
+    st.write(f"District:/n{selected_district}")
 
 col1,col2=st.columns([1.15,1])
 with col1:
@@ -272,7 +275,6 @@ with col2:
         #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
 
 col1,col2=st.columns([max((Number_Of_PHC/8.5),0.9),1])
-#col1=st.columns([1])
 with col1:
     if val is True:
         st.pyplot(fig3)
