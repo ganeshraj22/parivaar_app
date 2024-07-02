@@ -258,13 +258,15 @@ with col3:
 
 (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total)=get_data(selected_district,date_range,level_of_detail,sheet)
 
-col1,col2,col3=st.columns([1,1,1])
+col1,col2,col3,col4=st.columns([1,1,1,1])
 with col1:
-    st.write(f"District:\n{selected_district}")
+    st.write(f"District: \n{selected_district}")
 with col2:
-    st.write(f"Total Distance Covered (KM):\n{Summary_Total.iloc[0]}")
+    st.write(f"Total Distance Covered (KM): \n{Summary_Total.iloc[0]}")
 with col3:
-    st.write(f"Total Patients Served:\n{Summary_Total.iloc[1]}")
+    st.write(f"Total Patients Served: \n{Summary_Total.iloc[1]}")
+with col4:
+    st.write(f"Number Of Ambulances: \n{Number_Of_PHC}")
 
 col1,col2=st.columns([1.15,1])
 with col1:
