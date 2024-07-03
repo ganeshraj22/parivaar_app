@@ -247,8 +247,8 @@ if page=='District Level':
 
         (ambulance_df1, total_distance_index, no_patients_index)  = preprocess_data(ambulance_df)
     
-        def agg_plots(df):
-            Agg_df=ambulance_df[ambulance_df['Date'].notnull()]
+        def agg_plots(ambulance_df1):
+            #Agg_df=ambulance_df[ambulance_df['Date'].notnull()]
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
             #ambulance_df1['Total Distance Covered']=pd.to_numeric(ambulance_df1['Total Distance Covered'])
@@ -625,8 +625,8 @@ if page=='Overall Summary':
                 Total_Number_Of_PHC=Total_Number_Of_PHC+no_patients_index-total_distance_index-1
             flag=1
 
-            def agg_plots_full(ambulance_df):
-                Agg_df=ambulance_df[ambulance_df['Date'].notnull()]
+            def agg_plots_full(ambulance_df1):
+                #Agg_df=ambulance_df[ambulance_df['Date'].notnull()]
                 min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
                 max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
                 #ambulance_df1['Total Distance Covered']=pd.to_numeric(ambulance_df1['Total Distance Covered'])
