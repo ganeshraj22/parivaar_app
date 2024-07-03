@@ -254,7 +254,7 @@ def get_data(date_range,level_of_detail,sheet):
                 Total_Number_Of_PHC=no_patients_index_full-total_distance_index_full-1
             else:
                 summary_df=pd.concat([summary_df,district_df],ignore_index=True)
-                Total_Number_Of_PHC=Number_Of_PHC+no_patients_index_full-total_distance_index_full-1
+                Total_Number_Of_PHC=Total_Number_Of_PHC+no_patients_index_full-total_distance_index_full-1
             flag=1
         return summary_df, Total_Number_Of_PHC
 
