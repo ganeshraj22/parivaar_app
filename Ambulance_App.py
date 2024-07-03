@@ -625,7 +625,7 @@ if page=='Overall Summary':
                 Total_Number_Of_PHC=Total_Number_Of_PHC+no_patients_index-total_distance_index-1
             flag=1
                 
-    return result_df,Total_Number_Of_PHC
+        return result_df,Total_Number_Of_PHC
 
     col1,col2=st.columns([1,1])
     with col1:
