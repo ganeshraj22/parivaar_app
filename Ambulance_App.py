@@ -613,7 +613,7 @@ if page=='Overall Summary':
 
               return df_reset,total_distance_index,no_patients_index
 
-            (df_reset,total_distance_index,no_patients_index)=preprocess_data(ambulance_df)
+            (df_reset,total_distance_index,no_patients_index)=preprocess_data_full(ambulance_df)
                 
             district_df=df_reset[['Date','District','Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital', 'Discharged from Hospital','Total Accident Cases','Total Pregnancy Cases', 'Any Sickness','Other Cases', 'Eye Camp Patients']] 
 
