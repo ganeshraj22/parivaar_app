@@ -87,7 +87,7 @@ def get_data(date_range,level_of_detail,sheet):
     else:
         a="%Y"
 
-    def preprocess_data(ambulance_df,selected_district):
+    def preprocess_data(selected_district):
       ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district)].get_values())
       # Replace values in the first row starting with 'Ambulance' with values from the rows below
       def replace_values(ambulance_df):
@@ -246,8 +246,7 @@ def get_data(date_range,level_of_detail,sheet):
         for y in Districts:
             if y=='Jhabua-8':
                 continue
-            ambulance_df_full=pd.DataFrame(sheet[[i.title for i in sheet].index(y)].get_values())
-            (df_reset_full,total_distance_index_full,no_patients_index_full)=preprocess_data(ambulance_df_full,y)
+            (df_reset_full,total_distance_index_full,no_patients_index_full)=preprocess_data(y)
             district_df=df_reset_full[['Date','District','Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital', 'Discharged from Hospital',
                                   'Total Accident Cases','Total Pregnancy Cases', 'Any Sickness','Other Cases', 'Eye Camp Patients']] 
             if flag==0:
@@ -259,7 +258,7 @@ def get_data(date_range,level_of_detail,sheet):
             flag=1
         return summary_df, Total_Number_Of_PHC
 
-    (ambulance_df1, total_distance_index, no_patients_index)  = preprocess_data(ambulance_df,selected_district)
+    (ambulance_df1, total_distance_index, no_patients_index)  = preprocess_data(selected_district)
     (overall_summary_df, Total_Number_Of_PHC)=overall_summary_data()
 
     def agg_plots(df):
