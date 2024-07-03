@@ -245,24 +245,6 @@ if page=='District Level':
     
           return df_reset,total_distance_index,no_patients_index
     
-        def overall_summary_data():
-            flag=0
-            for y in Districts:
-                if y=='Jhabua-8':
-                    continue
-                ambulance_df_full=pd.DataFrame(sheet[[i.title for i in sheet].index(y)].get_values())
-                (df_reset_full,total_distance_index_full,no_patients_index_full)=preprocess_data(ambulance_df_full)
-                district_df=df_reset_full[['Date','District','Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital', 'Discharged from Hospital',
-                                      'Total Accident Cases','Total Pregnancy Cases', 'Any Sickness','Other Cases', 'Eye Camp Patients']] 
-                if flag==0:
-                    summary_df=district_df
-                else:
-                    summary_df=pd.concat([result_df,district_df],ignore_index=True)
-                flag=1
-            return summary_df
-    
-        (ambulance_df1, total_distance_index, no_patients_index)  = preprocess_data(ambulance_df)
-    
         def agg_plots(df):
             Agg_df=ambulance_df[ambulance_df['Date'].notnull()]
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
