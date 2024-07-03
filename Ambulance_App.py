@@ -624,8 +624,32 @@ if page=='Overall Summary':
                 result_df=pd.concat([result_df,district_df],ignore_index=True)
                 Total_Number_Of_PHC=Total_Number_Of_PHC+no_patients_index-total_distance_index-1
             flag=1
+
+            def agg_plots_full(ambulance_df):
+                Agg_df=ambulance_df[ambulance_df['Date'].notnull()]
+                min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
+                max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
+                #ambulance_df1['Total Distance Covered']=pd.to_numeric(ambulance_df1['Total Distance Covered'])
+                #ambulance_df1['Total Patients Served']=pd.to_numeric(ambulance_df1['Total Patients Served'])
+            
+                #Ambulance_By_Month=ambulance_df1[ambulance_df1['Date'].notnull()]
+                Ambulance_By_Month=ambulance_df1.reset_index(drop=False)
+                Ambulance_By_Month=Ambulance_By_Month[(Ambulance_By_Month['Date']>=start_date)&(Ambulance_By_Month['Date']<=end_date)]
+                Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month.astype(str).str.pad(width=2,side='left',fillchar='0')
+                Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year.astype(str)
+                Ambulance_By_Month['Date']=Ambulance_By_Month['Date'].dt.strftime(a)
+                Ambulance_By_Month['Yrmo']=(Ambulance_By_Month['Year']+Ambulance_By_Month['Month']).astype(int)
+                Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(int)
+                Ambulance_By_Month=Ambulance_By_Month.groupby(['Date'])[['Total Distance Covered','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']].agg({'Total Distance Covered':sum,'Total Patients Served':sum,'Yrmo':mean,'Year':mean,'Admitted in Hospital':sum,'Discharged from Hospital':sum})
+                #Ambulance_By_Month.set_index('Date',inplace=True)
+                Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
+                Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
+                Summary_Total=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']].sum()
+                return Ambulance_By_Month, Summary_Total, min_date, max_date
+    
+            (Ambulance_By_Month_full, Summary_Total_full,min_date_full,max_date_full)=agg_plots(result_df)
                 
-        return result_df,Total_Number_Of_PHC
+        return Ambulance_By_Month_full,Total_Number_Of_PHC
 
     col1,col2=st.columns([1,1])
     with col1:
