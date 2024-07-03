@@ -442,7 +442,7 @@ def get_data(date_range,level_of_detail,sheet):
     else:
         return True, fig1, fig2, fig3, fig4, fig5, fig6, min_date, max_date,Number_Of_PHC,Total_Number_Of_PHC,Summary_Total,Summary_Total_full,min_date_full,max_date_full
 
-    (val,fig1,fig2,fig3,fig4,fig5,fig6,min_date,max_date,Number_Of_PHC,Total_Number_Of_PHC,Summary_Total,Summary_Total_full,min_date_full,max_date_full)=get_data(date_range,level_of_detail,sheet)
+    (val,fig1,fig2,fig3,fig4,fig5,fig6,min_date,max_date,Number_Of_PHC,Total_Number_Of_PHC,Total_Number_Of_PHC,Summary_Total,Summary_Total_full,min_date_full,max_date_full)=get_data(date_range,level_of_detail,sheet)
 
 st.sidebar.title("**Navigate to**")
 page=st.sidebar.radio("",["District Level","Overall Summary"])
