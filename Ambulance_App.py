@@ -77,7 +77,7 @@ vertical_space_css = """
 </style>
 """
 
-def get_data(selected_district,date_range,level_of_detail,sheet):
+def get_data(date_range,level_of_detail,sheet):
     start_date=pd.to_datetime(date_range[0])
     end_date=pd.to_datetime(date_range[1])
     level_of_detail_lower=level_of_detail.lower()
@@ -86,9 +86,9 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
         a="%b %Y"
     else:
         a="%Y"
-    ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district)].get_values())
 
-    def preprocess_data(ambulance_df):
+    def preprocess_data(ambulance_df,selected_district):
+      ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(selected_district)].get_values())
       # Replace values in the first row starting with 'Ambulance' with values from the rows below
       def replace_values(ambulance_df):
           for col in ambulance_df.columns:
