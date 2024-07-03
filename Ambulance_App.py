@@ -252,12 +252,15 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
                                   'Total Accident Cases','Total Pregnancy Cases', 'Any Sickness','Other Cases', 'Eye Camp Patients']] 
             if flag==0:
                 summary_df=district_df
+                Total_Number_Of_PHC=no_patients_index_full-total_distance_index_full-1
             else:
                 summary_df=pd.concat([result_df,district_df],ignore_index=True)
+                Total_Number_Of_PHC=Number_Of_PHC+no_patients_index_full-total_distance_index_full-1
             flag=1
-        return summary_df
+        return summary_df, Total_Number_Of_PHC
 
     (ambulance_df1, total_distance_index, no_patients_index)  = preprocess_data(ambulance_df)
+    (overall_summary_df, Total_Number_Of_PHC)=overall_summary_data()
 
     def agg_plots(df):
         Agg_df=ambulance_df[ambulance_df['Date'].notnull()]
@@ -282,6 +285,7 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
         return Ambulance_By_Month, Summary_Total, min_date, max_date
 
     (Ambulance_By_Month, Summary_Total,min_date,max_date)=agg_plots(ambulance_df1)
+    (Ambulance_By_Month_full, Summary_Total_full,min_date_full,max_date_full)=agg_plots(overall_summary_df)
 
     Number_Of_PHC=no_patients_index-total_distance_index-1
     Patients_Pie=ambulance_df1.iloc[:,total_distance_index:no_patients_index-1].sum()
@@ -377,16 +381,133 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
         title_x=0.2,  # Center align title horizontally
     )
 
-    if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-       return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total
+    fig5 = go.Figure()
+
+    # Bar trace
+    fig5.add_trace(go.Bar(
+        x=Ambulance_By_Month_full.index,
+        y=Ambulance_By_Month_full['Total Distance Covered'],
+        name='Total Distance Covered',
+        marker_color='cyan'
+    ))
+
+    # Line trace
+    fig5.add_trace(go.Scatter(
+        x=Ambulance_By_Month_full.index,
+        y=Ambulance_By_Month_full['Total Patients Served'],
+        mode='lines',
+        name='Total Patients Served',
+        yaxis='y2',
+        line=dict(color='blue')
+    ))
+
+    # Update layout
+    fig5.update_layout(
+        title=f'Kilometers Driven/Persons Served By {level_of_detail}',
+        xaxis=dict(tickangle=45),
+        yaxis=dict(title='Total Distance Covered', titlefont=dict(color='cyan')),
+        yaxis2=dict(title='Total Patients Served', titlefont=dict(color='blue'), overlaying='y', side='right'),
+        legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)'),
+    )
+
+    fig6 = go.Figure()
+
+    # Add traces for 'Admitted in Hospital' and 'Discharged from Hospital'
+    fig6.add_trace(go.Scatter(
+        x=Ambulance_By_Month_full.index,
+        y=Ambulance_By_Month_full['Admitted in Hospital'],
+        mode='lines+markers',
+        name='Admitted in Hospital',
+        line=dict(color='green', width=2)
+    ))
+
+    fig6.add_trace(go.Scatter(
+        x=Ambulance_By_Month_full.index,
+        y=Ambulance_By_Month_full['Discharged from Hospital'],
+        mode='lines+markers',
+        name='Discharged from Hospital',
+        line=dict(color='red', width=2)
+    ))
+
+    # Update layout
+    fig6.update_layout(
+        title=f'Number of Patients Admitted/Discharged By {level_of_detail}',
+        xaxis=dict(tickangle=45),
+        yaxis=dict(title='Number Of Patients'),
+        legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)')
+    )
+
+    if (Ambulance_By_Month_full['Total Distance Covered'].count()==0):
+       return False, fig1, fig2, fig3, fig4, fig5, fig6, min_date, max_date,Number_Of_PHC,Total_Number_Of_PHC,Summary_Total,Summary_Total_full,min_date_full,max_date_full
     else:
-        return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total
+        return True, fig1, fig2, fig3, fig4, fig5, fig6, min_date, max_date,Number_Of_PHC,Total_Number_Of_PHC,Summary_Total,Summary_Total_full,min_date_full,max_date_full
+
+(val,fig1,fig2,fig3,fig4,fig5,fig6,min_date,max_date,Number_Of_PHC,Total_Number_Of_PHC,Summary_Total,Summary_Total_full,min_date_full,max_date_full)=get_data(selected_district,date_range,level_of_detail,sheet)
 
 st.sidebar.title("**Navigate to**")
 page=st.sidebar.radio("",["Overall Summary","District Level"])
 
 if page=='Overall Summary':
-    st.write("**Work In Progress**")
+    col1,col2=st.columns([1,1])
+    with col1:
+        date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
+    with col2:
+        level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
+    #st.write("**Work In Progress**")
+
+    col2,col3,col4=st.columns(3)
+    # with col1:
+    #     if val is True:
+    #         selected_dist = selected_district.split('-')[0]
+    #                 # Display boxes using HTML and CSS
+    #         col1.markdown('<div class="box-container">'
+    #                     f'<div class="label-box"># DISTRICTS</div>'
+    #                     f'<div class="value-box">{selected_dist}</div>'
+    #                     '</div>', unsafe_allow_html=True)
+    #         col1.markdown(summary_css, unsafe_allow_html=True)
+    #         # st.write(f"District: {selected_district.split('-')[0]}")
+    with col2:
+        if val is True:
+            # Display boxes using HTML and CSS
+            col2.markdown('<div class="box-container">'
+                        f'<div class="label-box"># PATIENTS</div>'
+                        f'<div class="value-box">{Summary_Total_full.iloc[1]}</div>'
+                        '</div>', unsafe_allow_html=True)
+            col2.markdown(summary_css, unsafe_allow_html=True)
+            # st.write(f"Total Distance Covered (KM): {Summary_Total_full.iloc[0]}")
+    with col3:
+        if val is True:
+                    # Display boxes using HTML and CSS
+            col3.markdown('<div class="box-container">'
+                        f'<div class="label-box">DISTANCE COVERED</div>'
+                        f'<div class="value-box">{Summary_Total_full.iloc[0]}</div>'
+                        '</div>', unsafe_allow_html=True)
+            col3.markdown(summary_css, unsafe_allow_html=True)
+            # st.write(f"Total Patients Served: {Summary_Total_full.iloc[1]}")
+    with col4:
+        if val is True:
+
+                        # Display boxes using HTML and CSS
+            col4.markdown('<div class="box-container">'
+                        f'<div class="label-box"># Ambulances</div>'
+                        f'<div class="value-box">{Total_Number_Of_PHC}</div>'
+                        '</div>', unsafe_allow_html=True)
+            col4.markdown(summary_css, unsafe_allow_html=True)
+            # st.write(f"Total Number Of Ambulances: {Total_Number_Of_PHC}")
+
+    graph1,graph2=st.columns(2)#([1.15,1])
+    with graph1:
+        if val is True:
+            st.plotly_chart(fig5)
+        else:
+            st.write(f"No data to display. Data is present only between '{min_date_full}' and '{max_date_full}'")
+
+    with graph2:
+        if val is True:
+            st.plotly_chart(fig6)
+        #else:
+            #st.write(f"No data to display. Data is present only between '{min_date_full}' and '{max_date_full}'")
+
 
 
 if page=='District Level':
@@ -399,8 +520,6 @@ if page=='District Level':
     with col3:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-
-    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total)=get_data(selected_district,date_range,level_of_detail,sheet)
 
     col2,col3,col4=st.columns(3)
     # with col1:
