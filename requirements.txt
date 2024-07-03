@@ -3,6 +3,7 @@ pandas
 numpy
 gspread
 oauth2client
+plotly
 matplotlib
 datetime
 statistics
