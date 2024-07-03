@@ -444,8 +444,6 @@ def get_data(date_range,level_of_detail,sheet):
         val=False
         return val, fig1, fig2, fig3, fig4, fig5, fig6, min_date, max_date,Number_Of_PHC,Total_Number_Of_PHC,Summary_Total,Summary_Total_full,min_date_full,max_date_full
 
- (val,fig1,fig2,fig3,fig4,fig5,fig6,min_date,max_date,Number_Of_PHC,Total_Number_Of_PHC,Summary_Total,Summary_Total_full,min_date_full,max_date_full)=get_data(date_range,level_of_detail,sheet)
-
 st.sidebar.title("**Navigate to**")
 page=st.sidebar.radio("",["District Level","Overall Summary"])
 
@@ -455,6 +453,8 @@ if page=='Overall Summary':
         date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
     with col2:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
+
+    (val,fig1,fig2,fig3,fig4,fig5,fig6,min_date,max_date,Number_Of_PHC,Total_Number_Of_PHC,Summary_Total,Summary_Total_full,min_date_full,max_date_full)=get_data(date_range,level_of_detail,sheet)
 
     col2,col3,col4=st.columns(3)
     # with col1:
@@ -521,6 +521,7 @@ if page=='District Level':
     with col3:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
+    (val,fig1,fig2,fig3,fig4,fig5,fig6,min_date,max_date,Number_Of_PHC,Total_Number_Of_PHC,Summary_Total,Summary_Total_full,min_date_full,max_date_full)=get_data(date_range,level_of_detail,sheet)
 
     col2,col3,col4=st.columns(3)
     # with col1:
