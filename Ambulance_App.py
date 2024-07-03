@@ -644,7 +644,7 @@ if page=='Overall Summary':
                 #Ambulance_By_Month.set_index('Date',inplace=True)
                 Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
                 Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
-                Summary_Total=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']].sum()
+                Summary_Total=Ambulance_By_Month[['Total Distance Covered(KM)','Total Patients Served']].sum()
                 return Ambulance_By_Month, Summary_Total, min_date, max_date
     
             (Ambulance_By_Month_full, Summary_Total_full,min_date_full,max_date_full)=agg_plots_full(result_df)
