@@ -444,6 +444,3 @@ if page=='District Level':
     with graph4:
         if val is True:
             st.plotly_chart(fig4)
-    
-st.sidebar.title("Select page")
-page=st.sidebar.radio("",["Overall Summary","District Level"])
