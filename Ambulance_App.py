@@ -445,7 +445,7 @@ if page=='District Level':
             st.plotly_chart(fig4)
 
 if page=='Overall Summary':
-    def get_data(date_range,level_of_detail,sheet):
+    def get_data_full(date_range,level_of_detail,sheet):
         start_date=pd.to_datetime(date_range[0])
         end_date=pd.to_datetime(date_range[1])
         level_of_detail_lower=level_of_detail.lower()
@@ -460,7 +460,7 @@ if page=='Overall Summary':
             if y=='Jhabua-8':
                 continue
             ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(y)].get_values())
-            def preprocess_data(ambulance_df):
+            def preprocess_data_full(ambulance_df):
               # Replace values in the first row starting with 'Ambulance' with values from the rows below
               def replace_values(ambulance_df):
                   for col in ambulance_df.columns:
@@ -611,17 +611,28 @@ if page=='Overall Summary':
             
               df_reset['District']=y.split('-')[0]
 
-              district_df=df_reset[['Date','District','Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital', 'Discharged from Hospital','Total Accident Cases','Total Pregnancy Cases', 'Any Sickness','Other Cases', 'Eye Camp Patients']] 
+              return df_reset,total_distance_index,no_patients_index
 
-              if flag==0:
-                  result_df=district_df
-                  Total_Number_Of_PHC=no_patients_index-total_distance_index-1
-              else:
-                  result_df=pd.concat([result_df,district_df],ignore_index=True)
-                  Total_Number_Of_PHC=Total_Number_Of_PHC+no_patients_index-total_distance_index-1
-              flag=1
+            (df_reset,total_distance_index,no_patients_index)=preprocess_data(ambulance_df)
                 
-              return result_df,Total_Number_Of_PHC
+            district_df=df_reset[['Date','District','Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital', 'Discharged from Hospital','Total Accident Cases','Total Pregnancy Cases', 'Any Sickness','Other Cases', 'Eye Camp Patients']] 
 
-    st.write(f"{result_df}")
+            if flag==0:
+                result_df=district_df
+                Total_Number_Of_PHC=no_patients_index-total_distance_index-1
+            else:
+                result_df=pd.concat([result_df,district_df],ignore_index=True)
+                Total_Number_Of_PHC=Total_Number_Of_PHC+no_patients_index-total_distance_index-1
+            flag=1
+                
+    return result_df,Total_Number_Of_PHC
 
+    col1,col2=st.columns([1,1])
+    with col1:
+        date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
+    with col2:
+        level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
+
+    (summary_df,Total_Number_Of_PHC)=get_data_full(date_range,level_of_detail)
+
+    st.write(f"{summary_df}")
