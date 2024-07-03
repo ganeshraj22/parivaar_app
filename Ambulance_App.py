@@ -244,6 +244,8 @@ if page=='District Level':
           df_reset['District']=selected_district.split('-')[0]
     
           return df_reset,total_distance_index,no_patients_index
+
+        (ambulance_df1, total_distance_index, no_patients_index)  = preprocess_data(ambulance_df)
     
         def agg_plots(df):
             Agg_df=ambulance_df[ambulance_df['Date'].notnull()]
