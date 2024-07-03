@@ -647,7 +647,7 @@ if page=='Overall Summary':
                 Summary_Total=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']].sum()
                 return Ambulance_By_Month, Summary_Total, min_date, max_date
     
-            (Ambulance_By_Month_full, Summary_Total_full,min_date_full,max_date_full)=agg_plots(result_df)
+            (Ambulance_By_Month_full, Summary_Total_full,min_date_full,max_date_full)=agg_plots_full(result_df)
                 
         return Ambulance_By_Month_full,Total_Number_Of_PHC
 
