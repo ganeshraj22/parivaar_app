@@ -237,6 +237,8 @@ def get_data(selected_district,date_range,level_of_detail,sheet):
 
       df_reset = ambulance_df[:-1].reset_index(drop=True)
 
+      df_reset['District']=selected_district.split('-')[0]
+
       return df_reset,total_distance_index,no_patients_index
 
 
