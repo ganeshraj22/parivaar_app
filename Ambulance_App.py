@@ -448,12 +448,10 @@ st.sidebar.title("**Navigate to**")
 page=st.sidebar.radio("",["District Level","Overall Summary"])
 
 if page=='Overall Summary':
-    col1,col2,col3=st.columns([1,1,1])
+    col1,col2=st.columns([1,1])
     with col1:
-        selected_district=st.selectbox('**Select a district**',Districts)
-    with col2:
         date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
-    with col3:
+    with col2:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
     col2,col3,col4=st.columns(3)
@@ -514,8 +512,6 @@ if page=='Overall Summary':
 if page=='District Level':
 
     col1,col2,col3=st.columns([1,1,1])
-    with col1:
-        selected_district=st.selectbox('**Select a district**',Districts)
     with col2:
         date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
     with col3:
