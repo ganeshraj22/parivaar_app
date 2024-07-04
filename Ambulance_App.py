@@ -781,10 +781,8 @@ if page=='Overall Summary':
         #else:
             #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
 
-    graph3=st.columns(1)
-    with graph3:
-        if val is True:
-            st.plotly_chart(fig7)
+    if val is True:
+        st.plotly_chart(fig7)
         #else:
             #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
     #with graph4:
