@@ -643,9 +643,9 @@ if page=='Overall Summary':
             Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
             Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
             Summary_Total=Ambulance_By_Month[['Total Distance Covered(KM)','Total Patients Served']].sum()
-            return Ambulance_By_Month, Summary_Total, min_date, max_date
+            return result_df, Ambulance_By_Month, Summary_Total, min_date, max_date
     
-            (Ambulance_By_Month_full, Summary_Total_full,min_date_full,max_date_full)=agg_plots_full(result_df)
+            (result_df, Ambulance_By_Month_full, Summary_Total_full,min_date_full,max_date_full)=agg_plots_full(result_df)
 
             fig1 = go.Figure()
     
@@ -706,7 +706,7 @@ if page=='Overall Summary':
             if (Ambulance_By_Month_full['Total Distance Covered(KM)'].count()==0):
                 return False, Ambulance_By_Month_full #,Total_Number_Of_PHC, Summary_Total_full
             else:
-                return True, Ambulance_By_Month_full #,Total_Number_Of_PHC, Summary_Total_full
+                return True, result_df, Ambulance_By_Month_full #,Total_Number_Of_PHC, Summary_Total_full
 
     col1,col2=st.columns([1,1])
     with col1:
@@ -756,5 +756,5 @@ if page=='Overall Summary':
             # st.write(f"Number Of Ambulances: {Total_Number_Of_PHC}")"""
 
     st.write("**WORK IN PROGRESS")
-    st.write(f"{a}")
-    st.write(f"{a}")
+    st.write(f"{a[1]}")
+    st.write(f"{a[1]}")
