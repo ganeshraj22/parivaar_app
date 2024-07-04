@@ -705,7 +705,7 @@ if page=='Overall Summary':
                 legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)')
             )
 
-            if (Ambulance_By_Month['Total Distance Covered'].count()==0):
+            if (Ambulance_By_Month_full['Total Distance Covered'].count()==0):
                 return False, Ambulance_By_Month_full,Total_Number_Of_PHC
             else:
                 return True, Ambulance_By_Month_full,Total_Number_Of_PHC
