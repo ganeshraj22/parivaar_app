@@ -756,5 +756,5 @@ if page=='Overall Summary':
             # st.write(f"Number Of Ambulances: {Total_Number_Of_PHC}")"""
 
     st.write("**WORK IN PROGRESS")
-    st.write(f"{a[1]}")
-    st.write(f"{a[1]}")
+    st.write(f"{a}")
+    st.write(f"{a}")
