@@ -654,7 +654,7 @@ if page=='Overall Summary':
             # Bar trace
             fig1.add_trace(go.Bar(
                 x=Ambulance_By_Month_full.index,
-                y=Ambulance_By_Month_full['Total Distance Covered'],
+                y=Ambulance_By_Month_full['Total Distance Covered(KM)'],
                 name='Total Distance Covered',
                 marker_color='cyan'
             ))
