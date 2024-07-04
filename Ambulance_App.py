@@ -718,19 +718,5 @@ if page=='Overall Summary':
     
         (val,summary_df,Total_Number_Of_PHC, fig1, fig2, min_date_full, max_date_full, Summary_Total_full)=get_data_full(date_range,level_of_detail,sheet)
     
-        graph1,graph2=st.columns(2)#([1.15,1])
-        with graph1:
-            if val is True:
-                st.plotly_chart(fig1)
-            else:
-                st.write(f"No data to display. Data is present only between '{min_date_full}' and '{max_date_full}'")
-    
-        with graph2:
-            if val is True:
-                st.plotly_chart(fig2)
-            #else:
-                #st.write(f"No data to display. Data is present only between '{min_date_full}' and '{max_date_full}'")
-
-    
         st.write("**WORK IN PROGRESS")
         st.write(f"{summary_df}")
