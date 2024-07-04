@@ -720,3 +720,4 @@ if page=='Overall Summary':
 
     st.write("**WORK IN PROGRESS")
     st.write(f"{summary_df}")
+    st.write(f"{val}")
