@@ -704,9 +704,9 @@ if page=='Overall Summary':
             )
 
             if (Ambulance_By_Month_full['Total Distance Covered(KM)'].count()==0):
-                return False, Ambulance_By_Month_full,Total_Number_Of_PHC, Summary_Total_full
+                return False, Ambulance_By_Month_full #,Total_Number_Of_PHC, Summary_Total_full
             else:
-                return True, Ambulance_By_Month_full,Total_Number_Of_PHC, Summary_Total_full
+                return True, Ambulance_By_Month_full #,Total_Number_Of_PHC, Summary_Total_full
 
     col1,col2=st.columns([1,1])
     with col1:
@@ -714,9 +714,9 @@ if page=='Overall Summary':
     with col2:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-    (val,summary_df,Total_Number_Of_PHC,Summary_Total_full)=get_data_full(date_range,level_of_detail,sheet)
+    (val,summary_df)=get_data_full(date_range,level_of_detail,sheet)
 
-    col2,col3,col4=st.columns(3)
+   """ col2,col3,col4=st.columns(3)
     # with col1:
     #     if val is True:
     #         selected_dist = selected_district.split('-')[0]
@@ -753,7 +753,7 @@ if page=='Overall Summary':
                         f'<div class="value-box">{Total_Number_Of_PHC}</div>'
                         '</div>', unsafe_allow_html=True)
             col4.markdown(summary_css, unsafe_allow_html=True)
-            # st.write(f"Number Of Ambulances: {Total_Number_Of_PHC}")
+            # st.write(f"Number Of Ambulances: {Total_Number_Of_PHC}")"""
 
     st.write("**WORK IN PROGRESS")
     st.write(f"{summary_df}")
