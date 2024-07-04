@@ -697,8 +697,7 @@ if page=='Overall Summary':
                 line=dict(color='red', width=2)
             ))
         
-            # Update layout
-            
+            # Update layout            
             fig2.update_layout(
                 title=f'Number of Patients Admitted/Discharged By {level_of_detail}',
                 xaxis=dict(tickangle=45),
@@ -718,46 +717,6 @@ if page=='Overall Summary':
             level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
     
         (val,Total_Number_Of_PHC, fig1, fig2, min_date_full, max_date_full, Summary_Total_full)=get_data_full(date_range,level_of_detail,sheet)
-
-        col2,col3,col4=st.columns(3)
-        # with col1:
-        #     if val is True:
-        #         selected_dist = selected_district.split('-')[0]
-        #                 # Display boxes using HTML and CSS
-        #         col1.markdown('<div class="box-container">'
-        #                     f'<div class="label-box"># DISTRICTS</div>'
-        #                     f'<div class="value-box">{selected_dist}</div>'
-        #                     '</div>', unsafe_allow_html=True)
-        #         col1.markdown(summary_css, unsafe_allow_html=True)
-        #         # st.write(f"District: {selected_district.split('-')[0]}")
-        with col2:
-            if val is True:
-                # Display boxes using HTML and CSS
-                col2.markdown('<div class="box-container">'
-                            f'<div class="label-box"># PATIENTS</div>'
-                            f'<div class="value-box">{Summary_Total_full.iloc[1]}</div>'
-                            '</div>', unsafe_allow_html=True)
-                col2.markdown(summary_css, unsafe_allow_html=True)
-                # st.write(f"Total Distance Covered (KM): {Summary_Total_full.iloc[0]}")
-        with col3:
-            if val is True:
-                        # Display boxes using HTML and CSS
-                col3.markdown('<div class="box-container">'
-                            f'<div class="label-box">DISTANCE COVERED</div>'
-                            f'<div class="value-box">{Summary_Total_full.iloc[0]}</div>'
-                            '</div>', unsafe_allow_html=True)
-                col3.markdown(summary_css, unsafe_allow_html=True)
-                # st.write(f"Total Patients Served: {Summary_Total_full.iloc[1]}")
-        with col4:
-            if val is True:
-    
-                            # Display boxes using HTML and CSS
-                col4.markdown('<div class="box-container">'
-                            f'<div class="label-box"># Ambulances</div>'
-                            f'<div class="value-box">{Total_Number_Of_PHC}</div>'
-                            '</div>', unsafe_allow_html=True)
-                col4.markdown(summary_css, unsafe_allow_html=True)
-                # st.write(f"Number Of Ambulances: {Total_Number_Of_PHC}")
     
         graph1,graph2=st.columns(2)#([1.15,1])
         with graph1:
