@@ -734,10 +734,28 @@ if page=='Overall Summary':
             # Display boxes using HTML and CSS
             col2.markdown('<div class="box-container">'
                         f'<div class="label-box"># PATIENTS</div>'
-                        f'<div class="value-box">{Summary_Total_full.iloc[1]}</div>'
+                        f'<div class="value-box">{Summary_Total_full.iloc[0]}</div>'
                         '</div>', unsafe_allow_html=True)
             col2.markdown(summary_css, unsafe_allow_html=True)
             # st.write(f"Total Distance Covered (KM): {Summary_Total_full.iloc[0]}")
+    with col3:
+        if val is True:
+            # Display boxes using HTML and CSS
+            col3.markdown('<div class="box-container">'
+                        f'<div class="label-box">DISTANCE COVERED</div>'
+                        f'<div class="value-box">{Summary_Total_full.iloc[1]}</div>'
+                        '</div>', unsafe_allow_html=True)
+            col3.markdown(summary_css, unsafe_allow_html=True)
+            # st.write(f"Total Patients Served: {Summary_Total_full.iloc[1]}")
+    with col4:
+        if val is True:
+            # Display boxes using HTML and CSS
+            col4.markdown('<div class="box-container">'
+                        f'<div class="label-box"># Ambulances</div>'
+                        f'<div class="value-box">{Total_Number_Of_PHC}</div>'
+                        '</div>', unsafe_allow_html=True)
+            col4.markdown(summary_css, unsafe_allow_html=True)
+            # st.write(f"Number Of Ambulances: {Total_Number_Of_PHC}")
 
     st.write("**WORK IN PROGRESS")
     st.write(f"{summary_df}")
