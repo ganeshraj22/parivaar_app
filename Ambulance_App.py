@@ -704,8 +704,11 @@ if page=='Overall Summary':
                 yaxis=dict(title='Number Of Patients'),
                 legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)')
             )
-                
-        return Ambulance_By_Month_full,Total_Number_Of_PHC
+
+            if (Ambulance_By_Month['Total Distance Covered'].count()==0):
+                return False, Ambulance_By_Month_full,Total_Number_Of_PHC
+            else:
+                return True, Ambulance_By_Month_full,Total_Number_Of_PHC
 
     col1,col2=st.columns([1,1])
     with col1:
