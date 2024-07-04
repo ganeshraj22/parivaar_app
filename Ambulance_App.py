@@ -706,9 +706,9 @@ if page=='Overall Summary':
             )
                 
         if (Ambulance_By_Month_full['Total Distance Covered(KM)'].count()==0):
-            return False, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full
+            return False, fig1, fig6, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full
         else:
-            return True, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full
+            return True, fig2, fig6, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full
 
     col1,col2=st.columns([1,1])
     with col1:
@@ -716,7 +716,7 @@ if page=='Overall Summary':
     with col2:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-    (val,summary_df,Total_Number_Of_PHC,Summary_Total_full)=get_data_full(date_range,level_of_detail,sheet)
+    (val,fig5,fig6,summary_df,Total_Number_Of_PHC,Summary_Total_full)=get_data_full(date_range,level_of_detail,sheet)
 
     col2,col3,col4=st.columns(3)
     with col2:
