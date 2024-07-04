@@ -641,14 +641,17 @@ if page=='Overall Summary':
                 Ambulance_By_Month['Yrmo']=(Ambulance_By_Month['Year']+Ambulance_By_Month['Month']).astype(int)
                 Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(int)
                 Ambulance_By_Month=Ambulance_By_Month.groupby(['Date'])[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']].agg({'Total Distance Covered(KM)':sum,'Total Patients Served':sum,'Yrmo':mean,'Year':mean,'Admitted in Hospital':sum,'Discharged from Hospital':sum})
-                #Ambulance_By_Month.set_index('Date',inplace=True)
+                Ambulance_By_District=Ambulance_By_Month.groupby(['District'])[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital']].agg({'Total Distance Covered(KM)':sum,'Total Patients Served':sum,'Admitted in Hospital':sum,'Discharged from Hospital':sum})
                 Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
                 Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
+                Ambulance_By_District=Ambulance_By_District[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital']]
                 Summary_Total=Ambulance_By_Month[['Total Distance Covered(KM)','Total Patients Served']].sum()
-                return Ambulance_By_Month, Summary_Total, min_date, max_date
+                return Ambulance_By_Month, Ambulance_By_District, Summary_Total, min_date, max_date
     
-            (Ambulance_By_Month_full, Summary_Total_full,min_date_full,max_date_full)=agg_plots_full(result_df)
+            (Ambulance_By_Month_full, Ambulance_By_District_full, Summary_Total_full,min_date_full,max_date_full)=agg_plots_full(result_df)
 
+            Patients_Pie_full=Ambulance_By_District_full['Total Patients Served']
+            
             fig1 = go.Figure()
         
             # Bar trace
@@ -703,6 +706,23 @@ if page=='Overall Summary':
                 xaxis=dict(tickangle=45),
                 yaxis=dict(title='Number Of Patients'),
                 legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)')
+            )
+
+            fig3 = go.Figure()
+    
+            # Add pie trace
+            fig3.add_trace(go.Pie(
+                labels=Patients_Pie_full.index,
+                values=Patients_Pie_full.values,
+                textinfo='percent+label',
+                insidetextorientation='radial',
+                marker=dict(line=dict(color='black', width=2)),
+            ))
+        
+            # Update layout
+            fig3.update_layout(
+                title=f'% of Patients Served By District',
+                title_x=0.2,  # Center align title horizontally
             )
                 
         if (Ambulance_By_Month_full['Total Distance Covered(KM)'].count()==0):
