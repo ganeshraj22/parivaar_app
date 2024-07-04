@@ -648,6 +648,62 @@ if page=='Overall Summary':
                 return Ambulance_By_Month, Summary_Total, min_date, max_date
     
             (Ambulance_By_Month_full, Summary_Total_full,min_date_full,max_date_full)=agg_plots_full(result_df)
+
+            fig1 = go.Figure()
+    
+            # Bar trace
+            fig1.add_trace(go.Bar(
+                x=Ambulance_By_Month.index,
+                y=Ambulance_By_Month['Total Distance Covered'],
+                name='Total Distance Covered',
+                marker_color='cyan'
+            ))
+        
+            # Line trace
+            fig1.add_trace(go.Scatter(
+                x=Ambulance_By_Month.index,
+                y=Ambulance_By_Month['Total Patients Served'],
+                mode='lines',
+                name='Total Patients Served',
+                yaxis='y2',
+                line=dict(color='blue')
+            ))
+        
+            # Update layout
+            fig1.update_layout(
+                title=f'Kilometers Driven/Persons Served By {level_of_detail}',
+                xaxis=dict(tickangle=45),
+                yaxis=dict(title='Total Distance Covered', titlefont=dict(color='cyan')),
+                yaxis2=dict(title='Total Patients Served', titlefont=dict(color='blue'), overlaying='y', side='right'),
+                legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)'),
+            )
+        
+            fig2 = go.Figure()
+        
+            # Add traces for 'Admitted in Hospital' and 'Discharged from Hospital'
+            fig2.add_trace(go.Scatter(
+                x=Ambulance_By_Month.index,
+                y=Ambulance_By_Month['Admitted in Hospital'],
+                mode='lines+markers',
+                name='Admitted in Hospital',
+                line=dict(color='green', width=2)
+            ))
+        
+            fig2.add_trace(go.Scatter(
+                x=Ambulance_By_Month.index,
+                y=Ambulance_By_Month['Discharged from Hospital'],
+                mode='lines+markers',
+                name='Discharged from Hospital',
+                line=dict(color='red', width=2)
+            ))
+        
+            # Update layout
+            fig2.update_layout(
+                title=f'Number of Patients Admitted/Discharged By {level_of_detail}',
+                xaxis=dict(tickangle=45),
+                yaxis=dict(title='Number Of Patients'),
+                legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)')
+            )
                 
         return Ambulance_By_Month_full,Total_Number_Of_PHC
 
