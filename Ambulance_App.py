@@ -460,7 +460,7 @@ if page=='Overall Summary':
             if y=='Jhabua-8':
                 continue
             ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(y)].get_values())
-            def preprocess_data_full(ambulance_df):
+            def preprocess_data(ambulance_df):
               # Replace values in the first row starting with 'Ambulance' with values from the rows below
               def replace_values(ambulance_df):
                   for col in ambulance_df.columns:
@@ -610,21 +610,20 @@ if page=='Overall Summary':
               df_reset = ambulance_df[:-1].reset_index(drop=True)
             
               df_reset['District']=y.split('-')[0]
-
+            
               return df_reset,total_distance_index,no_patients_index
-
-            (df_reset,total_distance_index,no_patients_index)=preprocess_data_full(ambulance_df)
-                
-            district_df=df_reset[['Date','District','Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital', 'Discharged from Hospital','Total Accident Cases','Total Pregnancy Cases', 'Any Sickness','Other Cases', 'Eye Camp Patients']] 
-
+            
+            (df_reset,total_distance_index,no_patients_index)=preprocess_data(ambulance_df)
+            
+            district_df=df_reset[['Date','District','Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital', 'Discharged from Hospital',
+                'Total Accident Cases','Total Pregnancy Cases', 'Any Sickness','Other Cases', 'Eye Camp Patients']] 
+        
             if flag==0:
-                result_df=district_df
-                Total_Number_Of_PHC=no_patients_index-total_distance_index-1
+              result_df=district_df
             else:
-                result_df=pd.concat([result_df,district_df],ignore_index=True)
-                Total_Number_Of_PHC=Total_Number_Of_PHC+no_patients_index-total_distance_index-1
+              result_df=pd.concat([result_df,district_df],ignore_index=True)
             flag=1
-
+    
         def agg_plots_full(result_df):
             min_date=result_df['Date'].min().date().strftime('%d-%b-%Y')
             max_date=result_df['Date'].max().date().strftime('%d-%b-%Y')
