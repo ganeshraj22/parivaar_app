@@ -727,7 +727,7 @@ if page=='Overall Summary':
                         f'<div class="value-box">{Summary_Total_full.iloc[1]}</div>'
                         '</div>', unsafe_allow_html=True)
             col2.markdown(summary_css, unsafe_allow_html=True)
-            # st.write(f"Total Distance Covered (KM): {Summary_Total_full.iloc[0]}")
+            # st.write(f"Total Distance Covered (KM): {Summary_Total_full.iloc[1]}")
     with col3:
         if val is True:
                     # Display boxes using HTML and CSS
@@ -736,7 +736,7 @@ if page=='Overall Summary':
                         f'<div class="value-box">{Summary_Total_full.iloc[0]}</div>'
                         '</div>', unsafe_allow_html=True)
             col3.markdown(summary_css, unsafe_allow_html=True)
-            # st.write(f"Total Patients Served: {Summary_Total_full.iloc[1]}")
+            # st.write(f"Total Patients Served: {Summary_Total_full.iloc[0]}")
     with col4:
         if val is True:
 
