@@ -726,9 +726,9 @@ if page=='Overall Summary':
             )
                 
         if (Ambulance_By_Month_full['Total Distance Covered(KM)'].count()==0):
-            return False, fig1, fig2, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full
+            return False, fig1, fig2, fig3, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full
         else:
-            return True, fig1, fig2, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full
+            return True, fig1, fig2, fig3, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full
 
     col1,col2=st.columns([1,1])
     with col1:
@@ -736,7 +736,7 @@ if page=='Overall Summary':
     with col2:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-    (val,fig5,fig6,summary_df,Total_Number_Of_PHC,Summary_Total_full)=get_data_full(date_range,level_of_detail,sheet)
+    (val,fig5,fig6,fig7,summary_df,Total_Number_Of_PHC,Summary_Total_full)=get_data_full(date_range,level_of_detail,sheet)
 
     col2,col3,col4=st.columns(3)
     with col2:
@@ -780,6 +780,17 @@ if page=='Overall Summary':
             st.plotly_chart(fig6)
         #else:
             #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
+
+    graph3,graph4=st.columns(2)
+    with graph3:
+        if val is True:
+            st.plotly_chart(fig7)
+        #else:
+            #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
+    with graph4:
+        if val is True:
+            st.write("Plot is being constructed")
+            #st.plotly_chart(fig4)
 
     st.write("**WORK IN PROGRESS")
     st.write(f"{summary_df}")
