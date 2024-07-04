@@ -640,8 +640,8 @@ if page=='Overall Summary':
                 Ambulance_By_Month['Date']=Ambulance_By_Month['Date'].dt.strftime(a)
                 Ambulance_By_Month['Yrmo']=(Ambulance_By_Month['Year']+Ambulance_By_Month['Month']).astype(int)
                 Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(int)
-                Ambulance_By_Month=Ambulance_By_Month.groupby(['Date'])[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']].agg({'Total Distance Covered(KM)':sum,'Total Patients Served':sum,'Yrmo':mean,'Year':mean,'Admitted in Hospital':sum,'Discharged from Hospital':sum})
                 Ambulance_By_District=Ambulance_By_Month.groupby(['District'])[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital']].agg({'Total Distance Covered(KM)':sum,'Total Patients Served':sum,'Admitted in Hospital':sum,'Discharged from Hospital':sum})
+                Ambulance_By_Month=Ambulance_By_Month.groupby(['Date'])[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']].agg({'Total Distance Covered(KM)':sum,'Total Patients Served':sum,'Yrmo':mean,'Year':mean,'Admitted in Hospital':sum,'Discharged from Hospital':sum})
                 Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
                 Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
                 Ambulance_By_District=Ambulance_By_District[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital']]
