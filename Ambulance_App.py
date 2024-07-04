@@ -705,7 +705,10 @@ if page=='Overall Summary':
                 legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)')
             )
                 
-        return Ambulance_By_Month_full,Total_Number_Of_PHC
+        if (Ambulance_By_Month_Full['Total Distance Covered(KM)'].count()==0):
+            return False, Ambulance_By_Month_full,Total_Number_Of_PHC
+        else:
+            return True, Ambulance_By_Month_full,Total_Number_Of_PHC
 
     col1,col2=st.columns([1,1])
     with col1:
@@ -713,7 +716,7 @@ if page=='Overall Summary':
     with col2:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-    (summary_df,Total_Number_Of_PHC)=get_data_full(date_range,level_of_detail,sheet)
+    (val,summary_df,Total_Number_Of_PHC)=get_data_full(date_range,level_of_detail,sheet)
 
     col2,col3,col4=st.columns(3)
     with col2:
