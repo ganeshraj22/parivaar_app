@@ -460,7 +460,7 @@ if page=='Overall Summary':
             if y=='Jhabua-8':
                 continue
             ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(y)].get_values())
-            def preprocess_data(ambulance_df):
+            def preprocess_data_full(ambulance_df):
               # Replace values in the first row starting with 'Ambulance' with values from the rows below
               def replace_values(ambulance_df):
                   for col in ambulance_df.columns:
@@ -610,102 +610,46 @@ if page=='Overall Summary':
               df_reset = ambulance_df[:-1].reset_index(drop=True)
             
               df_reset['District']=y.split('-')[0]
-            
+
               return df_reset,total_distance_index,no_patients_index
-            
-            (df_reset,total_distance_index,no_patients_index)=preprocess_data(ambulance_df)
-            
-            district_df=df_reset[['Date','District','Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital', 'Discharged from Hospital',
-                'Total Accident Cases','Total Pregnancy Cases', 'Any Sickness','Other Cases', 'Eye Camp Patients']]
-        
+
+            (df_reset,total_distance_index,no_patients_index)=preprocess_data_full(ambulance_df)
+                
+            district_df=df_reset[['Date','District','Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital', 'Discharged from Hospital','Total Accident Cases','Total Pregnancy Cases', 'Any Sickness','Other Cases', 'Eye Camp Patients']] 
+
             if flag==0:
-              result_df=district_df
+                result_df=district_df
+                Total_Number_Of_PHC=no_patients_index-total_distance_index-1
             else:
-              result_df=pd.concat([result_df,district_df],ignore_index=True)
+                result_df=pd.concat([result_df,district_df],ignore_index=True)
+                Total_Number_Of_PHC=Total_Number_Of_PHC+no_patients_index-total_distance_index-1
             flag=1
-    
-        def agg_plots_full(ambulance_df):
-            min_date=ambulance_df['Date'].min().date().strftime('%d-%b-%Y')
-            max_date=ambulance_df['Date'].max().date().strftime('%d-%b-%Y')
-            #ambulance_df1['Total Distance Covered']=pd.to_numeric(ambulance_df1['Total Distance Covered'])
-            #ambulance_df1['Total Patients Served']=pd.to_numeric(ambulance_df1['Total Patients Served'])
-        
-            Ambulance_By_Month=ambulance_df.reset_index(drop=False)
-            Ambulance_By_Month=Ambulance_By_Month[(Ambulance_By_Month['Date']>=start_date)&(Ambulance_By_Month['Date']<=end_date)]
-            Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month.astype(str).str.pad(width=2,side='left',fillchar='0')
-            Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year.astype(str)
-            Ambulance_By_Month['Date']=Ambulance_By_Month['Date'].dt.strftime(a)
-            Ambulance_By_Month['Yrmo']=(Ambulance_By_Month['Year']+Ambulance_By_Month['Month']).astype(int)
-            Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(int)
-            Ambulance_By_Month=Ambulance_By_Month.groupby(['Date'])[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']].agg({'Total Distance Covered(KM)':sum,'Total Patients Served':sum,'Yrmo':mean,'Year':mean,'Admitted in Hospital':sum,'Discharged from Hospital':sum})
-            #Ambulance_By_Month.set_index('Date',inplace=True)
-            Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
-            Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
-            Summary_Total=Ambulance_By_Month[['Total Distance Covered(KM)','Total Patients Served']].sum()
-            return Ambulance_By_Month, Summary_Total, min_date, max_date
+
+            def agg_plots_full(ambulance_df1):
+                #Agg_df=ambulance_df[ambulance_df['Date'].notnull()]
+                min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
+                max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
+                #ambulance_df1['Total Distance Covered']=pd.to_numeric(ambulance_df1['Total Distance Covered'])
+                #ambulance_df1['Total Patients Served']=pd.to_numeric(ambulance_df1['Total Patients Served'])
+            
+                #Ambulance_By_Month=ambulance_df1[ambulance_df1['Date'].notnull()]
+                Ambulance_By_Month=ambulance_df1.reset_index(drop=False)
+                Ambulance_By_Month=Ambulance_By_Month[(Ambulance_By_Month['Date']>=start_date)&(Ambulance_By_Month['Date']<=end_date)]
+                Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month.astype(str).str.pad(width=2,side='left',fillchar='0')
+                Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year.astype(str)
+                Ambulance_By_Month['Date']=Ambulance_By_Month['Date'].dt.strftime(a)
+                Ambulance_By_Month['Yrmo']=(Ambulance_By_Month['Year']+Ambulance_By_Month['Month']).astype(int)
+                Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(int)
+                Ambulance_By_Month=Ambulance_By_Month.groupby(['Date'])[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']].agg({'Total Distance Covered(KM)':sum,'Total Patients Served':sum,'Yrmo':mean,'Year':mean,'Admitted in Hospital':sum,'Discharged from Hospital':sum})
+                #Ambulance_By_Month.set_index('Date',inplace=True)
+                Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
+                Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
+                Summary_Total=Ambulance_By_Month[['Total Distance Covered(KM)','Total Patients Served']].sum()
+                return Ambulance_By_Month, Summary_Total, min_date, max_date
     
             (Ambulance_By_Month_full, Summary_Total_full,min_date_full,max_date_full)=agg_plots_full(result_df)
-
-            fig1 = go.Figure()
-    
-            # Bar trace
-            fig1.add_trace(go.Bar(
-                x=Ambulance_By_Month_full.index,
-                y=Ambulance_By_Month_full['Total Distance Covered(KM)'],
-                name='Total Distance Covered',
-                marker_color='cyan'
-            ))
-        
-            # Line trace
-            fig1.add_trace(go.Scatter(
-                x=Ambulance_By_Month_full.index,
-                y=Ambulance_By_Month_full['Total Patients Served'],
-                mode='lines',
-                name='Total Patients Served',
-                yaxis='y2',
-                line=dict(color='blue')
-            ))
-        
-            # Update layout
-            fig1.update_layout(
-                title=f'Kilometers Driven/Persons Served By {level_of_detail}',
-                xaxis=dict(tickangle=45),
-                yaxis=dict(title='Total Distance Covered', titlefont=dict(color='cyan')),
-                yaxis2=dict(title='Total Patients Served', titlefont=dict(color='blue'), overlaying='y', side='right'),
-                legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)'),
-            )
-        
-            fig2 = go.Figure()
-        
-            # Add traces for 'Admitted in Hospital' and 'Discharged from Hospital'
-            fig2.add_trace(go.Scatter(
-                x=Ambulance_By_Month_full.index,
-                y=Ambulance_By_Month_full['Admitted in Hospital'],
-                mode='lines+markers',
-                name='Admitted in Hospital',
-                line=dict(color='green', width=2)
-            ))
-        
-            fig2.add_trace(go.Scatter(
-                x=Ambulance_By_Month_full.index,
-                y=Ambulance_By_Month_full['Discharged from Hospital'],
-                mode='lines+markers',
-                name='Discharged from Hospital',
-                line=dict(color='red', width=2)
-            ))
-        
-            # Update layout
-            fig2.update_layout(
-                title=f'Number of Patients Admitted/Discharged By {level_of_detail}',
-                xaxis=dict(tickangle=45),
-                yaxis=dict(title='Number Of Patients'),
-                legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)')
-            )
-
-            if (Ambulance_By_Month_full['Total Distance Covered(KM)'].count()==0):
-                return Ambulance_By_Month_full #False, Ambulance_By_Month_full #,Total_Number_Of_PHC, Summary_Total_full
-            else:
-                return Ambulance_By_Month_full #True, Ambulance_By_Month_full #,Total_Number_Of_PHC, Summary_Total_full
+                
+        return Ambulance_By_Month_full,Total_Number_Of_PHC
 
     col1,col2=st.columns([1,1])
     with col1:
@@ -713,46 +657,7 @@ if page=='Overall Summary':
     with col2:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-    abc=get_data_full(date_range,level_of_detail,sheet)
-
-    """ col2,col3,col4=st.columns(3)
-    # with col1:
-    #     if val is True:
-    #         selected_dist = selected_district.split('-')[0]
-    #                 # Display boxes using HTML and CSS
-    #         col1.markdown('<div class="box-container">'
-    #                     f'<div class="label-box"># DISTRICTS</div>'
-    #                     f'<div class="value-box">{selected_dist}</div>'
-    #                     '</div>', unsafe_allow_html=True)
-    #         col1.markdown(summary_css, unsafe_allow_html=True)
-    #         # st.write(f"District: {selected_district.split('-')[0]}")
-    with col2:
-        if val is True:
-            # Display boxes using HTML and CSS
-            col2.markdown('<div class="box-container">'
-                        f'<div class="label-box"># PATIENTS</div>'
-                        f'<div class="value-box">{Summary_Total_full.iloc[1]}</div>'
-                        '</div>', unsafe_allow_html=True)
-            col2.markdown(summary_css, unsafe_allow_html=True)
-            # st.write(f"Total Distance Covered (KM): {Summary_Total_full.iloc[1]}")
-    with col3:
-        if val is True:
-            # Display boxes using HTML and CSS
-            col3.markdown('<div class="box-container">'
-                        f'<div class="label-box">DISTANCE COVERED</div>'
-                        f'<div class="value-box">{Summary_Total_full.iloc[0]}</div>'
-                        '</div>', unsafe_allow_html=True)
-            col3.markdown(summary_css, unsafe_allow_html=True)
-            # st.write(f"Total Patients Served: {Summary_Total_full.iloc[0]}")
-    with col4:
-        if val is True:
-            # Display boxes using HTML and CSS
-            col4.markdown('<div class="box-container">'
-                        f'<div class="label-box"># Ambulances</div>'
-                        f'<div class="value-box">{Total_Number_Of_PHC}</div>'
-                        '</div>', unsafe_allow_html=True)
-            col4.markdown(summary_css, unsafe_allow_html=True)
-            # st.write(f"Number Of Ambulances: {Total_Number_Of_PHC}")"""
+    (summary_df,Total_Number_Of_PHC)=get_data_full(date_range,level_of_detail,sheet)
 
     st.write("**WORK IN PROGRESS")
-    st.write(f"{abc}")
+    st.write(f"{summary_df}")
