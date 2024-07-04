@@ -704,9 +704,9 @@ if page=='Overall Summary':
             )
 
             if (Ambulance_By_Month_full['Total Distance Covered(KM)'].count()==0):
-                return False, Ambulance_By_Month_full #,Total_Number_Of_PHC, Summary_Total_full
+                return result_df #False, Ambulance_By_Month_full #,Total_Number_Of_PHC, Summary_Total_full
             else:
-                return True, result_df, Ambulance_By_Month_full #,Total_Number_Of_PHC, Summary_Total_full
+                return result_df #True, Ambulance_By_Month_full #,Total_Number_Of_PHC, Summary_Total_full
 
     col1,col2=st.columns([1,1])
     with col1:
@@ -714,7 +714,7 @@ if page=='Overall Summary':
     with col2:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-    a=get_data_full(date_range,level_of_detail,sheet)
+    abc=get_data_full(date_range,level_of_detail,sheet)
 
     """ col2,col3,col4=st.columns(3)
     # with col1:
@@ -756,5 +756,4 @@ if page=='Overall Summary':
             # st.write(f"Number Of Ambulances: {Total_Number_Of_PHC}")"""
 
     st.write("**WORK IN PROGRESS")
-    st.write(f"{a}")
-    st.write(f"{a}")
+    st.write(f"{abc}")
