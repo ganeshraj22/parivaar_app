@@ -653,16 +653,16 @@ if page=='Overall Summary':
     
             # Bar trace
             fig1.add_trace(go.Bar(
-                x=Ambulance_By_Month.index,
-                y=Ambulance_By_Month['Total Distance Covered'],
+                x=Ambulance_By_Month_full.index,
+                y=Ambulance_By_Month_full['Total Distance Covered'],
                 name='Total Distance Covered',
                 marker_color='cyan'
             ))
         
             # Line trace
             fig1.add_trace(go.Scatter(
-                x=Ambulance_By_Month.index,
-                y=Ambulance_By_Month['Total Patients Served'],
+                x=Ambulance_By_Month_full.index,
+                y=Ambulance_By_Month_full['Total Patients Served'],
                 mode='lines',
                 name='Total Patients Served',
                 yaxis='y2',
@@ -682,16 +682,16 @@ if page=='Overall Summary':
         
             # Add traces for 'Admitted in Hospital' and 'Discharged from Hospital'
             fig2.add_trace(go.Scatter(
-                x=Ambulance_By_Month.index,
-                y=Ambulance_By_Month['Admitted in Hospital'],
+                x=Ambulance_By_Month_full.index,
+                y=Ambulance_By_Month_full['Admitted in Hospital'],
                 mode='lines+markers',
                 name='Admitted in Hospital',
                 line=dict(color='green', width=2)
             ))
         
             fig2.add_trace(go.Scatter(
-                x=Ambulance_By_Month.index,
-                y=Ambulance_By_Month['Discharged from Hospital'],
+                x=Ambulance_By_Month_full.index,
+                y=Ambulance_By_Month_full['Discharged from Hospital'],
                 mode='lines+markers',
                 name='Discharged from Hospital',
                 line=dict(color='red', width=2)
