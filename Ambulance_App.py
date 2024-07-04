@@ -698,6 +698,7 @@ if page=='Overall Summary':
             ))
         
             # Update layout
+            
             fig2.update_layout(
                 title=f'Number of Patients Admitted/Discharged By {level_of_detail}',
                 xaxis=dict(tickangle=45),
@@ -705,7 +706,10 @@ if page=='Overall Summary':
                 legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)')
             )
                     
-            return Ambulance_By_Month_full,Total_Number_Of_PHC, fig1, fig2, Summary_Total_full
+            if (Ambulance_By_Month['Total Distance Covered'].count()==0):
+                   return False, Total_Number_Of_PHC, fig1, fig2, min_date_full, max_date_full, Summary_Total_full
+            else:
+                   return True, Total_Number_Of_PHC, fig1, fig2, min_date_full, max_date_full, Summary_Total_full
     
         col1,col2=st.columns([1,1])
         with col1:
@@ -713,7 +717,7 @@ if page=='Overall Summary':
         with col2:
             level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
     
-        (summary_df,Total_Number_Of_PHC, fig1, fig2, Summary_Total_full)=get_data_full(date_range,level_of_detail,sheet)
+        (val,Total_Number_Of_PHC, fig1, fig2, min_date_full, max_date_full, Summary_Total_full)=get_data_full(date_range,level_of_detail,sheet)
 
         col2,col3,col4=st.columns(3)
         # with col1:
@@ -770,4 +774,3 @@ if page=='Overall Summary':
 
     
         st.write("**WORK IN PROGRESS")
-        st.write(f"{summary_df}")
