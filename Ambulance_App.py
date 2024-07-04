@@ -706,9 +706,9 @@ if page=='Overall Summary':
             )
                 
         if (Ambulance_By_Month_full['Total Distance Covered(KM)'].count()==0):
-            return False, fig1, fig6, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full
+            return False, fig1, fig2, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full
         else:
-            return True, fig2, fig6, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full
+            return True, fig1, fig2, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full
 
     col1,col2=st.columns([1,1])
     with col1:
@@ -747,6 +747,19 @@ if page=='Overall Summary':
                         '</div>', unsafe_allow_html=True)
             col4.markdown(summary_css, unsafe_allow_html=True)
             # st.write(f"Number Of Ambulances: {Total_Number_Of_PHC}")
+
+    graph1,graph2=st.columns(2)#([1.15,1])
+    with graph1:
+        if val is True:
+            st.plotly_chart(fig5)
+        #else:
+            #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
+
+    with graph2:
+        if val is True:
+            st.plotly_chart(fig6)
+        #else:
+            #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
 
     st.write("**WORK IN PROGRESS")
     st.write(f"{summary_df}")
