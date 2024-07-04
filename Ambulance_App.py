@@ -648,7 +648,8 @@ if page=='Overall Summary':
                 return Ambulance_By_Month, Summary_Total, min_date, max_date
     
             (Ambulance_By_Month_full, Summary_Total_full,min_date_full,max_date_full)=agg_plots_full(result_df)
-                    fig1 = go.Figure()
+            
+            fig1 = go.Figure()
     
             # Bar trace
             fig1.add_trace(go.Bar(
