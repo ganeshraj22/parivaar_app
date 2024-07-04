@@ -714,7 +714,7 @@ if page=='Overall Summary':
     with col2:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-    (val,summary_df)=get_data_full(date_range,level_of_detail,sheet)
+    a=get_data_full(date_range,level_of_detail,sheet)
 
     """ col2,col3,col4=st.columns(3)
     # with col1:
@@ -756,5 +756,5 @@ if page=='Overall Summary':
             # st.write(f"Number Of Ambulances: {Total_Number_Of_PHC}")"""
 
     st.write("**WORK IN PROGRESS")
-    st.write(f"{summary_df}")
-    st.write(f"{val}")
+    st.write(f"{a}")
+    st.write(f"{a}")
