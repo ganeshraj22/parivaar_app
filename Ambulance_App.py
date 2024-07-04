@@ -716,7 +716,7 @@ if page=='Overall Summary':
 
     (val,summary_df)=get_data_full(date_range,level_of_detail,sheet)
 
-   """ col2,col3,col4=st.columns(3)
+    """ col2,col3,col4=st.columns(3)
     # with col1:
     #     if val is True:
     #         selected_dist = selected_district.split('-')[0]
