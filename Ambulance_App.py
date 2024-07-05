@@ -728,11 +728,28 @@ if page=='Overall Summary':
                 title=f'% of Patients Served By District',
                 title_x=0.2,  # Center align title horizontally
             )
+
+            fig4 = go.Figure()
+    
+            # Add pie trace
+            fig4.add_trace(go.Pie(
+                labels=Disease_Pie_full.index,
+                values=Disease_Pie_full.values,
+                textinfo='percent+label',
+                insidetextorientation='radial',
+                marker=dict(line=dict(color='black', width=2)),
+            ))
+        
+            # Update layout
+            fig4.update_layout(
+                title=f'% of Patients Served By Type Of Ailment',
+                title_x=0.2,  # Center align title horizontally
+            )
                 
         if (Ambulance_By_Month_full['Total Distance Covered(KM)'].count()==0):
-            return False, fig1, fig2, fig3, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full
+            return False, fig1, fig2, fig3, fig4, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full
         else:
-            return True, fig1, fig2, fig3, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full
+            return True, fig1, fig2, fig3, fig4, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full
 
     col1,col2=st.columns([1,1])
     with col1:
@@ -740,7 +757,7 @@ if page=='Overall Summary':
     with col2:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-    (val,fig5,fig6,fig7,summary_df,Total_Number_Of_PHC,Summary_Total_full)=get_data_full(date_range,level_of_detail,sheet)
+    (val,fig5,fig6,fig7,fig8,summary_df,Total_Number_Of_PHC,Summary_Total_full)=get_data_full(date_range,level_of_detail,sheet)
 
     col2,col3,col4=st.columns(3)
     with col2:
@@ -763,7 +780,6 @@ if page=='Overall Summary':
             # st.write(f"Total Patients Served: {Summary_Total_full.iloc[0]}")
     with col4:
         if val is True:
-
                         # Display boxes using HTML and CSS
             col4.markdown('<div class="box-container">'
                         f'<div class="label-box"># Ambulances</div>'
@@ -789,10 +805,9 @@ if page=='Overall Summary':
         st.plotly_chart(fig7)
         #else:
             #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
-    #with graph4:
-        #if val is True:
-            #st.write("Plot is being constructed")
-            #st.plotly_chart(fig4)
+
+    if val is True:
+        st.plotly_chart(fig8)
 
     st.write("**WORK IN PROGRESS")
     st.write(f"{summary_df}")
