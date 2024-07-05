@@ -808,4 +808,3 @@ if page=='Overall Summary':
         st.plotly_chart(fig8)
 
     st.write("**WORK IN PROGRESS")
-    st.write(f"{summary_df}")
