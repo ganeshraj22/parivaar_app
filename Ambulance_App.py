@@ -721,7 +721,7 @@ if page=='Overall Summary':
                 marker=dict(line=dict(color='black', width=2)),
             ))
 
-            fig3.update_traces(rotation=0)
+            fig3.update_traces(rotation=20)
         
             # Update layout
             fig3.update_layout(
