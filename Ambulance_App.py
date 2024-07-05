@@ -805,8 +805,6 @@ if page=='Overall Summary':
         st.plotly_chart(fig7)
         #else:
             #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
-
-    if val is True:
         st.plotly_chart(fig8)
 
     st.write("**WORK IN PROGRESS")
