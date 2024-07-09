@@ -315,7 +315,7 @@ if page=='District Level':
         fig2.add_trace(go.Scatter(
             x=Ambulance_By_Month.index,
             y=Ambulance_By_Month['Admitted in Hospital'],
-            mode='lines+markers',
+            mode='lines',
             name='Admitted in Hospital',
             line=dict(color='green', width=2)
         ))
@@ -323,7 +323,7 @@ if page=='District Level':
         fig2.add_trace(go.Scatter(
             x=Ambulance_By_Month.index,
             y=Ambulance_By_Month['Discharged from Hospital'],
-            mode='lines+markers',
+            mode='lines',
             name='Discharged from Hospital',
             line=dict(color='red', width=2)
         ))
