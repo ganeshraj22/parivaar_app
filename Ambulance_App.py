@@ -342,7 +342,7 @@ if page=='District Level':
         fig3.add_trace(go.Pie(
             labels=Patients_Pie.index,
             values=Patients_Pie.values,
-            textinfo='label',
+            textinfo='percent',
             insidetextorientation='radial',
             marker=dict(colors=['#8BC1F7','#004B95','#BDE2B9','#38812F','#F4B678','#C46100','#B8BBBE','#009596','#A2D9D9','#F4C145','#F9E0A2','#B2B0EA','#5752D1','#C9190B'],line=dict(color='black',width=0.5))
         ))
