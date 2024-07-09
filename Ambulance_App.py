@@ -347,7 +347,7 @@ if page=='District Level':
             marker=dict(colors=['#8BC1F7','#004B95','#BDE2B9','#38812F','#F4B678','#C46100','#B8BBBE','#009596','#A2D9D9','#F4C145','#F9E0A2','#B2B0EA','#5752D1','#C9190B'],line=dict(color='black',width=0.5))
         ))
 
-        fig3.update_traces(rotation=180)
+        #fig3.update_traces(rotation=180)
     
         # Update layout
         fig3.update_layout(
@@ -366,7 +366,7 @@ if page=='District Level':
             marker=dict(colors=['#fddbc7','#b3e2cd','#cbd5e8','#f4cae4','#e6f5c9'],line=dict(color='black',width=0.5))
         ))
 
-        fig4.update_traces(rotation=210)
+        #fig4.update_traces(rotation=210)
     
         # Update layout
         fig4.update_layout(
