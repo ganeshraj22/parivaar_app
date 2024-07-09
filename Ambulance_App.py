@@ -649,7 +649,7 @@ if page=='Overall Summary':
                 Ambulance_By_District=Ambulance_By_District.sort_values(by='Total Patients Served',ascending=False)
                 Total_People_Served_In_Other_Districts=Ambulance_By_District.iloc[10:]['Total Patients Served'].sum()
                 Ambulance_By_District_Top_10=Ambulance_By_District['Total Patients Served'].head(10)
-                data={'District':'Others','Total Patients Served':Total_People_Served_In_Other_Districts}
+                data={'District':['Others'],'Total Patients Served':[Total_People_Served_In_Other_Districts]}
                 Others_Row=pd.DataFrame(data,index=data['District'])
                 Others_Row.set_index('District',inplace=True)
                 pd.concat([Ambulance_By_District_Top_10,Others_Row])
