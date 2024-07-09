@@ -299,8 +299,8 @@ if page=='District Level':
         fig1.update_layout(
             title=f'Kilometers Driven/Persons Served',
             xaxis=dict(tickangle=45),
-            yaxis=dict(title='Total Distance Covered', titlefont=dict(color='cyan')),
-            yaxis2=dict(title='Total Patients Served', titlefont=dict(color='blue'), overlaying='y', side='right'),
+            yaxis=dict(title='Total Distance Covered', titlefont=dict(color='black')),
+            yaxis2=dict(title='Total Patients Served', titlefont=dict(color='black'), overlaying='y', side='right'),
             legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)'),
         )
     
