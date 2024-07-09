@@ -346,6 +346,8 @@ if page=='District Level':
             insidetextorientation='radial',
             marker=dict(line=dict(color='black', width=2)),
         ))
+
+        fig3.update_traces(rotation=270)
     
         # Update layout
         fig3.update_layout(
@@ -363,6 +365,8 @@ if page=='District Level':
             insidetextorientation='radial',
             marker=dict(colors=['#dd6e42','#e8dab2','#4f6d7a','#c0d6df','#eaeaea'],line=dict(color='black',width=0.5))
         ))
+
+        fig4.update_traces(rotation=270)
     
         # Update layout
         fig4.update_layout(
