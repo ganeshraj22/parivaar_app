@@ -345,10 +345,12 @@ if page=='District Level':
         # Update layout
         fig3.update_layout(
             title=f'% of Patients Served By Location',
-            title_x=0.2,  # Center align title horizontally
+            #title_x=0.2,  # Center align title horizontally
         )
     
         fig4 = go.Figure()
+
+        colors=['#70d6ff','#ff70a6','#ff9770','#ffd670','#e9ff70']
     
         # Add pie trace
         fig4.add_trace(go.Pie(
@@ -356,13 +358,13 @@ if page=='District Level':
             values=Disease_Type_Pie.values,
             textinfo='percent+label',
             insidetextorientation='radial',
-            marker=dict(line=dict(color='black', width=2)),
+            marker=dict(colors=colors,dict(line=dict(color='black', width=2))),
         ))
     
         # Update layout
         fig4.update_layout(
             title=f'% of Patients Served By Type Of Ailment',
-            title_x=0.2,  # Center align title horizontally
+            #title_x=0.2,  # Center align title horizontally
         )
     
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
