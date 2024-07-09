@@ -282,7 +282,7 @@ if page=='District Level':
             x=Ambulance_By_Month.index,
             y=Ambulance_By_Month['Total Distance Covered'],
             name='Total Distance Covered',
-            marker_color='cyan'
+            marker_color='#808080'
         ))
     
         # Line trace
@@ -327,7 +327,7 @@ if page=='District Level':
         fig2.update_layout(
             title=f'Number of Patients Admitted/Discharged',
             xaxis=dict(tickangle=45),
-            yaxis=dict(title='Number Of Patients'),
+            yaxis=dict(title='Number Of Patients',titlefont=dict(color='black'))
             legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)')
         )
     
