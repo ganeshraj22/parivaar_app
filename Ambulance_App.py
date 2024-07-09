@@ -349,8 +349,6 @@ if page=='District Level':
         )
     
         fig4 = go.Figure()
-
-        colors=['#70d6ff','#ff70a6','#ff9770','#ffd670','#e9ff70']
     
         # Add pie trace
         fig4.add_trace(go.Pie(
@@ -358,7 +356,7 @@ if page=='District Level':
             values=Disease_Type_Pie.values,
             textinfo='percent+label',
             insidetextorientation='radial',
-            marker=dict(colors=colors),
+            marker=dict(colors=['#70d6ff','#ff70a6','#ff9770','#ffd670','#e9ff70']),
         ))
     
         # Update layout
