@@ -35,6 +35,8 @@ summary_css = """
     display: flex;
     justify-content: space-between;
     padding: 10px;
+    height: 5em;
+    width: 15em;
 }
 
 .label-box {
@@ -42,8 +44,9 @@ summary_css = """
     background-color: #808080; /* Gray background color for label box */
     color: white; /* Text color */
     font-weight: bold; /* Bold font weight */
-    padding: 20px;
+    padding: 8px;
     text-align: center;
+    line-height: 1.2;
 
 }
 
@@ -52,8 +55,10 @@ summary_css = """
     background-color: #FFC0CB; /* Pink background color for value box */
     color: black; /* Text color */
     font-weight: bold; /* Bold font weight */
-    padding: 20px;
-    text-align: center;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>
 """
@@ -396,7 +401,7 @@ if page=='District Level':
         if val is True:
             # Display boxes using HTML and CSS
             col2.markdown('<div class="box-container">'
-                        f'<div class="label-box"># PATIENTS</div>'
+                        f'<div class="label-box">Numebr Of Patients</div>'
                         f'<div class="value-box">{Summary_Total.iloc[1]}</div>'
                         '</div>', unsafe_allow_html=True)
             col2.markdown(summary_css, unsafe_allow_html=True)
@@ -405,7 +410,7 @@ if page=='District Level':
         if val is True:
                     # Display boxes using HTML and CSS
             col3.markdown('<div class="box-container">'
-                        f'<div class="label-box">DISTANCE COVERED</div>'
+                        f'<div class="label-box">Distance Covered (KM)</div>'
                         f'<div class="value-box">{Summary_Total.iloc[0]}</div>'
                         '</div>', unsafe_allow_html=True)
             col3.markdown(summary_css, unsafe_allow_html=True)
@@ -415,7 +420,7 @@ if page=='District Level':
 
                         # Display boxes using HTML and CSS
             col4.markdown('<div class="box-container">'
-                        f'<div class="label-box"># Ambulances</div>'
+                        f'<div class="label-box">Number Of Ambulances</div>'
                         f'<div class="value-box">{Number_Of_PHC}</div>'
                         '</div>', unsafe_allow_html=True)
             col4.markdown(summary_css, unsafe_allow_html=True)
