@@ -297,7 +297,7 @@ if page=='District Level':
             mode='lines',
             name='Total Patients Served',
             yaxis='y2',
-            line=dict(color='#749cdc')
+            line=dict(color='blue')
         ))
     
         # Update layout
@@ -317,7 +317,7 @@ if page=='District Level':
             y=Ambulance_By_Month['Admitted in Hospital'],
             mode='lines+markers',
             name='Admitted in Hospital',
-            line=dict(color='#98c1d9', width=2)
+            line=dict(color='green', width=2)
         ))
     
         fig2.add_trace(go.Scatter(
@@ -325,7 +325,7 @@ if page=='District Level':
             y=Ambulance_By_Month['Discharged from Hospital'],
             mode='lines+markers',
             name='Discharged from Hospital',
-            line=dict(color='#f39883', width=2)
+            line=dict(color='red', width=2)
         ))
     
         # Update layout
