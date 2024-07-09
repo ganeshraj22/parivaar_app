@@ -292,7 +292,7 @@ if page=='District Level':
             mode='lines',
             name='Total Patients Served',
             yaxis='y2',
-            line=dict(color='#3066be')
+            line=dict(color='#749cdc')
         ))
     
         # Update layout
