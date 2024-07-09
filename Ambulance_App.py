@@ -361,9 +361,9 @@ if page=='District Level':
         fig4.add_trace(go.Pie(
             labels=Disease_Type_Pie.index,
             values=Disease_Type_Pie.values,
-            textinfo='percent+label',
+            textinfo='percent',
             insidetextorientation='radial',
-            marker=dict(colors=['#dd6e42','#e8dab2','#4f6d7a','#c0d6df','#eaeaea'],line=dict(color='black',width=0.5))
+            marker=dict(colors=['#7fbf7f','#ffaf7f','#afaf7f','#7f7faf','#af7faf'],line=dict(color='black',width=0.5))
         ))
 
         fig4.update_traces(rotation=210)
