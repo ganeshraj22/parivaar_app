@@ -297,7 +297,7 @@ if page=='District Level':
     
         # Update layout
         fig1.update_layout(
-            title=f'Kilometers Driven/Persons Served By {level_of_detail}',
+            title=f'Kilometers Driven/Persons Served',
             xaxis=dict(tickangle=45),
             yaxis=dict(title='Total Distance Covered', titlefont=dict(color='cyan')),
             yaxis2=dict(title='Total Patients Served', titlefont=dict(color='blue'), overlaying='y', side='right'),
@@ -325,7 +325,7 @@ if page=='District Level':
     
         # Update layout
         fig2.update_layout(
-            title=f'Number of Patients Admitted/Discharged By {level_of_detail}',
+            title=f'Number of Patients Admitted/Discharged',
             xaxis=dict(tickangle=45),
             yaxis=dict(title='Number Of Patients'),
             legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)')
@@ -683,7 +683,7 @@ if page=='Overall Summary':
         
             # Update layout
             fig1.update_layout(
-                title=f'Kilometers Driven/Persons Served By {level_of_detail}',
+                title=f'Kilometers Driven/Persons Served',
                 xaxis=dict(tickangle=45),
                 yaxis=dict(title='Total Distance Covered', titlefont=dict(color='cyan')),
                 yaxis2=dict(title='Total Patients Served', titlefont=dict(color='blue'), overlaying='y', side='right'),
@@ -711,7 +711,7 @@ if page=='Overall Summary':
         
             # Update layout
             fig2.update_layout(
-                title=f'Number of Patients Admitted/Discharged By {level_of_detail}',
+                title=f'Number of Patients Admitted/Discharged',
                 xaxis=dict(tickangle=45),
                 yaxis=dict(title='Number Of Patients'),
                 legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)')
