@@ -358,7 +358,7 @@ if page=='District Level':
             values=Disease_Type_Pie.values,
             textinfo='percent+label',
             insidetextorientation='radial',
-            marker=dict(colors=colors, line=dict(color='black', width=2)),
+            marker=dict(colors=colors),
         ))
     
         # Update layout
