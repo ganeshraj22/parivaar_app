@@ -327,7 +327,7 @@ if page=='District Level':
         fig2.update_layout(
             title=f'Number of Patients Admitted/Discharged',
             xaxis=dict(tickangle=45),
-            yaxis=dict(title='Number Of Patients')
+            yaxis=dict(title='Number Of Patients', titlefont=dict(color='black')),
             legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)')
         )
     
