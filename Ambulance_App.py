@@ -36,7 +36,7 @@ summary_css = """
     justify-content: space-between;
     padding: 10px;
     height: 5em;
-    width: 15em;
+    width: max-content;
 }
 
 .label-box {
