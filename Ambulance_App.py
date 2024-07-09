@@ -366,7 +366,7 @@ if page=='District Level':
             marker=dict(colors=['#dd6e42','#e8dab2','#4f6d7a','#c0d6df','#eaeaea'],line=dict(color='black',width=0.5))
         ))
 
-        fig4.update_traces(rotation=240)
+        fig4.update_traces(rotation=210)
     
         # Update layout
         fig4.update_layout(
