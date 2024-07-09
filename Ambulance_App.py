@@ -651,7 +651,7 @@ if page=='Overall Summary':
                 Ambulance_By_District_Top_10=Ambulance_By_District['Total Patients Served'].head(10)
                 data={'District':['Others'],'Total Patients Served':[Total_People_Served_In_Other_Districts]}
                 Others_Row=pd.DataFrame(data,index=data['District'])
-                Others_Row.set_index('District',inplace=True)
+                #Others_Row.set_index('District',inplace=True)
                 pd.concat([Ambulance_By_District_Top_10,Others_Row])
                 Summary_Total=Ambulance_By_Month[['Total Distance Covered(KM)','Total Patients Served']].sum()
                 return Ambulance_By_Month, Ambulance_By_Disease, Ambulance_By_District, Summary_Total, min_date, max_date
