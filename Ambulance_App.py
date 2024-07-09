@@ -282,7 +282,7 @@ if page=='District Level':
             x=Ambulance_By_Month.index,
             y=Ambulance_By_Month['Total Distance Covered'],
             name='Total Distance Covered',
-            marker_color='#e8e6e6'
+            marker_color='#d6d4d4'
         ))
     
         # Line trace
