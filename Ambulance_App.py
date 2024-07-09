@@ -312,7 +312,7 @@ if page=='District Level':
             y=Ambulance_By_Month['Admitted in Hospital'],
             mode='lines+markers',
             name='Admitted in Hospital',
-            line=dict(color='#e0fbfc', width=2)
+            line=dict(color='#98c1d9', width=2)
         ))
     
         fig2.add_trace(go.Scatter(
