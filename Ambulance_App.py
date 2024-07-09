@@ -401,7 +401,7 @@ if page=='District Level':
         if val is True:
             # Display boxes using HTML and CSS
             col2.markdown('<div class="box-container">'
-                        f'<div class="label-box">Numebr Of Patients</div>'
+                        f'<div class="label-box">Number Of Patients</div>'
                         f'<div class="value-box">{Summary_Total.iloc[1]}</div>'
                         '</div>', unsafe_allow_html=True)
             col2.markdown(summary_css, unsafe_allow_html=True)
