@@ -782,7 +782,7 @@ if page=='Overall Summary':
         if val is True:
             # Display boxes using HTML and CSS
             col2.markdown('<div class="box-container">'
-                        f'<div class="label-box"># PATIENTS</div>'
+                        f'<div class="label-box">Number Of Patients</div>'
                         f'<div class="value-box">{Summary_Total_full.iloc[1]}</div>'
                         '</div>', unsafe_allow_html=True)
             col2.markdown(summary_css, unsafe_allow_html=True)
@@ -791,7 +791,7 @@ if page=='Overall Summary':
         if val is True:
                     # Display boxes using HTML and CSS
             col3.markdown('<div class="box-container">'
-                        f'<div class="label-box">DISTANCE COVERED</div>'
+                        f'<div class="label-box">Distance Covered (KM)</div>'
                         f'<div class="value-box">{Summary_Total_full.iloc[0]}</div>'
                         '</div>', unsafe_allow_html=True)
             col3.markdown(summary_css, unsafe_allow_html=True)
@@ -800,7 +800,7 @@ if page=='Overall Summary':
         if val is True:
                         # Display boxes using HTML and CSS
             col4.markdown('<div class="box-container">'
-                        f'<div class="label-box"># Ambulances</div>'
+                        f'<div class="label-box">Number Of Ambulances</div>'
                         f'<div class="value-box">{Total_Number_Of_PHC}</div>'
                         '</div>', unsafe_allow_html=True)
             col4.markdown(summary_css, unsafe_allow_html=True)
