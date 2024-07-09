@@ -645,10 +645,10 @@ if page=='Overall Summary':
                 Ambulance_By_Month=Ambulance_By_Month.groupby(['Date'])[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']].agg({'Total Distance Covered(KM)':sum,'Total Patients Served':sum,'Yrmo':mean,'Year':mean,'Admitted in Hospital':sum,'Discharged from Hospital':sum})
                 Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
                 Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
-                Ambulance_By_District=Ambulance_By_District['Total Patients Served']
+                Ambulance_By_District=Ambulance_By_District[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital']]
                 Ambulance_By_District=Ambulance_By_District.sort_values(by='Total Patients Served',ascending=False)
                 Total_People_Served_In_Other_Districts=Ambulance_By_District.iloc[10:]['Total Patients Served'].sum()
-                Ambulance_By_District_Top_10=Ambulance_By_District.head(10)
+                Ambulance_By_District_Top_10=Ambulance_By_District['Total Patients Served'].head(10)
                 Others_Row=pd.DataFrame({'District':'Others','Total Patients Served':Total_People_Served_In_Other_Districts})
                 pd.concat([Ambulance_By_District_Top_10,Others_Row])
                 Summary_Total=Ambulance_By_Month[['Total Distance Covered(KM)','Total Patients Served']].sum()
