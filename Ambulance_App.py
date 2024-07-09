@@ -287,7 +287,7 @@ if page=='District Level':
             x=Ambulance_By_Month.index,
             y=Ambulance_By_Month['Total Distance Covered'],
             name='Total Distance Covered',
-            marker_color='#B2B0EA'
+            marker_color='#9467bd'
         ))
     
         # Line trace
@@ -297,7 +297,7 @@ if page=='District Level':
             mode='lines',
             name='Total Patients Served',
             yaxis='y2',
-            line=dict(color='#2abd56')
+            line=dict(color='#ffbb78')
         ))
     
         # Update layout
