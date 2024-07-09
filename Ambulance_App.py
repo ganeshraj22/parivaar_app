@@ -746,6 +746,8 @@ if page=='Overall Summary':
                 insidetextorientation='radial',
                 marker=dict(line=dict(color='black', width=2)),
             ))
+            
+            fig4.update_traces(rotation=90)
         
             # Update layout
             fig4.update_layout(
