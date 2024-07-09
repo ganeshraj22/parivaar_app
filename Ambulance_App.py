@@ -808,8 +808,18 @@ if page=='Overall Summary':
         #else:
             #st.write(f"No data to display. Data is present only between '{min_date_full}' and '{max_date_full}'")
 
-    if val is True:
-        st.plotly_chart(fig7)
+    graph3,graph4=st.columns(2)#([max((Number_Of_PHC/8.5),0.9),1])
+    with graph3:
+        if val is True:
+            st.plotly_chart(fig7)
         #else:
+            #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
+    with graph4:
+        if val is True:
+            st.plotly_chart(fig8)
+    
+    #if val is True:
+     #   st.plotly_chart(fig7)
+      #  #else:
             #st.write(f"No data to display. Data is present only between '{min_date_full}' and '{max_date_full}'")
-        st.plotly_chart(fig8)
+       # st.plotly_chart(fig8)
