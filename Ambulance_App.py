@@ -363,7 +363,7 @@ if page=='District Level':
             values=Disease_Type_Pie.values,
             textinfo='percent',
             insidetextorientation='radial',
-            marker=dict(colors=['#aec7e8','#6baed6','#1f77b4','#3182bd','#9ecae1'],line=dict(color='black',width=0.5))
+            marker=dict(colors=['#0570b0','#3690c0','#74a9cf','#a6bddb','#d0d1e6'],line=dict(color='black',width=0.5))
         ))
 
         fig4.update_traces(rotation=210)
