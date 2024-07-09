@@ -320,7 +320,7 @@ if page=='District Level':
             y=Ambulance_By_Month['Discharged from Hospital'],
             mode='lines+markers',
             name='Discharged from Hospital',
-            line=dict(color='#ee6c4d, width=2)
+            line=dict(color='#ee6c4d', width=2)
         ))
     
         # Update layout
