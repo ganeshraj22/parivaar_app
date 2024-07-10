@@ -453,7 +453,7 @@ if page=='District Level':
             st.plotly_chart(fig4)
 
 if page=='Overall Summary':
-    @st.cache(ttl='24h')
+    @st.cache_data(ttl='24h')
     def get_data_full(date_range,level_of_detail,sheet):
         start_date=pd.to_datetime(date_range[0])
         end_date=pd.to_datetime(date_range[1])
