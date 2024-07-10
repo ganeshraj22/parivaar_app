@@ -11,6 +11,7 @@ from datetime import datetime, date
 import plotly.graph_objects as go
 import matplotlib.pyplot as plt
 from statistics import mean
+from functions import lru_cache
 import xlsxwriter
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -454,6 +455,7 @@ if page=='District Level':
             st.plotly_chart(fig4)
 
 if page=='Overall Summary':
+    @lru_cache(maxsize=None) #Data will be cached no limit on number of function calls
     def get_data_full(date_range,level_of_detail,sheet):
         start_date=pd.to_datetime(date_range[0])
         end_date=pd.to_datetime(date_range[1])
