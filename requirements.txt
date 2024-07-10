@@ -7,4 +7,3 @@ plotly
 matplotlib
 datetime
 statistics
-functools
