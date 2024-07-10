@@ -705,7 +705,7 @@ if page=='Overall Summary':
             fig2.add_trace(go.Scatter(
                 x=Ambulance_By_Month_full.index,
                 y=Ambulance_By_Month_full['Admitted in Hospital'],
-                mode='lines+markers',
+                mode='lines',
                 name='Admitted in Hospital',
                 line=dict(color='green', width=2)
             ))
