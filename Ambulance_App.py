@@ -454,7 +454,7 @@ if page=='District Level':
 
 if page=='Overall Summary':
     @st.cache_data(ttl='24h')
-    def get_data_full(date_range,level_of_detail,sheet):
+    def get_data_full(date_range,level_of_detail,_sheet):
         start_date=pd.to_datetime(date_range[0])
         end_date=pd.to_datetime(date_range[1])
         level_of_detail_lower=level_of_detail.lower()
