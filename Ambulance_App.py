@@ -677,7 +677,7 @@ if page=='Overall Summary':
                 x=Ambulance_By_Month_full.index,
                 y=Ambulance_By_Month_full['Total Distance Covered(KM)'],
                 name='Total Distance Covered',
-                marker_color='cyan'
+                marker_color='#ADD8E6'
             ))
         
             # Line trace
@@ -732,17 +732,17 @@ if page=='Overall Summary':
             fig3.add_trace(go.Pie(
                 labels=Patients_Pie_full.index,
                 values=Patients_Pie_full.values,
-                textinfo='percent+label',
+                textinfo='percent',
                 insidetextorientation='radial',
-                marker=dict(line=dict(color='black', width=2)),
+                marker=dict(colors=['#8BC1F7','#004B95','#BDE2B9','#38812F','#F4B678','#C46100','#B8BBBE','#009596','#A2D9D9','#F4C145','#F9E0A2','#B2B0EA','#5752D1','#C9190B'],line=dict(color='black',width=0.5))
             ))
 
-            fig3.update_traces(rotation=270)
+            #fig3.update_traces(rotation=270)
         
             # Update layout
             fig3.update_layout(
                 title=f'% of Patients Served By District',
-                title_x=0.2,  # Center align title horizontally
+                #title_x=0.2,  # Center align title horizontally
             )
 
             fig4 = go.Figure()
@@ -751,17 +751,17 @@ if page=='Overall Summary':
             fig4.add_trace(go.Pie(
                 labels=Disease_Pie_full.index,
                 values=Disease_Pie_full.values,
-                textinfo='percent+label',
+                textinfo='percent',
                 insidetextorientation='radial',
-                marker=dict(line=dict(color='black', width=2)),
+                marker=dict(colors=['#fddbc7','#b3e2cd','#cbd5e8','#f4cae4','#e6f5c9'],line=dict(color='black',width=0.5))
             ))
             
-            fig4.update_traces(rotation=270)
+            #fig4.update_traces(rotation=270)
         
             # Update layout
             fig4.update_layout(
                 title=f'% of Patients Served By Type Of Ailment',
-                title_x=0.2,  # Center align title horizontally
+                #title_x=0.2,  # Center align title horizontally
             )
                 
         if (Ambulance_By_Month_full['Total Distance Covered(KM)'].count()==0):
