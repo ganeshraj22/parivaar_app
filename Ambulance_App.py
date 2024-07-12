@@ -252,6 +252,7 @@ if page=='District Level':
         (ambulance_df1, total_distance_index, no_patients_index)  = preprocess_data(ambulance_df)
     
         def agg_plots(ambulance_df1):
+            locations=ambulance_df1.iloc[:,total_distance_index:no_patients_index-1].index
             #Agg_df=ambulance_df[ambulance_df['Date'].notnull()]
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
@@ -391,7 +392,7 @@ if page=='District Level':
     (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations)=get_data(selected_district,date_range,level_of_detail,sheet)
     
     with col4:
-        locations=st.selectbox('**Select a location**',locations)
+        locations=st.multiselect('**Select a location**',locations)
 
     
     col2,col3,col4=st.columns(3)
