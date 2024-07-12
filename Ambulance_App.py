@@ -377,22 +377,22 @@ if page=='District Level':
         )
     
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations
+           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total
         else:
-            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations
+            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total
 
     col1,col2,col3,col4,col5=st.columns([1,1,1,1,1])
     with col1:
         selected_district=st.selectbox('**Select a district**',Districts)
+    with col2:
+        location=st.multiselect('**Select a location**',locations)
     with col3:
         date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
     with col4:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations_gen)=get_data(selected_district,date_range,level_of_detail,sheet)
+    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total)=get_data(selected_district,date_range,level_of_detail,sheet)
 
-    with col2:
-        location=st.multiselect('**Select a location**',locations_gen)
     with col5:
         st.write(f'{location} & {locations_gen}')
 
