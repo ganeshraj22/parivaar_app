@@ -395,7 +395,7 @@ if page=='District Level':
         location=st.multiselect('**Select a location**',locations)
         location_global=location        
     with col5:
-        st.write("**FOR TESTING:**)
+        st.write("**FOR TESTING:**")
         st.write(f'{locations} & {location_global}')
 
     
