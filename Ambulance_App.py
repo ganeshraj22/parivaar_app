@@ -403,7 +403,7 @@ if page=='District Level':
     with col2:
         location=st.multiselect('**Select a location**',locations)
     with col5:
-        st.write(f'{locations}')
+        st.write(f'{locations.index}')
 
     
     col2,col3,col4=st.columns(3)
