@@ -380,6 +380,9 @@ if page=='District Level':
         else:
             return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations
 
+
+    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations)=get_data(selected_district,date_range,level_of_detail,sheet)
+
     col1,col2,col3,col4=st.columns([1,1,1,1])
     with col1:
         selected_district=st.selectbox('**Select a district**',Districts)
@@ -390,9 +393,7 @@ if page=='District Level':
     with col4:
         locations=st.selectbox('**Select a location**',locations)
 
-
-    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations)=get_data(selected_district,date_range,level_of_detail,sheet)
-
+    
     col2,col3,col4=st.columns(3)
     # with col1:
     #     if val is True:
