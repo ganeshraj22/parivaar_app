@@ -391,8 +391,6 @@ if page=='District Level':
         date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
     with col4:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
-    with col5:
-        st.write(f'{locations}')
 
     (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations)=get_data(selected_district,date_range,level_of_detail,sheet)
 
@@ -404,8 +402,8 @@ if page=='District Level':
     
     with col2:
         location=st.multiselect('**Select a location**',locations)
-    #with col5:
-        #st.write(f'{locations}')
+    with col5:
+        st.write(f'{locations}')
 
     
     col2,col3,col4=st.columns(3)
