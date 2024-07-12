@@ -255,7 +255,7 @@ if page=='District Level':
 
           locations_df=pd.DataFrame(locations)
 
-          #locations_df.to_excel(r"https://github.com/ganeshraj22/parivaar_app/blob/master/locations.xlsx")
+          locations_df.to_excel("locations.xlsx")
     
           return df_reset,total_distance_index,no_patients_index,locations
 
