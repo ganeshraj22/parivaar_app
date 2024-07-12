@@ -89,7 +89,7 @@ if page=='District Level':
         locations
     except NameError:
         locations=[]
-    def get_data(selected_district,date_range,level_of_detail,sheet,locations):
+    def get_data(selected_district,date_range,level_of_detail,sheet):
         start_date=pd.to_datetime(date_range[0])
         end_date=pd.to_datetime(date_range[1])
         level_of_detail_lower=level_of_detail.lower()
@@ -254,8 +254,6 @@ if page=='District Level':
           locations=df_reset.iloc[:,total_distance_index:no_patients_index-1].columns.values
 
           locations_df=pd.DataFrame(locations)
-
-          locations_df.to_excel("locations.xlsx")
     
           return df_reset,total_distance_index,no_patients_index,locations
 
@@ -395,12 +393,11 @@ if page=='District Level':
         date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
     with col4:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
-    with col2:
-        location=st.multiselect('**Select a location**',locations)
 
     (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total)=get_data(selected_district,date_range,level_of_detail,sheet,locations)
 
-    locations_xl=pd.read_excel(r"locations.xlsx")
+    with col2:
+        location=st.multiselect('**Select a location**',locations)
     with col5:
         st.write(f'{locations_xl}')
 
