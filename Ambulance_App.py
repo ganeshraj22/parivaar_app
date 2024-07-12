@@ -247,7 +247,7 @@ if page=='District Level':
     
           df_reset['District']=selected_district.split('-')[0]
 
-          locations=ambulance_df1.iloc[:,total_distance_index:no_patients_index-1].index
+          locations=df_reset.iloc[:,total_distance_index:no_patients_index-1].index
     
           return df_reset,total_distance_index,no_patients_index,locations
 
