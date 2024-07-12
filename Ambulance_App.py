@@ -85,7 +85,10 @@ st.sidebar.title("**Navigate to**")
 page=st.sidebar.radio("",["Overall Summary","District Level"])
 
 if page=='District Level':
-    locations=[]
+    try:
+        locations
+    except NameError:
+        locations=[]
     def get_data(selected_district,date_range,level_of_detail,sheet):
         start_date=pd.to_datetime(date_range[0])
         end_date=pd.to_datetime(date_range[1])
@@ -252,7 +255,7 @@ if page=='District Level':
     
           return df_reset,total_distance_index,no_patients_index, locations
 
-        (ambulance_df1, total_distance_index, no_patients_index,locations)  = preprocess_data(ambulance_df)
+        (ambulance_df1, total_distance_index, no_patients_index, locations)  = preprocess_data(ambulance_df)
     
         def agg_plots(ambulance_df1):
             #Agg_df=ambulance_df[ambulance_df['Date'].notnull()]
