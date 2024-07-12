@@ -252,6 +252,10 @@ if page=='District Level':
           df_reset['District']=selected_district.split('-')[0]
 
           locations=df_reset.iloc[:,total_distance_index:no_patients_index-1].columns.values
+
+          locations_df=pd.DataFrame(locations)
+
+          locations_df.to_excel("locations.xlsx")
     
           return df_reset,total_distance_index,no_patients_index,locations
 
