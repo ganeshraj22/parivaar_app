@@ -252,7 +252,7 @@ if page=='District Level':
     
           return df_reset,total_distance_index,no_patients_index,locations
 
-        (ambulance_df1, total_distance_index, no_patients_index, locations)  = preprocess_data(ambulance_df)
+        (ambulance_df1, total_distance_index, no_patients_index)  = preprocess_data(ambulance_df)
     
         def agg_plots(ambulance_df1):
             #Agg_df=ambulance_df[ambulance_df['Date'].notnull()]
@@ -274,7 +274,7 @@ if page=='District Level':
             Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
             Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
             Summary_Total=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']].sum()
-            return Ambulance_By_Month, Summary_Total, min_date, max_date, locations
+            return Ambulance_By_Month, Summary_Total, min_date, max_date
     
         (Ambulance_By_Month, Summary_Total,min_date,max_date)=agg_plots(ambulance_df1)
     
