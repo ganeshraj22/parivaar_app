@@ -246,13 +246,14 @@ if page=='District Level':
           df_reset = ambulance_df[:-1].reset_index(drop=True)
     
           df_reset['District']=selected_district.split('-')[0]
-    
-          return df_reset,total_distance_index,no_patients_index
 
-        (ambulance_df1, total_distance_index, no_patients_index)  = preprocess_data(ambulance_df)
+          locations=ambulance_df1.iloc[:,total_distance_index:no_patients_index-1].index
     
-        def agg_plots(ambulance_df1):
-            locations=ambulance_df1.iloc[:,total_distance_index:no_patients_index-1].index
+          return df_reset,total_distance_index,no_patients_index,locations
+
+        (ambulance_df1, total_distance_index, no_patients_index, locations)  = preprocess_data(ambulance_df)
+    
+        def agg_plots(ambulance_df1, locations):
             #Agg_df=ambulance_df[ambulance_df['Date'].notnull()]
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
@@ -272,9 +273,9 @@ if page=='District Level':
             Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
             Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
             Summary_Total=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']].sum()
-            return Ambulance_By_Month, Summary_Total, min_date, max_date
+            return Ambulance_By_Month, Summary_Total, min_date, max_date, locations
     
-        (Ambulance_By_Month, Summary_Total,min_date,max_date)=agg_plots(ambulance_df1)
+        (Ambulance_By_Month, Summary_Total,min_date,max_date, locations_gen)=agg_plots(ambulance_df1, locations)
     
         Number_Of_PHC=no_patients_index-total_distance_index-1
         Patients_Pie=ambulance_df1.iloc[:,total_distance_index:no_patients_index-1].sum()
@@ -377,9 +378,9 @@ if page=='District Level':
         location=Patients_Pie.index
     
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,location
+           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,location,locations_gen
         else:
-            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,location
+            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,location,locations_gen
 
     col1,col2,col3,col4,col5=st.columns([1,1,1,1,1])
     with col1:
@@ -389,12 +390,12 @@ if page=='District Level':
     with col3:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,location)=get_data(selected_district,date_range,level_of_detail,sheet)
+    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,location,locations_gen)=get_data(selected_district,date_range,level_of_detail,sheet)
 
     with col4:
         location=st.multiselect('**Select a location**',location)
     with col5:
-        st.write(f'{location}')
+        st.write(f'{location} & {locations_gen}')
 
     
     col2,col3,col4=st.columns(3)
