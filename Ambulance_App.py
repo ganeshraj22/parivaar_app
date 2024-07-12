@@ -85,8 +85,8 @@ st.sidebar.title("**Navigate to**")
 page=st.sidebar.radio("",["Overall Summary","District Level"])
 
 if page=='District Level':
-    location=None
-    def get_data(selected_district,date_range,level_of_detail,sheet,location=None):
+    location=[None]
+    def get_data(selected_district,date_range,level_of_detail,sheet,location=[None]):
         start_date=pd.to_datetime(date_range[0])
         end_date=pd.to_datetime(date_range[1])
         level_of_detail_lower=level_of_detail.lower()
