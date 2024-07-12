@@ -380,9 +380,9 @@ if page=='District Level':
         )
     
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total
+           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total, locations
         else:
-            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total
+            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total, locations
 
     col1,col2,col3,col4,col5=st.columns([1,1,1,1,1])
     with col1:
@@ -392,7 +392,7 @@ if page=='District Level':
     with col4:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total)=get_data(selected_district,date_range,level_of_detail,sheet)
+    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations)=get_data(selected_district,date_range,level_of_detail,sheet)
     with col2:
         location=st.multiselect('**Select a location**',locations)
     with col5:
