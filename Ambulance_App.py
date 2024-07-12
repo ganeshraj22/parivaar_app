@@ -85,6 +85,7 @@ st.sidebar.title("**Navigate to**")
 page=st.sidebar.radio("",["Overall Summary","District Level"])
 
 if page=='District Level':
+    location=[None]
     def get_data(selected_district,date_range,level_of_detail,sheet,location=[None]):
         start_date=pd.to_datetime(date_range[0])
         end_date=pd.to_datetime(date_range[1])
@@ -391,7 +392,7 @@ if page=='District Level':
     with col4:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations)=get_data(selected_district,date_range,level_of_detail,sheet,location)
+    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,location)=get_data(selected_district,date_range,level_of_detail,sheet,location)
 
     
     col2,col3,col4=st.columns(3)
