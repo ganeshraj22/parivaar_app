@@ -250,7 +250,7 @@ if page=='District Level':
 
           locations=df_reset.iloc[:,total_distance_index:no_patients_index-1].columns
     
-          return df_reset,total_distance_index,no_patients_index,locations
+          return df_reset,total_distance_index,no_patients_index
 
         (ambulance_df1, total_distance_index, no_patients_index)  = preprocess_data(ambulance_df)
     
