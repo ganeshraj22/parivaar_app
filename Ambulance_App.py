@@ -251,7 +251,9 @@ if page=='District Level':
     
           df_reset['District']=selected_district.split('-')[0]
 
-          locations=df_reset.iloc[:,total_distance_index:no_patients_index-1].columns
+          locations_idx=df_reset.iloc[:,total_distance_index:no_patients_index-1].columns
+
+          locations=locations_idx.tolist
     
           return df_reset,total_distance_index,no_patients_index,locations
 
@@ -403,7 +405,7 @@ if page=='District Level':
     with col2:
         location=st.multiselect('**Select a location**',locations)
     with col5:
-        st.write(f'{locations[0]}')
+        st.write(f'{locations}')
 
     
     col2,col3,col4=st.columns(3)
