@@ -400,7 +400,7 @@ if page=='District Level':
 
     (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total)=get_data(selected_district,date_range,level_of_detail,sheet,locations)
 
-    locations_xl=pd.read_excel("locations.xlsx")
+    locations_xl=pd.read_excel(r"locations.xlsx")
     with col5:
         st.write(f'{locations_xl}')
 
