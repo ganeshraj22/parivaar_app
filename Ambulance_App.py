@@ -89,7 +89,7 @@ if page=='District Level':
         locations
     except NameError:
         locations=[]
-    def get_data(selected_district,date_range,level_of_detail,sheet):
+    def get_data(selected_district,date_range,level_of_detail,sheet,locations):
         start_date=pd.to_datetime(date_range[0])
         end_date=pd.to_datetime(date_range[1])
         level_of_detail_lower=level_of_detail.lower()
