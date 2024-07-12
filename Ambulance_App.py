@@ -397,9 +397,11 @@ if page=='District Level':
     @st.cache_data
     def get_loc_list(locations):
         return locations
-        
+
+    loc_dist=get_loc_list(locations)
+    
     with col2:
-        location=st.multiselect('**Select a location**',locations)
+        location=st.multiselect('**Select a location**',loc_dist)
     with col5:
         st.write(f'{locations}')
 
