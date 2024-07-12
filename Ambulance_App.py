@@ -253,7 +253,7 @@ if page=='District Level':
 
           locations=df_reset.iloc[:,total_distance_index:no_patients_index-1].columns
     
-          return df_reset,total_distance_index,no_patients_index, locations
+          return df_reset,total_distance_index,no_patients_index,locations
 
         (ambulance_df1, total_distance_index, no_patients_index, locations)  = preprocess_data(ambulance_df)
     
@@ -397,7 +397,7 @@ if page=='District Level':
     (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total)=get_data(selected_district,date_range,level_of_detail,sheet)
 
     with col5:
-        st.write(f'{location}')
+        st.write(f'{locations}')
 
     
     col2,col3,col4=st.columns(3)
