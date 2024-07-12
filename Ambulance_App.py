@@ -394,7 +394,7 @@ if page=='District Level':
     (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total)=get_data(selected_district,date_range,level_of_detail,sheet)
 
     with col5:
-        st.write(f'{location} & {locations_gen}')
+        st.write(f'{location}')
 
     
     col2,col3,col4=st.columns(3)
