@@ -372,11 +372,13 @@ if page=='District Level':
             title=f'% of Patients Served By Type Of Ailment',
             #title_x=0.2,  # Center align title horizontally
         )
+
+        locations=Patients_Pie.index
     
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total
+           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations
         else:
-            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total
+            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations
 
     col1,col2,col3=st.columns([1,1,1])
     with col1:
@@ -385,9 +387,11 @@ if page=='District Level':
         date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
     with col3:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
+    with col4:
+        locations=st.selectbox('**Select a location**',locations)
 
 
-    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total)=get_data(selected_district,date_range,level_of_detail,sheet)
+    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations)=get_data(selected_district,date_range,level_of_detail,sheet)
 
     col2,col3,col4=st.columns(3)
     # with col1:
