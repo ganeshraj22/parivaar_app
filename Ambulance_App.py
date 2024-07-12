@@ -392,7 +392,7 @@ if page=='District Level':
     (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations)=get_data(selected_district,date_range,level_of_detail,sheet)
     
     with col4:
-        locations=st.multiselect('**Select a location**',locations)
+        locations=st.multiselect('Select a location',locations)
 
     
     col2,col3,col4=st.columns(3)
