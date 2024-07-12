@@ -377,9 +377,9 @@ if page=='District Level':
         )
     
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations
+           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global
         else:
-            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations
+            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global
 
     col1,col2,col3,col4,col5=st.columns([1,1,1,1,1])
     with col1:
@@ -389,13 +389,13 @@ if page=='District Level':
     with col4:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
+    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
 
     with col2:
         location=st.multiselect('**Select a location**',locations)
         location_global=location        
     with col5:
-        st.write(f'{location_global}')
+        st.write(f'{locations} & {location_global}')
 
     
     col2,col3,col4=st.columns(3)
