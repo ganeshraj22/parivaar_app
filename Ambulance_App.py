@@ -390,7 +390,7 @@ if page=='District Level':
     with col4:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total)=get_data(selected_district,date_range,level_of_detail,sheet,locations)
+    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations)=get_data(selected_district,date_range,level_of_detail,sheet)
 
     with col2:
         location=st.multiselect('**Select a location**',locations)
