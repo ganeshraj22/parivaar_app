@@ -11,6 +11,7 @@ from datetime import datetime, date
 import plotly.graph_objects as go
 import matplotlib.pyplot as plt
 from statistics import mean
+import xlsxwriter
 from oauth2client.service_account import ServiceAccountCredentials
 
 # Set page configuration
