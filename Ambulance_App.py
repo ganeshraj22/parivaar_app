@@ -256,7 +256,7 @@ if page=='District Level':
     
         def agg_plots(ambulance_df1):
             if location_global is None:
-                abc='CHC Katthiwada'
+                location_global='CHC Katthiwada'
             a_test=ambulance_df1[location_global]
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
