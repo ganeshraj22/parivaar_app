@@ -264,7 +264,7 @@ if page=='District Level':
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
             #ambulance_df1['patients_location_sum']=ambulance_df1.loc[:,patients_columns].sum(axis=1)
-            a=patients_columns
+            a_test=patients_columns
             Ambulance_By_Month=ambulance_df1.reset_index(drop=False)          
             Ambulance_By_Month=Ambulance_By_Month[(Ambulance_By_Month['Date']>=start_date)&(Ambulance_By_Month['Date']<=end_date)]
             Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month.astype(str).str.pad(width=2,side='left',fillchar='0')
@@ -277,7 +277,7 @@ if page=='District Level':
             Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
             Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
             Summary_Total=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']].sum()
-            return Ambulance_By_Month, Summary_Total, min_date, max_date, a
+            return Ambulance_By_Month, Summary_Total, min_date, max_date, a_test
     
         (Ambulance_By_Month, Summary_Total,min_date,max_date,a_test)=agg_plots(ambulance_df1)
     
