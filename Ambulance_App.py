@@ -408,69 +408,94 @@ if page=='District Level':
         st.write("**FOR TESTING:**")
         st.write(f'{locations} & {location_global}')
 
-    
-    col2,col3,col4=st.columns(3)
-    # with col1:
-    #     if val is True:
-    #         selected_dist = selected_district.split('-')[0]
-    #                 # Display boxes using HTML and CSS
-    #         col1.markdown('<div class="box-container">'
-    #                     f'<div class="label-box"># DISTRICTS</div>'
-    #                     f'<div class="value-box">{selected_dist}</div>'
-    #                     '</div>', unsafe_allow_html=True)
-    #         col1.markdown(summary_css, unsafe_allow_html=True)
-    #         # st.write(f"District: {selected_district.split('-')[0]}")
-    with col2:
-        if val is True:
-            # Display boxes using HTML and CSS
-            col2.markdown('<div class="box-container">'
-                        f'<div class="label-box">Number Of Patients</div>'
-                        f'<div class="value-box">{Summary_Total.iloc[1]:,}</div>'
-                        '</div>', unsafe_allow_html=True)
-            col2.markdown(summary_css, unsafe_allow_html=True)
-            # st.write(f"Total Distance Covered (KM): {Summary_Total.iloc[0]}")
-    with col3:
-        if val is True:
-                    # Display boxes using HTML and CSS
-            col3.markdown('<div class="box-container">'
-                        f'<div class="label-box">Distance Covered (KM)</div>'
-                        f'<div class="value-box">{Summary_Total.iloc[0]:,}</div>'
-                        '</div>', unsafe_allow_html=True)
-            col3.markdown(summary_css, unsafe_allow_html=True)
-            # st.write(f"Total Patients Served: {Summary_Total.iloc[1]}")
-    with col4:
-        if val is True:
-
+    if location_global==[]
+        col2,col3,col4=st.columns(3)
+        # with col1:
+        #     if val is True:
+        #         selected_dist = selected_district.split('-')[0]
+        #                 # Display boxes using HTML and CSS
+        #         col1.markdown('<div class="box-container">'
+        #                     f'<div class="label-box"># DISTRICTS</div>'
+        #                     f'<div class="value-box">{selected_dist}</div>'
+        #                     '</div>', unsafe_allow_html=True)
+        #         col1.markdown(summary_css, unsafe_allow_html=True)
+        #         # st.write(f"District: {selected_district.split('-')[0]}")
+        with col2:
+            if val is True:
+                # Display boxes using HTML and CSS
+                col2.markdown('<div class="box-container">'
+                            f'<div class="label-box">Number Of Patients</div>'
+                            f'<div class="value-box">{Summary_Total.iloc[1]:,}</div>'
+                            '</div>', unsafe_allow_html=True)
+                col2.markdown(summary_css, unsafe_allow_html=True)
+                # st.write(f"Total Distance Covered (KM): {Summary_Total.iloc[0]}")
+        with col3:
+            if val is True:
                         # Display boxes using HTML and CSS
-            col4.markdown('<div class="box-container">'
-                        f'<div class="label-box">Number Of Ambulances</div>'
-                        f'<div class="value-box">{Number_Of_PHC:,}</div>'
-                        '</div>', unsafe_allow_html=True)
-            col4.markdown(summary_css, unsafe_allow_html=True)
-            # st.write(f"Number Of Ambulances: {Number_Of_PHC}")
+                col3.markdown('<div class="box-container">'
+                            f'<div class="label-box">Distance Covered (KM)</div>'
+                            f'<div class="value-box">{Summary_Total.iloc[0]:,}</div>'
+                            '</div>', unsafe_allow_html=True)
+                col3.markdown(summary_css, unsafe_allow_html=True)
+                # st.write(f"Total Patients Served: {Summary_Total.iloc[1]}")
+        with col4:
+            if val is True:
+    
+                            # Display boxes using HTML and CSS
+                col4.markdown('<div class="box-container">'
+                            f'<div class="label-box">Number Of Ambulances</div>'
+                            f'<div class="value-box">{Number_Of_PHC:,}</div>'
+                            '</div>', unsafe_allow_html=True)
+                col4.markdown(summary_css, unsafe_allow_html=True)
+                # st.write(f"Number Of Ambulances: {Number_Of_PHC}")
+    
+        graph1,graph2=st.columns(2)#([1.15,1])
+        with graph1:
+            if val is True:
+                st.plotly_chart(fig1)
+            else:
+                st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
+    
+        with graph2:
+            if val is True:
+                st.plotly_chart(fig2)
+            #else:
+                #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
+    
+        graph3,graph4=st.columns(2)#([max((Number_Of_PHC/8.5),0.9),1])
+        with graph3:
+            if val is True:
+                st.plotly_chart(fig3)
+            #else:
+                #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
+        with graph4:
+            if val is True:
+                st.plotly_chart(fig4)
+    else:
+        col2,col3=st.columns(2)
+        with col2:
+            if val is True:
+                # Display boxes using HTML and CSS
+                col2.markdown('<div class="box-container">'
+                            f'<div class="label-box">Number Of Patients</div>'
+                            f'<div class="value-box">{Summary_Total.iloc[1]:,}</div>'
+                            '</div>', unsafe_allow_html=True)
+                col2.markdown(summary_css, unsafe_allow_html=True)
+                # st.write(f"Total Distance Covered (KM): {Summary_Total.iloc[0]}")
+        with col3:
+            if val is True:
+                        # Display boxes using HTML and CSS
+                col3.markdown('<div class="box-container">'
+                            f'<div class="label-box">Distance Covered (KM)</div>'
+                            f'<div class="value-box">{Summary_Total.iloc[0]:,}</div>'
+                            '</div>', unsafe_allow_html=True)
+                col3.markdown(summary_css, unsafe_allow_html=True)
+                # st.write(f"Total Patients Served: {Summary_Total.iloc[1]}")
 
-    graph1,graph2=st.columns(2)#([1.15,1])
-    with graph1:
         if val is True:
             st.plotly_chart(fig1)
         else:
             st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
-
-    with graph2:
-        if val is True:
-            st.plotly_chart(fig2)
-        #else:
-            #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
-
-    graph3,graph4=st.columns(2)#([max((Number_Of_PHC/8.5),0.9),1])
-    with graph3:
-        if val is True:
-            st.plotly_chart(fig3)
-        #else:
-            #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
-    with graph4:
-        if val is True:
-            st.plotly_chart(fig4)
 
 if page=='Overall Summary':
     @st.cache(ttl=86400)
