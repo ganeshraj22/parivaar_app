@@ -318,7 +318,7 @@ if page=='District Level':
             legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)'),
         )
 
-        fig1.update_xaxes(tickvals=list(range(int(min(x)),int(max(x))+1)))
+        fig1.update_xaxes(tickvals=list(range(int(min(Ambulance_By_Month.index)),int(max(Ambulance_By_Month.index))+1)))
     
         fig2 = go.Figure()
     
