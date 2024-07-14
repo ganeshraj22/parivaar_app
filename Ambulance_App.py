@@ -255,7 +255,7 @@ if page=='District Level':
         (ambulance_df1, total_distance_index, no_patients_index, locations)  = preprocess_data(ambulance_df)
     
         def agg_plots(ambulance_df1):
-            if location_global is None:
+            if location_global==[]:
                 a_test=ambulance_df1[locations]
             else:
                 a_test=ambulance_df1[location_global]            
