@@ -260,8 +260,8 @@ if page=='District Level':
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
             #suffix=' (KM)'
             #location_global_km=[i+suffix for i in location_global]
-            ambulance_df1['Patients_Location_Sum']=ambulance_df1[[location_global]].sum(axis=1)
-            #ambulance_df1['Distance_Location_Sum']=ambulance_df1[[location_global_km]].sum(axis=1)
+            a=ambulance_df1[location_global]
+            #ambulance_df1['Distance_Location_Sum']=ambulance_df1[location_global_km]
             #ambulance_df1['Total Distance Covered']=pd.to_numeric(ambulance_df1['Total Distance Covered'])
             #ambulance_df1['Total Patients Served']=pd.to_numeric(ambulance_df1['Total Patients Served'])       
             #Ambulance_By_Month=ambulance_df1[ambulance_df1['Date'].notnull()]
