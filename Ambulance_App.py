@@ -256,16 +256,18 @@ if page=='District Level':
     
         def agg_plots(ambulance_df1):
             if location_global is None:
-                patients_columns=locations
-                distance_columns=[i.replace("\n","") +' (KM)' for i in locations]
+                patients_columns=[]
+                distance_columns=[]
             else:
                 patients_columns=location_global
-                distance_columns=[i+' (KM)' for i in location_global]  
+                distance_columns=[i.replace("\n","") +' (KM)' for i in location_global]
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
             ambulance_df1['patients_location_sum']=ambulance_df1.loc[:,patients_columns].sum(axis=1)
-            a_test=ambulance_df1['patients_location_sum']
-            Ambulance_By_Month=ambulance_df1.reset_index(drop=False)          
+            ambulance_df1['distance_location_sum']=ambulance_df1.loc[:,distance_columns].sum(axis=1)
+            a_test=ambulance_df1[]
+            Ambulance_By_Month=ambulance_df1.reset_index(drop=False)   
+            #Ambulance_By_Month[
             Ambulance_By_Month=Ambulance_By_Month[(Ambulance_By_Month['Date']>=start_date)&(Ambulance_By_Month['Date']<=end_date)]
             Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month.astype(str).str.pad(width=2,side='left',fillchar='0')
             Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year.astype(str)
