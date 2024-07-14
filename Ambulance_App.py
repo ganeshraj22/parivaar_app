@@ -33,7 +33,6 @@ summary_css = """
 .box-container {
     display: flex;
     justify-content: space-between;
-    margin: auto
     padding: 10px;
     height: 5em;
     width: max-content;
