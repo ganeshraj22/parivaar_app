@@ -255,14 +255,9 @@ if page=='District Level':
         (ambulance_df1, total_distance_index, no_patients_index, locations)  = preprocess_data(ambulance_df)
     
         def agg_plots(ambulance_df1):
-            if location_global is None:
-                  location_global=locations
             #Agg_df=ambulance_df[ambulance_df['Date'].notnull()]
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
-            #suffix=' (KM)'
-            #location_global_km=[i+suffix for i in location_global]
-            a=ambulance_df1[location_global]
             #ambulance_df1['Distance_Location_Sum']=ambulance_df1[location_global_km]
             #ambulance_df1['Total Distance Covered']=pd.to_numeric(ambulance_df1['Total Distance Covered'])
             #ambulance_df1['Total Patients Served']=pd.to_numeric(ambulance_df1['Total Patients Served'])       
