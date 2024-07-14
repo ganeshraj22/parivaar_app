@@ -277,7 +277,7 @@ if page=='District Level':
             Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
             Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
             Summary_Total=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']].sum()
-            return Ambulance_By_Month, Summary_Total, min_date, max_date, ambulance_df1['patients_location_sum']
+            return Ambulance_By_Month, Summary_Total, min_date, max_date, ambulance_df1['patients_location_sum'].sum(axis=1)
     
         (Ambulance_By_Month, Summary_Total,min_date,max_date,a_test)=agg_plots(ambulance_df1)
     
