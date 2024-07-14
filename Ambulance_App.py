@@ -258,7 +258,7 @@ if page=='District Level':
             abc=location_global
             if abc is None:
                 abc=locations
-            a_test=ambulance_df1[abc]
+            a_test=ambulance_df1[abc][0]
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
             Ambulance_By_Month=ambulance_df1.reset_index(drop=False)          
