@@ -259,10 +259,10 @@ if page=='District Level':
                 ambulance_df1['patients_location_sum']=0
                 ambulance_df1['distance_location_sum']=0
             else:
-                ex_selected_locations=[x for x in locations if x not in location_global]
-                ambulance_df1['patients_location_sum']=ambulance_df1.loc[:,ex_selected_locations].sum(axis=1)
-                distance_columns=[i.replace("\n","") +' (KM)' for i in location_global]
-                ambulance_df1['distance_location_sum']=ambulance_df1.loc[:,ex_selected_locations].sum(axis=1)
+                ex_selected_locations_patients=[x for x in locations if x not in location_global]
+                ambulance_df1['patients_location_sum']=ambulance_df1.loc[:,ex_selected_locations_patients].sum(axis=1)
+                ex_selected_locations_distance=[i.replace("\n","") +' (KM)' for i in location_global]
+                ambulance_df1['distance_location_sum']=ambulance_df1.loc[:,ex_selected_locations_distance].sum(axis=1)
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')        
             Ambulance_By_Month=ambulance_df1.reset_index(drop=False)   
