@@ -504,7 +504,8 @@ if page=='District Level':
 
         if val is True:
             st.plotly_chart(fig1)
-            st.markdown("""? this plot shows location level information""")
+            with st.beta_expander("?"):
+                st.markdown("""this plot shows location level information""")
             st.plotly_chart(fig3)
         else:
             st.write(f"No data to display. Data for {location_global} in {selected_district.split('-')[0]} is present only between '{min_date}' and '{max_date}'")
