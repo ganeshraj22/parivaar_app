@@ -394,7 +394,7 @@ if page=='District Level':
         location=st.multiselect('**Select a location**',locations)
         location_global=location        
 
-    if location_global!=locations:
+    if location_global is not None:
         (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,a_test)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
     
     with col5:
