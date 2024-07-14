@@ -258,7 +258,8 @@ if page=='District Level':
             #Agg_df=ambulance_df[ambulance_df['Date'].notnull()]
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
-            location_global_km=[i+' (KM)' for i in location_global]
+            suffix=' (KM)'
+            location_global_km=[i+suffix for i in location_global]
             ambulance_df1['Patients_Location_Sum']=ambulance_df1[location_global].sum(axis=1)
             ambulance_df1['Distance_Location_Sum']=ambulance_df1[location_global_km].sum(axis=1)
             #ambulance_df1['Total Distance Covered']=pd.to_numeric(ambulance_df1['Total Distance Covered'])
