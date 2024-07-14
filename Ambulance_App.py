@@ -273,9 +273,9 @@ if page=='District Level':
             Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
             Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
             Summary_Total=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']].sum()
-            return Ambulance_By_Month, Summary_Total, min_date, max_date
+            return Ambulance_By_Month, Summary_Total, min_date, max_date, a_test
     
-        (Ambulance_By_Month, Summary_Total,min_date,max_date)=agg_plots(ambulance_df1)
+        (Ambulance_By_Month, Summary_Total,min_date,max_date,a_test)=agg_plots(ambulance_df1)
     
         Number_Of_PHC=no_patients_index-total_distance_index-1
         Patients_Pie=ambulance_df1.iloc[:,total_distance_index:no_patients_index-1].sum()
@@ -376,20 +376,17 @@ if page=='District Level':
         )
     
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global
+           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global,a_test
         else:
-            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global
+            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global,a_test
 
-    col1,col2,col3,col4,col5,col6=st.columns([1,1,1,1,1,1])
+    col1,col2,col3,col4,col5=st.columns([1,1,1,1,1])
     with col1:
         selected_district=st.selectbox('**Select a district**',Districts)
     with col3:
         date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
     with col4:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
-    with col6:
-        st.write("**FOR TESTING:**")
-        st.write(f'{location_global}')
 
     (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
 
@@ -398,7 +395,8 @@ if page=='District Level':
         location_global=location        
     with col5:
         st.write("**FOR TESTING:**")
-        st.write(f'{locations} & {location_global}')
+        #st.write(f'{locations} & {location_global}')
+        st.write(f'{a_test}')
 
     
     col2,col3,col4=st.columns(3)
