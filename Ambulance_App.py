@@ -455,7 +455,7 @@ if page=='District Level':
             if val is True:
                 st.plotly_chart(fig1)
             else:
-                st.write(f"No data to display. Data for the location(s) in '{selected_district.split('-')[0]}' is present only between '{min_date}' and '{max_date}'")
+                st.write(f"No data to display. Data for '{selected_district.split('-')[0]}' is present only between '{min_date}' and '{max_date}'")
     
         with graph2:
             if val is True:
@@ -496,7 +496,7 @@ if page=='District Level':
         if val is True:
             st.plotly_chart(fig1)
         else:
-            st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
+            st.write(f"No data to display. Data for {location_global} in {selected_district.split('-')[0]} is present only between '{min_date}' and '{max_date}'")
 
 if page=='Overall Summary':
     @st.cache(ttl=86400)
