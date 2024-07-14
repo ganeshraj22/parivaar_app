@@ -277,9 +277,9 @@ if page=='District Level':
             Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
             Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
             Summary_Total=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']].sum()
-            return Ambulance_By_Month, Summary_Total, min_date, max_date, a_test
+            return Ambulance_By_Month, Summary_Total, min_date, max_date, ambulance_df1['patients_location_sum']
     
-        (Ambulance_By_Month, Summary_Total,min_date,max_date,ambulance_df1['patients_location_sum'])=agg_plots(ambulance_df1)
+        (Ambulance_By_Month, Summary_Total,min_date,max_date,a_test)=agg_plots(ambulance_df1)
     
         Number_Of_PHC=no_patients_index-total_distance_index-1
         Patients_Pie=ambulance_df1.iloc[:,total_distance_index:no_patients_index-1].sum()
