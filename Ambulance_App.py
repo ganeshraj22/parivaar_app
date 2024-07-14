@@ -256,16 +256,16 @@ if page=='District Level':
     
         def agg_plots(ambulance_df1):
             if location_global is None:
-                patients_columns=[]
-                distance_columns=[]
+                ambulance_df1['patients_location_sum']=0
+                ambulance_df1['distance_location_sum']=0
             else:
-                patients_columns=location_global
+                ambulance_df1['patients_location_sum']=ambulance_df1.loc[:,location_global].sum(axis=1)
                 distance_columns=[i.replace("\n","") +' (KM)' for i in location_global]
+                ambulance_df1['distance_location_sum']=ambulance_df1.loc[:,distance_columns].sum(axis=1)
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
-            ambulance_df1['patients_location_sum']=ambulance_df1.loc[:,patients_columns].sum(axis=1)
-            ambulance_df1['distance_location_sum']=ambulance_df1.loc[:,distance_columns].sum(axis=1)
-            a_test=ambulance_df1[]
+            
+            a_test=ambulance_df1['patients_location_sum']
             Ambulance_By_Month=ambulance_df1.reset_index(drop=False)   
             #Ambulance_By_Month[
             Ambulance_By_Month=Ambulance_By_Month[(Ambulance_By_Month['Date']>=start_date)&(Ambulance_By_Month['Date']<=end_date)]
