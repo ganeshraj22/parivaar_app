@@ -407,7 +407,6 @@ if page=='District Level':
     with col5:
         st.write("**FOR TESTING:**")
         st.write(f'{locations} & {location_global}')
-        st.write(f'{a_test}')
 
     
     col2,col3,col4=st.columns(3)
