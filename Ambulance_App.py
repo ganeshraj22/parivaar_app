@@ -32,7 +32,7 @@ summary_css = """
 <style>
 .box-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 10px;
     height: 5em;
     width: max-content;
