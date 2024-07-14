@@ -248,7 +248,7 @@ if page=='District Level':
     
           df_reset['District']=selected_district.split('-')[0]
 
-          locations=[i.replace('\n','') for i in df_reset.iloc[:,total_distance_index:no_patients_index-1].columns.values]
+          locations=df_reset.iloc[:,total_distance_index:no_patients_index-1].columns.values
     
           return df_reset,total_distance_index,no_patients_index,locations
 
@@ -257,7 +257,7 @@ if page=='District Level':
         def agg_plots(ambulance_df1):
             if location_global is None:
                 patients_columns=locations
-                distance_columns=[i+' (KM)' for i in locations]
+                distance_columns=[i.replace("/n","") +' (KM)' for i in locations]
             else:
                 patients_columns=location_global
                 distance_columns=[i+' (KM)' for i in location_global]  
