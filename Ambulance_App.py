@@ -257,7 +257,7 @@ if page=='District Level':
         def agg_plots(ambulance_df1):
             if location_global is None:
                 patients_columns=locations
-                distance_columns=[i.replace("/n","") +' (KM)' for i in locations]
+                distance_columns=[i.replace("\n","") +' (KM)' for i in locations]
             else:
                 patients_columns=location_global
                 distance_columns=[i+' (KM)' for i in location_global]  
