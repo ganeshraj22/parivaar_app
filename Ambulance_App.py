@@ -263,9 +263,9 @@ if page=='District Level':
                 distance_columns=[i+' (KM)' for i in location_global]  
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
-            ambulance_df1['patients_location_sum']=ambulance_df1[patients_columns].sum(axis=1)
+            ambulance_df1['patients_location_sum']=ambulance_df1.loc[:,patients_columns].sum(axis=1)
             a=ambulance_df1['patients_location_sum']
-            ambulance_df1['distance_location_sum']=ambulance_df1[distance_columns].sum(axis=1)
+            ambulance_df1['distance_location_sum']=ambulance_df1.loc[:,distance_columns].sum(axis=1)
             Ambulance_By_Month=ambulance_df1.reset_index(drop=False)          
             Ambulance_By_Month=Ambulance_By_Month[(Ambulance_By_Month['Date']>=start_date)&(Ambulance_By_Month['Date']<=end_date)]
             Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month.astype(str).str.pad(width=2,side='left',fillchar='0')
