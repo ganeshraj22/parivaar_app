@@ -408,7 +408,7 @@ if page=='District Level':
         st.write("**FOR TESTING:**")
         st.write(f'{locations} & {location_global}')
 
-    if location_global==[]
+    if location_global==[]:
         col2,col3,col4=st.columns(3)
         # with col1:
         #     if val is True:
