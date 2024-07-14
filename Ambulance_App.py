@@ -86,7 +86,7 @@ page=st.sidebar.radio("",["Overall Summary","District Level"])
 
 if page=='District Level':
     location_global=None
-    def get_data(selected_district,date_range,level_of_detail,sheet,locations_global):      
+    def get_data(selected_district,date_range,level_of_detail,sheet,location_global):      
         start_date=pd.to_datetime(date_range[0])
         end_date=pd.to_datetime(date_range[1])
         level_of_detail_lower=level_of_detail.lower()
@@ -255,17 +255,12 @@ if page=='District Level':
         (ambulance_df1, total_distance_index, no_patients_index, locations)  = preprocess_data(ambulance_df)
     
         def agg_plots(ambulance_df1):
-            abc=locations_global
+            abc=location_global
             if abc is None:
                 abc='CHC Katthiwada'
             a=ambulance_df1[abc]
-            #Agg_df=ambulance_df[ambulance_df['Date'].notnull()]
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
-            #ambulance_df1['Distance_Location_Sum']=ambulance_df1[location_global_km]
-            #ambulance_df1['Total Distance Covered']=pd.to_numeric(ambulance_df1['Total Distance Covered'])
-            #ambulance_df1['Total Patients Served']=pd.to_numeric(ambulance_df1['Total Patients Served'])       
-            #Ambulance_By_Month=ambulance_df1[ambulance_df1['Date'].notnull()]
             Ambulance_By_Month=ambulance_df1.reset_index(drop=False)          
             Ambulance_By_Month=Ambulance_By_Month[(Ambulance_By_Month['Date']>=start_date)&(Ambulance_By_Month['Date']<=end_date)]
             Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month.astype(str).str.pad(width=2,side='left',fillchar='0')
