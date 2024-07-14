@@ -31,8 +31,9 @@ Districts=[i.title for i in sheet[6:]]
 summary_css = """
 <style>
 .box-container {
-    display: flex;
-    justify-content: space-around;
+    #display: flex;
+    #justify-content: space-between;
+    margin: auto
     padding: 10px;
     height: 5em;
     width: max-content;
