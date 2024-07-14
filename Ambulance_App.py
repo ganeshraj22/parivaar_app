@@ -362,12 +362,19 @@ if page=='District Level':
         ))
 
         #fig3.update_traces(rotation=180)
-    
-        # Update layout
-        fig3.update_layout(
-            title=f'% of Patients Served By Location',
-            #title_x=0.2,  # Center align title horizontally
-        )
+
+        if location_global is None:
+            # Update layout
+            fig3.update_layout(
+                title=f'% of Patients Served By Location',
+                #title_x=0.2,  # Center align title horizontally
+            )
+        else:
+            # Update layout
+            fig3.update_layout(
+                title=f'% of Patients Served By Selected Location(s)',
+                #title_x=0.2,  # Center align title horizontally
+            )
     
         fig4 = go.Figure()
     
