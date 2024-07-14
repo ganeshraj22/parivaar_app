@@ -255,10 +255,10 @@ if page=='District Level':
         (ambulance_df1, total_distance_index, no_patients_index, locations)  = preprocess_data(ambulance_df)
     
         def agg_plots(ambulance_df1):
-            abc=location_global
-            if abc is None:
-                abc='CHC Katthiwada'
-            a=ambulance_df1[abc]
+            #abc=location_global
+            #if abc is None:
+                #abc='CHC Katthiwada'
+            #a=ambulance_df1[abc]
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
             Ambulance_By_Month=ambulance_df1.reset_index(drop=False)          
