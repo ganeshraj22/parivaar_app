@@ -85,8 +85,8 @@ st.sidebar.title("**Navigate to**")
 page=st.sidebar.radio("",["Overall Summary","District Level"])
 
 if page=='District Level':
-    location_global='CHC Katthiwada'
-    def get_data(selected_district,date_range,level_of_detail,sheet,location_global):
+    location_global=None
+    def get_data(selected_district,date_range,level_of_detail,sheet,location_global):      
         start_date=pd.to_datetime(date_range[0])
         end_date=pd.to_datetime(date_range[1])
         level_of_detail_lower=level_of_detail.lower()
@@ -255,10 +255,12 @@ if page=='District Level':
         (ambulance_df1, total_distance_index, no_patients_index, locations)  = preprocess_data(ambulance_df)
     
         def agg_plots(ambulance_df1):
+            if location_global is None:
+                location_global='CHC Katthiwada'
+            a=ambulance_df1[location_global]
             #Agg_df=ambulance_df[ambulance_df['Date'].notnull()]
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
-            location_global='CHC Udaygad (Block)'
             #ambulance_df1['Distance_Location_Sum']=ambulance_df1[location_global_km]
             #ambulance_df1['Total Distance Covered']=pd.to_numeric(ambulance_df1['Total Distance Covered'])
             #ambulance_df1['Total Patients Served']=pd.to_numeric(ambulance_df1['Total Patients Served'])       
