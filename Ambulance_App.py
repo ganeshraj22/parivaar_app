@@ -255,9 +255,10 @@ if page=='District Level':
         (ambulance_df1, total_distance_index, no_patients_index, locations)  = preprocess_data(ambulance_df)
     
         def agg_plots(ambulance_df1):
-            abc=location_global
-            if abc is None:
+            if location_global is None:
                 abc=locations
+            else:
+                abc=location_global
             a_test=ambulance_df1[abc].iloc[0]
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
