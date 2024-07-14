@@ -86,8 +86,7 @@ page=st.sidebar.radio("",["Overall Summary","District Level"])
 
 if page=='District Level':
     location_global=None
-    locations=None
-    def get_data(selected_district,date_range,level_of_detail,sheet,location_global,locations):      
+    def get_data(selected_district,date_range,level_of_detail,sheet,location_global):      
         start_date=pd.to_datetime(date_range[0])
         end_date=pd.to_datetime(date_range[1])
         level_of_detail_lower=level_of_detail.lower()
@@ -260,7 +259,7 @@ if page=='District Level':
                 abc=locations
             else:
                 abc=location_global
-            a_test=ambulance_df1[abc].iloc[0]
+            a_test=locations
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
             max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
             Ambulance_By_Month=ambulance_df1.reset_index(drop=False)          
