@@ -317,6 +317,8 @@ if page=='District Level':
             yaxis2=dict(title='Total Patients Served', titlefont=dict(color='black'), overlaying='y', side='right'),
             legend=dict(x=0, y=1.1, traceorder='normal', font=dict(family='sans-serif', size=12), bgcolor='rgba(0,0,0,0)'),
         )
+
+        fig1.update_xaxes(showticklabels=False)
     
         fig2 = go.Figure()
     
