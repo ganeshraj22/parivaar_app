@@ -255,7 +255,7 @@ if page=='District Level':
         (ambulance_df1, total_distance_index, no_patients_index, locations)  = preprocess_data(ambulance_df)
     
         def agg_plots(ambulance_df1):
-            if location_global==[]:
+            if location_global is None:
                 a_test=ambulance_df1[locations]
             else:
                 a_test=ambulance_df1[location_global]            
@@ -394,7 +394,7 @@ if page=='District Level':
         location=st.multiselect('**Select a location**',locations)
         location_global=location        
 
-    (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,a_test)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
+    #(val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,a_test)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
     
     with col5:
         st.write("**FOR TESTING:**")
