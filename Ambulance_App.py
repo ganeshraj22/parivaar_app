@@ -408,12 +408,11 @@ if page=='District Level':
         date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
     with col4:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
-    with col5:
-        st.write(Patients_Pie)
         
     if location_global is None:
         (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
-
+    with col5:
+        st.write(Patients_Pie)
     with col2:
         location=st.multiselect('**Select a location**', locations, placeholder='All locations')
         location_global=location
