@@ -397,7 +397,8 @@ if page=='District Level':
         )
 
         Patients_Pie=pd.DataFrame(Patients_Pie)
-        Patients_Pie.columns=['Location','Patients Served']
+        Patients_Pie.index=Patients_Pie.index.rename('Locations')
+        Patients_Pie.columns=['Patients Served']
         #Patients_Pie_Values=pd.DataFrame(Patients_Pie.values)
         #Patients_Pie_Index=pd.DataFrame(Patients_Pie.index)
         #Patients_Pie=Patients_Pie_Index.join(Patients_Pie_Values,lsuffix='_left',rsuffix='_right')
