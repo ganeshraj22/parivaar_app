@@ -397,9 +397,9 @@ if page=='District Level':
         )
     
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month
+           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie
         else:
-            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month
+            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie
 
     col1,col2,col3,col4=st.columns([1,1,1,1])
     with col1:
@@ -410,7 +410,7 @@ if page=='District Level':
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
         
     if location_global is None:
-        (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
+        (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
 
     with col2:
         location=st.multiselect('**Select a location**', locations, placeholder='All locations')
@@ -485,6 +485,7 @@ if page=='District Level':
         with graph3:
             if val is True:
                 st.plotly_chart(fig3)
+                st.write(Patients_Pie)
             #else:
                 #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
         with graph4:
