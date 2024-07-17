@@ -526,8 +526,10 @@ if page=='District Level':
             col2,col3,col4=st.columns([0.5,1,0.5])
             with col3:
                 st.write(Ambulance_By_Month.iloc[:,0:2])
-            st.plotly_chart(fig3)
-            st.write(Patients_Pie)
+            col1,col2,col3=st.columns([1,1,1])
+            with col2:
+                st.plotly_chart(fig3)
+                st.write(Patients_Pie)
         else:
             st.write(f"No data to display. Data for {location_global} in {selected_district.split('-')[0]} is present only between '{min_date}' and '{max_date}'")
 
