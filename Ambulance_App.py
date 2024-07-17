@@ -401,8 +401,8 @@ if page=='District Level':
         Patients_Pie.columns=['Patients Served']
 
         Disease_Type_Pie=pd.DataFrame(Disease_Type_Pie)
-        Disease_Type_Pie.index=Disease_Type_Pie.index.rename('Patients Served')
-        Disease_Type_Pie.columns=['Ailment Type']
+        Disease_Type_Pie.index=Disease_Type_Pie.index.rename('Ailment Type')
+        Disease_Type_Pie.columns=['Patients Served']
 
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
            return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie, Disease_Type_Pie
