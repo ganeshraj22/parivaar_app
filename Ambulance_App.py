@@ -477,7 +477,7 @@ if page=='District Level':
         Ambulance_By_Month.sort_values(by='Yrmo',ascending=False,inplace=True)
         #Ambulance_By_Month['Yrmo']=Ambulance_By_Month['Yrmo'].astype(str).str.replace(',','',regex=True)
         #Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(str).str.replace(',','',regex=True)
-        markdown_table=Ambulance_By_Month.iloc[:,0:4](index=True)
+        markdown_table=Ambulance_By_Month.iloc[:,0:4].to_markdown(index=True)
         st.markdown(f"<div style='text-align:center;overflow:auto;'>{markdown_table}</div>",unsafe_allow_html=True)
         #st.write(f"<div style='text-align:center;'>",Ambulance_By_Month.iloc[:,0:4],"</div>",unsafe_allow_html=True)
     
