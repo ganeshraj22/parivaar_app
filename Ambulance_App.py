@@ -482,6 +482,9 @@ if page=='District Level':
         with graph4:
             if val is True:
                 st.plotly_chart(fig4)
+
+        st.write(Ambulance_By_Month)
+        
     else:
         col2,col3=st.columns(2)
         with col2:
