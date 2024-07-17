@@ -527,7 +527,7 @@ if page=='District Level':
             with col3:
                 st.write(Ambulance_By_Month.iloc[:,0:2])
             st.plotly_chart(fig3)
-            col1,col2,col3=st.columns([1,1,1.5])
+            col1,col2,col3=st.columns([1,1,1])
             with col2:
                 st.write(Patients_Pie)
         else:
