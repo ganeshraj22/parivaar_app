@@ -518,7 +518,7 @@ if page=='District Level':
             Ambulance_By_Month.sort_values(by='Yrmo',ascending=False,inplace=True)
             #Ambulance_By_Month['Yrmo']=Ambulance_By_Month['Yrmo'].astype(str).str.replace(',','',regex=True)
             #Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(str).str.replace(',','',regex=True)
-            col2,col3,col4=st.columns([0.1,1,0.1])
+            col2,col3,col4=st.columns([1,1,1])
             with col3:
                 st.write(Ambulance_By_Month.iloc[:,0:2])
             st.plotly_chart(fig3)
