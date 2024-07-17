@@ -397,6 +397,8 @@ if page=='District Level':
         )
 
         Patients_Pie=pd.DataFrame(Patients_Pie.values)
+        locations_index=Patients_Pie.index
+        Patients_Pie.set_index(locations_index,inplace=True)
     
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
            return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie
