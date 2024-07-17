@@ -396,7 +396,7 @@ if page=='District Level':
             #title_x=0.2,  # Center align title horizontally
         )
 
-        Patients_Pie=pd.DataFrame(Patients_Pie)
+        Patients_Pie=pd.DataFrame(Patients_Pie.values)
     
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
            return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie
