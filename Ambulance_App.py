@@ -261,11 +261,11 @@ if page=='District Level':
             if location_global is None:
                 ambulance_df1['patients_location_sum']=0
                 ambulance_df1['distance_location_sum']=0
-                #Patients_Pie=ambulance_df1.loc[:,locations].sum()
+                Patients_Pie=ambulance_df1.loc[:,locations].sum()
             else:
                 ex_selected_locations_patients=[x for x in locations if x not in location_global]
                 ambulance_df1['patients_location_sum']=ambulance_df1.loc[:,ex_selected_locations_patients].sum(axis=1)
-                #Patients_Pie=ambulance_df1.loc[:,location_global].sum()
+                Patients_Pie=ambulance_df1.loc[:,location_global].sum()
                 ex_selected_locations_distance=[i.replace('/n','') +' (KM)' for i in ex_selected_locations_patients]
                 ambulance_df1['distance_location_sum']=ambulance_df1.loc[:,ex_selected_locations_distance].sum(axis=1)
             min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
@@ -286,7 +286,7 @@ if page=='District Level':
             Summary_Total=Ambulance_By_Month[['Total Distance Covered','Total Patients Served']].sum()
             return Ambulance_By_Month, Summary_Total, min_date, max_date
     
-        (Ambulance_By_Month, Summary_Total,min_date,max_date)=agg_plots(ambulance_df1)
+        (Ambulance_By_Month, Summary_Total,min_date,max_date,Patients_Pie)=agg_plots(ambulance_df1)
     
         Number_Of_PHC=no_patients_index-total_distance_index-1
         #Patients_Pie=ambulance_df1.iloc[:,total_distance_index:no_patients_index-1].sum()
@@ -395,11 +395,13 @@ if page=='District Level':
             title=f'% of Patients Served By Type Of Ailment',
             #title_x=0.2,  # Center align title horizontally
         )
+
+        Patients_Pie_Table=Patients_Pie
     
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie
+           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie_Table
         else:
-            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie
+            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie_Table
 
     col1,col2,col3,col4,col5=st.columns([1,1,1,1,1])
     with col1:
