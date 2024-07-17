@@ -484,7 +484,7 @@ if page=='District Level':
                 st.plotly_chart(fig4)
 
         num_rows=st.slider("Select number of rows to be displayed:",1,len(Ambulance_By_Month),10)
-        Ambulance_By_Month[['Yrmo','Year']]=Ambulance_By_Month['Yrmo'].astype(str).str.replace(',','',regex=True)
+        Ambulance_By_Month['Yrmo']=Ambulance_By_Month['Yrmo'].astype(str).str.replace(',','',regex=True).astype(int)
         st.write(Ambulance_By_Month[:num_rows].sort_values(by='Yrmo',ascending=False))
         
         
