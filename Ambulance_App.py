@@ -483,7 +483,7 @@ if page=='District Level':
             if val is True:
                 st.plotly_chart(fig4)
 
-        num_rows=st.slider("Select number of rows to be displayed:",1,len(Ambulance_By_Month),len(Ambulance_By_Month))
+        num_rows=st.slider("Select number of rows to be displayed:",1,len(Ambulance_By_Month),10)
         st.write(Ambulance_By_Month[:num_rows])
         
         
