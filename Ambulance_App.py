@@ -478,7 +478,7 @@ if page=='District Level':
         #Ambulance_By_Month['Yrmo']=Ambulance_By_Month['Yrmo'].astype(str).str.replace(',','',regex=True)
         #Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(str).str.replace(',','',regex=True)
         
-        st.write(f"<p style='text-align:center;'>{Ambulance_By_Month.iloc[:,0:4]}</p>",unsafe_allow_html=True)
+        st.write(f"<div style='text-align:center;'>",Ambulance_By_Month.iloc[:,0:4].to_html(index=True),"</div>",unsafe_allow_html=True)
     
         graph3,graph4=st.columns(2)#([max((Number_Of_PHC/8.5),0.9),1])
         with graph3:
