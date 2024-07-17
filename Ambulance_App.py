@@ -417,7 +417,7 @@ if page=='District Level':
         location_global=location
         
     if location_global!=[]:
-        (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
+        (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
 
     if location_global==[]:
         col2,col3,col4=st.columns(3)
@@ -523,6 +523,7 @@ if page=='District Level':
             with col3:
                 st.write(Ambulance_By_Month.iloc[:,0:2])
             st.plotly_chart(fig3)
+            st.write(Patients_Pie)
         else:
             st.write(f"No data to display. Data for {location_global} in {selected_district.split('-')[0]} is present only between '{min_date}' and '{max_date}'")
 
