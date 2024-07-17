@@ -477,7 +477,7 @@ if page=='District Level':
         Ambulance_By_Month.sort_values(by='Yrmo',ascending=False,inplace=True)
         Ambulance_By_Month['Yrmo']=Ambulance_By_Month['Yrmo'].astype(str).str.replace(',','',regex=True)
         Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(str).str.replace(',','',regex=True)
-        st.write(Ambulance_By_Month)
+        st.write(Ambulance_By_Month[:10,0:4])
     
         graph3,graph4=st.columns(2)#([max((Number_Of_PHC/8.5),0.9),1])
         with graph3:
