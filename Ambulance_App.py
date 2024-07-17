@@ -395,13 +395,11 @@ if page=='District Level':
             title=f'% of Patients Served By Type Of Ailment',
             #title_x=0.2,  # Center align title horizontally
         )
-
-        Patients_Pie_Table=Patients_Pie
     
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
-           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie_Table
+           return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie
         else:
-            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie_Table
+            return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie
 
     col1,col2,col3,col4,col5=st.columns([1,1,1,1,1])
     with col1:
@@ -414,7 +412,7 @@ if page=='District Level':
     if location_global is None:
         (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
     with col5:
-        st.write(Patients_Pie.index)
+        st.write(Patients_Pie.values)
     with col2:
         location=st.multiselect('**Select a location**', locations, placeholder='All locations')
         location_global=location
