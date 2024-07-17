@@ -475,9 +475,9 @@ if page=='District Level':
 
         #num_rows=st.slider("Select number of rows to be displayed:",1,len(Ambulance_By_Month),12)
         Ambulance_By_Month.sort_values(by='Yrmo',ascending=False,inplace=True)
-        Ambulance_By_Month['Yrmo']=Ambulance_By_Month['Yrmo'].astype(str).str.replace(',','',regex=True)
-        Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(str).str.replace(',','',regex=True)
-        st.write(Ambulance_By_Month)
+        #Ambulance_By_Month['Yrmo']=Ambulance_By_Month['Yrmo'].astype(str).str.replace(',','',regex=True)
+        #Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(str).str.replace(',','',regex=True)
+        st.write(Ambulance_By_Month[,0:4])
     
         graph3,graph4=st.columns(2)#([max((Number_Of_PHC/8.5),0.9),1])
         with graph3:
@@ -513,11 +513,11 @@ if page=='District Level':
         if val is True:
             st.plotly_chart(fig1)
             st.plotly_chart(fig3)
-            num_rows=st.slider("Select number of rows to be displayed:",1,len(Ambulance_By_Month),12)
+            #num_rows=st.slider("Select number of rows to be displayed:",1,len(Ambulance_By_Month),12)
             Ambulance_By_Month.sort_values(by='Yrmo',ascending=False,inplace=True)
-            Ambulance_By_Month['Yrmo']=Ambulance_By_Month['Yrmo'].astype(str).str.replace(',','',regex=True)
-            Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(str).str.replace(',','',regex=True)
-            st.write(Ambulance_By_Month[:num_rows])
+            #Ambulance_By_Month['Yrmo']=Ambulance_By_Month['Yrmo'].astype(str).str.replace(',','',regex=True)
+            #Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(str).str.replace(',','',regex=True)
+            st.write(Ambulance_By_Month)
         else:
             st.write(f"No data to display. Data for {location_global} in {selected_district.split('-')[0]} is present only between '{min_date}' and '{max_date}'")
 
