@@ -517,7 +517,7 @@ if page=='District Level':
             Ambulance_By_Month.sort_values(by='Yrmo',ascending=False,inplace=True)
             #Ambulance_By_Month['Yrmo']=Ambulance_By_Month['Yrmo'].astype(str).str.replace(',','',regex=True)
             #Ambulance_By_Month['Year']=Ambulance_By_Month['Year'].astype(str).str.replace(',','',regex=True)
-            st.write(Ambulance_By_Month)
+            st.write(Ambulance_By_Month.iloc[:,0:4])
         else:
             st.write(f"No data to display. Data for {location_global} in {selected_district.split('-')[0]} is present only between '{min_date}' and '{max_date}'")
 
