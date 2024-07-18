@@ -254,7 +254,7 @@ if page=='District Level':
 
           df_reset.columns=df_reset.columns.str.replace('\n','').str.lstrip()
 
-          locations=df_reset.iloc[:,total_distance_index:no_patients_index-1].columns.values.split('-')[0]
+          locations=df_reset.iloc[:,total_distance_index:no_patients_index-1].columns.values
 
           return df_reset,total_distance_index,no_patients_index,locations
 
