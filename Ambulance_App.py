@@ -936,7 +936,7 @@ if page=='Overall Summary':
     with graph3:
         if val is True:
             st.plotly_chart(fig7)
-            Patients_Pie.index=Patients_Pie.index.rename('Districts')
+            Patients_Pie_full.index=Patients_Pie_full.index.rename('Districts')
             st.write(Patients_Pie_full)
         #else:
             #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
