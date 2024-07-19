@@ -946,6 +946,7 @@ if page=='Overall Summary':
     with col1:
         Patients_Pie_full=pd.DataFrame(Patients_Pie_full)
         Patients_Pie_full.index=Patients_Pie_full.index.rename('Districts')
+        Patients_Pie_full.columns=['Patients Served']
         st.write(Patients_Pie_full)
 
     #if val is True:
