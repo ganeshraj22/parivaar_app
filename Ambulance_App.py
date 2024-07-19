@@ -508,7 +508,7 @@ if page=='District Level':
         with graph3:
             if val is True:
                 st.plotly_chart(fig3)
-                st.write(<"div style='text-align:center;'>Patients_Pie</div>",unsafe_allow_html=True)
+                st.write("<div style='text-align:center;'>Patients_Pie</div>",unsafe_allow_html=True)
 
         with graph4:
             if val is True:
