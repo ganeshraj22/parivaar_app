@@ -938,7 +938,7 @@ if page=='Overall Summary':
             st.plotly_chart(fig7)
             Patients_Pie_full=pd.DataFrame(Patients_Pie_full)
             Patients_Pie_full.index=Patients_Pie_full.index.rename('Districts')
-            st.table(Patients_Pie_full)
+            st.write(Patients_Pie_full)
         #else:
             #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
     with graph4:
