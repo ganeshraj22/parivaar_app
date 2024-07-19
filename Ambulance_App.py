@@ -106,7 +106,7 @@ if page=='District Level':
           def replace_values(ambulance_df):
               for col in ambulance_df.columns:
                   # Check if the element is a string before calling startswith
-                  if isinstance(ambulance_df.at[0, col], str) and (ambulance_df.at[0, col].startswith('Ambulance') or ambulance_df.at[0, col].startswith('REC') or ambulance_df.at[0, col].startswith('bolero')):
+                  if isinstance(ambulance_df.at[0, col], str) and (ambulance_df.at[0, col].startswith('Ambulance') or ambulance_df.at[0, col].startswith('REC') or ambulance_df.at[0, col].startswith('Bolero')):
                       ambulance_df.at[0, col] = ambulance_df.at[1, col]
               return ambulance_df
 
