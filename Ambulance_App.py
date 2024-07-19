@@ -942,7 +942,7 @@ if page=='Overall Summary':
         if val is True:
             st.plotly_chart(fig8)
 
-    col1 col2-st.columns([1,1]):
+    col1,col2=st.columns([1,1]):
     with col1:
         Patients_Pie_full=pd.DataFrame(Patients_Pie_full)
         Patients_Pie_full.index=Patients_Pie_full.index.rename('Districts')
