@@ -951,9 +951,9 @@ if page=='Overall Summary':
     with graph4:
         if val is True:
             st.plotly_chart(fig8)
-            graph5,graph6=st.columns([1,0.3])
-            with graph5:
-                st.write(Disease_Pie_full)
+            #graph5,graph6=st.columns([1,0.1])
+            #with graph5:
+            st.write(Disease_Pie_full)
         
 
     #if val is True:
