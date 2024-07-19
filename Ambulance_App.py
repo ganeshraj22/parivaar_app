@@ -928,6 +928,10 @@ if page=='Overall Summary':
     #Ambulance_By_Month_full['Yrmo']=Ambulance_By_Month_full['Yrmo'].astype(str).str.replace(',','',regex=True)
     #Ambulance_By_Month_full['Year']=Ambulance_By_Month_full['Year'].astype(str).str.replace(',','',regex=True)
 
+    col2,col3,col4=st.columns([0.1,1,0.1])
+    with col3:
+        st.write(Ambulance_By_Month_full.iloc[:,0:4])
+
     graph3,graph4=st.columns(2)#([max((Number_Of_PHC/8.5),0.9),1])
     with graph3:
         if val is True:
