@@ -504,13 +504,12 @@ if page=='District Level':
         with col3:
             st.write(Ambulance_By_Month.iloc[:,0:4])
 
-        graph3,graph4=st.columns(2)#([max((Number_Of_PHC/8.5),0.9),1])
+        graph3,graph4=st.columns(2)
         with graph3:
             if val is True:
                 st.plotly_chart(fig3)
                 st.write(Patients_Pie)
-            #else:
-                #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
+
         with graph4:
             if val is True:
                 st.plotly_chart(fig4)
@@ -914,7 +913,7 @@ if page=='Overall Summary':
             col4.markdown(summary_css, unsafe_allow_html=True)
             # st.write(f"Number Of Ambulances: {Total_Number_Of_PHC}")
 
-    graph1,graph2=st.columns(2)#([1.15,1])
+    graph1,graph2=st.columns(2)#([1,1])
     with graph1:
         if val is True:
             st.plotly_chart(fig5)
@@ -936,19 +935,17 @@ if page=='Overall Summary':
     with col3:
         st.write(Ambulance_By_Month_full.iloc[:,0:4])
 
-    graph3,graph4=st.columns(2)#([max((Number_Of_PHC/8.5),0.9),1])
+    graph3,graph4=st.columns(2)
     with graph3:
         if val is True:
             st.plotly_chart(fig7)
+            st.write(Patients_Pie_full)
         #else:
             #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
     with graph4:
         if val is True:
             st.plotly_chart(fig8)
-
-    col1,col2=st.columns([1,1])
-    with col1:
-        st.write(Patients_Pie_full)
+        
 
     #if val is True:
      #   st.plotly_chart(fig7)
