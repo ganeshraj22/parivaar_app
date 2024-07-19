@@ -917,7 +917,7 @@ if page=='Overall Summary':
             col4.markdown(summary_css, unsafe_allow_html=True)
             # st.write(f"Number Of Ambulances: {Total_Number_Of_PHC}")
 
-    graph1,graph2=st.columns(2)#([1,1])
+    graph1,graph2=st.columns(2
     with graph1:
         if val is True:
             st.plotly_chart(fig5)
