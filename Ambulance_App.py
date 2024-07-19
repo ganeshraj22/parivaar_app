@@ -869,9 +869,9 @@ if page=='Overall Summary':
             )
 
         if (Ambulance_By_Month_full['Total Distance Covered(KM)'].count()==0):
-            return False, fig1, fig2, fig3, fig4, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full
+            return False, fig1, fig2, fig3, fig4, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full
         else:
-            return True, fig1, fig2, fig3, fig4, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full
+            return True, fig1, fig2, fig3, fig4, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full
 
     col1,col2=st.columns([1,1])
     with col1:
@@ -879,7 +879,7 @@ if page=='Overall Summary':
     with col2:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-    (val,fig5,fig6,fig7,fig8,summary_df,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full)=get_data_full(date_range,level_of_detail,sheet)
+    (val,fig5,fig6,fig7,fig8,summary_df,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full)=get_data_full(date_range,level_of_detail,sheet)
 
     col2,col3,col4=st.columns(3)
     with col2:
@@ -922,6 +922,11 @@ if page=='Overall Summary':
             st.plotly_chart(fig6)
         #else:
             #st.write(f"No data to display. Data is present only between '{min_date_full}' and '{max_date_full}'")
+
+    #num_rows=st.slider("Select number of rows to be displayed:",1,len(Ambulance_By_Month_full),12)
+    Ambulance_By_Month_full.sort_values(by='Yrmo',ascending=False,inplace=True)
+    #Ambulance_By_Month_full['Yrmo']=Ambulance_By_Month_full['Yrmo'].astype(str).str.replace(',','',regex=True)
+    #Ambulance_By_Month_full['Year']=Ambulance_By_Month_full['Year'].astype(str).str.replace(',','',regex=True)
 
     graph3,graph4=st.columns(2)#([max((Number_Of_PHC/8.5),0.9),1])
     with graph3:
