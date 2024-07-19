@@ -508,7 +508,7 @@ if page=='District Level':
         with graph3:
             if val is True:
                 st.plotly_chart(fig3)
-                graph3.write("<div style='text-align:center;'>Patients_Pie</div>",unsafe_allow_html=True)
+                st.write(Patients_Pie)
 
         with graph4:
             if val is True:
@@ -939,7 +939,7 @@ if page=='Overall Summary':
     with graph3:
         if val is True:
             st.plotly_chart(fig7)
-            st.write(Patients_Pie_full)
+            st.write("<div style='text-align:center;'>Patients_Pie_full</div>",unsafe_allow_html=True)
         #else:
             #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
     with graph4:
