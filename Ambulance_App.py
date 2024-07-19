@@ -871,10 +871,14 @@ if page=='Overall Summary':
             Patients_Pie_full.index=Patients_Pie_full.index.rename('Districts')
             Patients_Pie_full.columns=['Patients Served']
 
+            Disease_Pie_full=pd.DataFrame(Disease_Pie_full)
+            Disease_Pie_full.index=Disease_Pie_full.index.rename('Ailment Type')
+            Disease_Pie_full.columns=['Patients Served']
+
         if (Ambulance_By_Month_full['Total Distance Covered(KM)'].count()==0):
-            return False, fig1, fig2, fig3, fig4, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full
+            return False, fig1, fig2, fig3, fig4, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full,Disease_Pie_full
         else:
-            return True, fig1, fig2, fig3, fig4, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full
+            return True, fig1, fig2, fig3, fig4, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full,Disease_Pie_full
 
     col1,col2=st.columns([1,1])
     with col1:
@@ -882,7 +886,7 @@ if page=='Overall Summary':
     with col2:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-    (val,fig5,fig6,fig7,fig8,summary_df,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full)=get_data_full(date_range,level_of_detail,sheet)
+    (val,fig5,fig6,fig7,fig8,summary_df,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full,Disease_Pie_full)=get_data_full(date_range,level_of_detail,sheet)
 
     col2,col3,col4=st.columns(3)
     with col2:
@@ -947,6 +951,9 @@ if page=='Overall Summary':
     with graph4:
         if val is True:
             st.plotly_chart(fig8)
+            graph5,graph6=st.columns([0.3,1])
+            with graph6:
+                st.write(Disease_Pie_full)
         
 
     #if val is True:
