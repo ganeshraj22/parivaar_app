@@ -936,6 +936,7 @@ if page=='Overall Summary':
     with graph3:
         if val is True:
             st.plotly_chart(fig7)
+            Patients_Pie_full=pd.DataFrame(Patients_Pie_full)
             Patients_Pie_full.index=Patients_Pie_full.index.rename('Districts')
             st.write(Patients_Pie_full)
         #else:
