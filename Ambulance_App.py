@@ -868,6 +868,10 @@ if page=='Overall Summary':
                 #title_x=0.2,  # Center align title horizontally
             )
 
+            Patients_Pie_full=pd.DataFrame(Patients_Pie_full)
+            Patients_Pie_full.index=Patients_Pie_full.index.rename('Districts')
+            Patients_Pie_full.columns=['Patients Served']
+
         if (Ambulance_By_Month_full['Total Distance Covered(KM)'].count()==0):
             return False, fig1, fig2, fig3, fig4, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full
         else:
@@ -944,9 +948,6 @@ if page=='Overall Summary':
 
     col1,col2=st.columns([1,1])
     with col1:
-        Patients_Pie_full=pd.DataFrame(Patients_Pie_full)
-        Patients_Pie_full.index=Patients_Pie_full.index.rename('Districts')
-        Patients_Pie_full.columns=['Patients Served']
         st.write(Patients_Pie_full)
 
     #if val is True:
