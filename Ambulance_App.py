@@ -935,7 +935,7 @@ if page=='Overall Summary':
     with col3:
         st.write(Ambulance_By_Month_full.iloc[:,0:4])
 
-    graph3,graph4=st.columns(2)
+    graph3,graph4=st.columns([1,1])
     with graph3:
         if val is True:
             st.plotly_chart(fig7)
