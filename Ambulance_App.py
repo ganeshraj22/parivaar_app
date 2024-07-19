@@ -237,7 +237,6 @@ if page=='District Level':
 
           ambulance_df['Date']=ambulance_df['Date'].apply(convert_to_datetime)
           ambulance_df = ambulance_df[ambulance_df['Date'].notnull()]
-
           ambulance_df['Total Distance Covered']=pd.to_numeric(ambulance_df['Total Distance Covered(KM)'])
           ambulance_df['Total Patients Served']=pd.to_numeric(ambulance_df['Total Patients Served'])
           ambulance_df['Total Accident Cases']=pd.to_numeric(ambulance_df['Total Accident Cases'])
@@ -266,8 +265,7 @@ if page=='District Level':
                 ambulance_df1['distance_location_sum']=0
                 Patients_Pie=ambulance_df1.loc[:,locations].sum()
             else:
-                ex_selected_locations_patients=[x.split('-')[0] for x in locations if x not in location_global]
-                
+                ex_selected_locations_patients=[x for x in locations if x not in location_global]                
                 ambulance_df1['patients_location_sum']=ambulance_df1.loc[:,ex_selected_locations_patients].sum(axis=1)
                 Patients_Pie=ambulance_df1.loc[:,location_global].sum()
                 ex_selected_locations_distance=[i.replace('/n','') +' (KM)' for i in ex_selected_locations_patients]
