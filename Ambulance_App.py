@@ -569,8 +569,6 @@ if page=='Overall Summary':
         Districts=[i.title for i in sheet[6:]]
         flag=0
         for y in Districts:
-            if y=='Jhabua-8':
-                continue
             ambulance_df=pd.DataFrame(sheet[[i.title for i in sheet].index(y)].get_values())
             def preprocess_data_full(ambulance_df):
               # Replace values in the first row starting with 'Ambulance' with values from the rows below
