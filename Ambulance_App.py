@@ -424,7 +424,7 @@ if page=='District Level':
         (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
 
     with col2:
-        location=st.multiselect('**Select a location**', locations, placeholder='All locations',label_visibility='hidden')
+        location=st.multiselect('**Select a location**', locations, placeholder='All locations',label_visibility='collapsed')
         location_global=location
 
     if location_global!=[]:
