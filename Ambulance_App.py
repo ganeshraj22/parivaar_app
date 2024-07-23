@@ -355,18 +355,7 @@ if page=='District Level':
         )
 
         fig3 = go.Figure()
-        blue_colors =[
-    "#1f77b4",  # Darker blue
-    "#aec7e8",  # Lighter blue
-    "#3182bd",  # Medium blue
-    "#6baed6",  # Medium-light blue
-    "#9ecae1",   # Light blue
-        "#de2d26",  # Darker red
-    "#fb6a4a",  # Lighter red
-    "#a50f15",  # Medium red
-    "#cb181d",  # Medium-dark red
-    "#ef3b2c"   # Medium-light red
-]
+        blue_colors =['#8BC1F7','#004B95','#BDE2B9','#38812F','#F4B678','#C46100','#B8BBBE','#009596','#A2D9D9','#F4C145','#F9E0A2','#B2B0EA','#5752D1','#C9190B']
 
         # Add pie trace
         fig3.add_trace(go.Pie(
