@@ -227,7 +227,8 @@ if page=='District Level':
               ambulance_df[col] = ambulance_df[col].fillna(0)  # Add this line
 
           # Convert selected columns to integer type
-          ambulance_df[columns_to_check] = ambulance_df[columns_to_check].astype(int)
+              #ambulance_df[columns_to_check] = ambulance_df[columns_to_check].astype(int)
+              ambulance_df[col] = ambulance_df[col].apply(lambda x: int(x))
 
           # Check for 0 values in specified columns range
           mask = ambulance_df[columns_to_check].eq(0).all(axis=1)
