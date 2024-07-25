@@ -358,7 +358,7 @@ if page=='District Level':
 
         # Add pie trace
         fig3.add_trace(go.Pie(
-            labels=Patients_Pie.index,
+            labels=Patients_Pie.name,
             values=Patients_Pie.values,
             textinfo='percent',
             insidetextorientation='radial',
