@@ -256,7 +256,7 @@ if page=='District Level':
 
           locations=df_reset.iloc[:,total_distance_index:no_patients_index-1].columns.values
 
-          np.append(locations,'All locations',axis=0)
+          np.append(locations,'All locations',axis=1)
 
           locations=list(set(locations))
 
