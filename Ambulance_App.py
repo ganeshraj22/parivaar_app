@@ -256,10 +256,6 @@ if page=='District Level':
 
           locations=df_reset.iloc[:,total_distance_index:no_patients_index-1].columns.values
 
-          locations=np.append(locations,'All locations')
-
-          locations=list(set(locations))
-
           return df_reset,total_distance_index,no_patients_index,locations
 
         (ambulance_df1, total_distance_index, no_patients_index, locations)  = preprocess_data(ambulance_df)
@@ -412,6 +408,10 @@ if page=='District Level':
         Disease_Type_Pie.index=Disease_Type_Pie.index.rename('Ailment Type')
         Disease_Type_Pie.columns=['Patients Served']
 
+        locations=np.append(locations,'All locations')
+
+        locations=list(set(locations))
+
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
            return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie, Disease_Type_Pie
         else:
@@ -431,8 +431,9 @@ if page=='District Level':
     with col2:
         location=st.selectbox('**Select a location**', locations, placeholder='All locations')
         if location=='All locations':
-            location=locations
-        location_global=[location]
+            location_global=locations.remove('All locations')
+        else:
+            location_global=[location]
 
     if location_global!=[]:
         (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
