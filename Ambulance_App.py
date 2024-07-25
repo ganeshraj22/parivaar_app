@@ -430,7 +430,7 @@ if page=='District Level':
 
     with col2:
         location=st.selectbox('**Select a location**', locations, placeholder='All locations')
-        if location='All locations':
+        if location=='All locations':
             location_global=locations
         else:
             location_global=[location]
