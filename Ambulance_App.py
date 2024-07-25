@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 # coding: utf-8
 
@@ -358,8 +359,8 @@ if page=='District Level':
 
         # Add pie trace
         fig3.add_trace(go.Pie(
-            #labels=Patients_Pie,
-            values=Patients_Pie,
+            labels=Patients_Pie.index,
+            values=Patients_Pie.values,
             textinfo='percent',
             insidetextorientation='radial',
             marker=dict(colors=blue_colors,line=dict(color='black',width=0.5))
@@ -425,7 +426,7 @@ if page=='District Level':
 
     with col2:
         location=st.selectbox('**Select a location**', locations, placeholder='All locations')
-        location_global=location
+        location_global=[location]
 
     if location_global!=[]:
         (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
