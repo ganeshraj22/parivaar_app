@@ -432,6 +432,7 @@ if page=='District Level':
         location=st.selectbox('**Select a location**', locations, placeholder='All locations')
         if location=='All locations':
             location_global=locations
+            location=locations
         else:
             location_global=[location]
 
