@@ -431,10 +431,8 @@ if page=='District Level':
     with col2:
         location=st.selectbox('**Select a location**', locations, placeholder='All locations')
         if location=='All locations':
-            location_global=locations
             location=locations
-        else:
-            location_global=[location]
+        location_global=[location]
 
     if location_global!=[]:
         (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
