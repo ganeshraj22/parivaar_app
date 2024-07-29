@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python
 # coding: utf-8
 
@@ -24,7 +23,7 @@ st.set_page_config(
 )
 
 scope=['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-creds=ServiceAccountCredentials.from_json_keyfile_name(r'unique-bonbon-304011-585cc22859d3.json',scope)
+creds=ServiceAccountCredentials.from_json_keyfile_name(r'/home/priyanka/parivar/tranquil-leaf-393217-1ba37d798c2b.json',scope)
 client=gspread.authorize(creds)
 sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/1CfLVfjrmV2K6wMEg6G-q2_Im2uP7sZ2GsVw0ZzmiJ0k/edit?usp=sharing').worksheets()
 Districts=[i.title for i in sheet[6:]]
@@ -266,7 +265,7 @@ if page=='District Level':
                 ambulance_df1['distance_location_sum']=0
                 Patients_Pie=ambulance_df1.loc[:,locations].sum()
             else:
-                ex_selected_locations_patients=[x for x in locations if x not in location_global]                
+                ex_selected_locations_patients=[x for x in locations if x not in location_global]
                 ambulance_df1['patients_location_sum']=ambulance_df1.loc[:,ex_selected_locations_patients].sum(axis=1)
                 Patients_Pie=ambulance_df1.loc[:,location_global].sum()
                 ex_selected_locations_distance=[i.replace('/n','') +' (KM)' for i in ex_selected_locations_patients]
@@ -408,10 +407,6 @@ if page=='District Level':
         Disease_Type_Pie.index=Disease_Type_Pie.index.rename('Ailment Type')
         Disease_Type_Pie.columns=['Patients Served']
 
-        locations=np.append(locations,'All locations')
-
-        locations=list(set(locations))
-
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
            return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie, Disease_Type_Pie
         else:
@@ -421,7 +416,7 @@ if page=='District Level':
     with col1:
         selected_district=st.selectbox('**Select a district**',Districts)
     with col3:
-        date_range=st.date_input('**Enter date range**',min_value=datetime(2020,1,1),max_value=date.today(),key='date_range',format='DD/MM/YYYY')
+        date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
     with col4:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
@@ -429,11 +424,8 @@ if page=='District Level':
         (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
 
     with col2:
-        location=st.selectbox('**Select a location**', locations, placeholder='All locations')
-        if location=='All locations':
-            location_global=locations.remove('All locations')
-        else:
-            location_global=[location]
+        location=st.multiselect('**Select a location**', locations, placeholder='All locations')
+        location_global=location
 
     if location_global!=[]:
         (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
@@ -752,6 +744,7 @@ if page=='Overall Summary':
                 Ambulance_By_Month=Ambulance_By_Month.sort_values(by='Yrmo')
                 Ambulance_By_Month=Ambulance_By_Month[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital','Yrmo','Year']]
                 Ambulance_By_District=Ambulance_By_District[['Total Distance Covered(KM)','Total Patients Served','Admitted in Hospital','Discharged from Hospital']]
+                Ambulance_By_District_pie = Ambulance_By_District
                 Ambulance_By_District=Ambulance_By_District.sort_values(by='Total Patients Served',ascending=False)
                 Total_People_Served_In_Other_Districts=Ambulance_By_District.iloc[10:]['Total Patients Served'].sum()
                 Ambulance_By_District_Top_10=Ambulance_By_District['Total Patients Served'].head(10)
@@ -760,11 +753,17 @@ if page=='Overall Summary':
                 #Others_Row.set_index('District',inplace=True)
                 Ambulance_By_District=pd.concat([Ambulance_By_District_Top_10,Others_Row])
                 Summary_Total=Ambulance_By_Month[['Total Distance Covered(KM)','Total Patients Served']].sum()
-                return Ambulance_By_Month, Ambulance_By_Disease, Ambulance_By_District, Summary_Total, min_date, max_date
+                return Ambulance_By_District_pie, Ambulance_By_Month, Ambulance_By_Disease, Ambulance_By_District, Summary_Total, min_date, max_date
 
-            (Ambulance_By_Month_full, Ambulance_By_Disease_full, Ambulance_By_District_full, Summary_Total_full,min_date_full,max_date_full)=agg_plots_full(result_df)
+            (Ambulance_By_District_pie, Ambulance_By_Month_full, Ambulance_By_Disease_full, Ambulance_By_District_full, Summary_Total_full,min_date_full,max_date_full)=agg_plots_full(result_df)
 
-            Patients_Pie_full=Ambulance_By_District_full['Total Patients Served']
+            Patients_Pie_full=Ambulance_By_District_pie[['Total Patients Served','Total Distance Covered(KM)']]
+            # Create a new row for "Others" with the sum of values
+            sum_values = Patients_Pie_full.iloc[10:, :].sum()
+            Patients_Pie_full.loc['Others', :] = sum_values
+            Patients_Pie_full = Patients_Pie_full.sort_values(by='Total Patients Served',ascending=False)
+            Patients_Pie_full = Patients_Pie_full.drop(Patients_Pie_full.index[11:])
+            print(Patients_Pie_full)
             Disease_Pie_full=Ambulance_By_Disease_full
 
             fig1 = go.Figure()
@@ -828,7 +827,7 @@ if page=='Overall Summary':
             # Add pie trace
             fig3.add_trace(go.Pie(
                 labels=Patients_Pie_full.index,
-                values=Patients_Pie_full.values,
+                values=Patients_Pie_full['Total Patients Served'],
                 textinfo='percent',
                 insidetextorientation='radial',
                 marker=dict(colors=['#8BC1F7','#004B95','#BDE2B9','#38812F','#F4B678','#C46100','#B8BBBE','#009596','#A2D9D9','#F4C145','#F9E0A2','#B2B0EA','#5752D1','#C9190B'],line=dict(color='black',width=0.5))
@@ -861,9 +860,9 @@ if page=='Overall Summary':
                 #title_x=0.2,  # Center align title horizontally
             )
 
-            Patients_Pie_full=pd.DataFrame(Patients_Pie_full)
+            # Patients_Pie_full=pd.DataFrame(Patients_Pie_full)
             Patients_Pie_full.index=Patients_Pie_full.index.rename('Districts')
-            Patients_Pie_full.columns=['Patients Served']
+            # Patients_Pie_full.columns=['Patients Served']
 
             Disease_Pie_full=pd.DataFrame(Disease_Pie_full)
             Disease_Pie_full.index=Disease_Pie_full.index.rename('Ailment Type')
@@ -948,7 +947,7 @@ if page=='Overall Summary':
             graph5,graph6=st.columns([0.1,1])
             with graph6:
                 st.write(Disease_Pie_full)
-        
+
 
     #if val is True:
      #   st.plotly_chart(fig7)
