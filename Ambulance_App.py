@@ -886,7 +886,7 @@ if page=='Overall Summary':
 
     col1,col2=st.columns([1,1])
     with col1:
-        date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
+        date_range=st.date_input('**Enter date range**',value=(datetime(2023,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
     with col2:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
