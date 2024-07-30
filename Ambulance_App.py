@@ -425,7 +425,8 @@ if page=='District Level':
 
     with col2:
         locations=np.append(locations,'All locations')
-        locations=list(set(locations)).sort()
+        locations=list(set(locations))
+        locations.sort(inplace=True)
         location=st.selectbox('**Select a location**', locations, placeholder='All locations')
         if location!='All locations':
             location_global=[location]
