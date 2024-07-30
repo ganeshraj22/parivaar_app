@@ -441,10 +441,10 @@ if page=='District Level':
             location_global=[]
             
     if location_global is not None:
-    with col3:
-        dt_range=st.date_input('**Enter date range**',value=(min_date,date.today()),min_value=min_date, max_value=date.today(),key='dt_range',format='DD/MM/YYYY')
-        date_range_dt=dt_range
-        st.write(date_range_dt,min_date)
+        with col3:
+            dt_range=st.date_input('**Enter date range**',value=(min_date,date.today()),min_value=min_date, max_value=date.today(),key='dt_range',format='DD/MM/YYYY')
+            date_range_dt=dt_range
+            st.write(date_range_dt,min_date)
 
     if location_global!=[]:
         (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,level_of_detail,sheet,location_global,date_range_dt)
