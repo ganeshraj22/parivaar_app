@@ -251,7 +251,7 @@ if page=='District Level':
 
           #ambulance_df=ambulance_df[(ambulance_df['Date']>=start_date)&(ambulance_df['Date']<=end_date)]
 
-          df_reset = ambulance_df[:-1].reset_index(drop=True)
+          df_reset = ambulance_df.reset_index(drop=True)
 
           df_reset['District']=selected_district.split('-')[0]
 
@@ -720,7 +720,7 @@ if page=='Overall Summary':
 
               #ambulance_df=ambulance_df[(ambulance_df['Date']>=start_date)&(ambulance_df['Date']<=end_date)]
 
-              df_reset = ambulance_df[:-1].reset_index(drop=True)
+              df_reset = ambulance_df.reset_index(drop=True)
 
               df_reset['District']=y.split('-')[0]
 
