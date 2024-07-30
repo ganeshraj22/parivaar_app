@@ -92,7 +92,7 @@ if page=='District Level':
     location_global=None
     #selected_district='Alirajpur-10'
     #level_of_detail='Month'
-    if date_range_dtis False:
+    if date_range_dt==False:
         date_range_dt=(datetime(2020,1,1),date.today())
     def get_data(selected_district,level_of_detail,sheet,location_global,date_range_dt):
         start_date=pd.to_datetime(date_range_dt[0])
