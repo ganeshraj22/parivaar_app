@@ -272,6 +272,7 @@ if page=='District Level':
                 Patients_Pie=ambulance_df1.loc[:,location_global].sum()
                 ex_selected_locations_distance=[i.replace('/n','') +' (KM)' for i in ex_selected_locations_patients]
                 ambulance_df1['distance_location_sum']=ambulance_df1.loc[:,ex_selected_locations_distance].sum(axis=1)
+            global min_date
             min_date=ambulance_df1['Date'].min().date()
             max_date=ambulance_df1['Date'].max().date()
             Ambulance_By_Month=ambulance_df1.reset_index(drop=False)
@@ -408,8 +409,6 @@ if page=='District Level':
         Disease_Type_Pie=pd.DataFrame(Disease_Type_Pie)
         Disease_Type_Pie.index=Disease_Type_Pie.index.rename('Ailment Type')
         Disease_Type_Pie.columns=['Patients Served']
-
-        global min_date
 
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
            return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie, Disease_Type_Pie
