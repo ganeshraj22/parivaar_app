@@ -90,6 +90,8 @@ if page=='District Level':
     st.markdown('<p class="title">DISTRICT LEVEL SUMMARY</p>', unsafe_allow_html=True)
     st.markdown(title_css, unsafe_allow_html=True)
     location_global=None
+    selected_district='Alirajpur-10'
+    level_of_detail='Month'
     def get_data(selected_district,level_of_detail,sheet,location_global,date_range_dt):
         start_date=pd.to_datetime(date_range_dt[0])
         end_date=pd.to_datetime(date_range_dt[1])
@@ -413,19 +415,20 @@ if page=='District Level':
         else:
             return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie, Disease_Type_Pie
 
+    if location_global is None:
+        (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,level_of_detail,sheet,location_global,date_range_dt)
+    
     col1,col2,col3,col4=st.columns([1,1,1,1])
     with col3:
         dt_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),min_value=datetime(2020,1,1), max_value=date.today(),key='dt_range',format='DD/MM/YYYY')
         date_range_dt=dt_range
         
     with col1:
-        selected_district=st.selectbox('**Select a district**',Districts)
-        
+        selected_dt=st.selectbox('**Select a district**',Districts)
+        selected_district=selected_dt
     with col4:
-        level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
-    
-    if location_global is None:
-        (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,level_of_detail,sheet,location_global,date_range_dt)
+        lod=st.selectbox('**Select frequency**',['Month','Year'])
+        level_of_detail=lod
         
     with col2:
         locations=np.append(locations,'All locations')
