@@ -409,26 +409,24 @@ if page=='District Level':
         Disease_Type_Pie.index=Disease_Type_Pie.index.rename('Ailment Type')
         Disease_Type_Pie.columns=['Patients Served']
 
+    col1,col2,col3,col4=st.columns([1,1,1,1])
+    with col3:
+        dt_range=st.date_input('**Enter date range**',value=(min_date,date.today()),min_value=min_date, max_value=date.today(),key='dt_range',format='DD/MM/YYYY')
+        date_range_dt=dt_range
+
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
            return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie, Disease_Type_Pie
         else:
             return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie, Disease_Type_Pie
 
-    col1,col2,col3,col4=st.columns([1,1,1,1])
     with col1:
         selected_district=st.selectbox('**Select a district**',Districts)
         
     with col4:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
+    
     if location_global is None:
-        with col3:
-            dte_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),min_value=datetime(2020,1,1), max_value=date.today(),key='dte_range',format='DD/MM/YYYY')
-            date_range_dt=dte_range
-            (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,level_of_detail,sheet,location_global,date_range_dt)
-    else:
-        with col3:
-            dt_range=st.date_input('**Enter date range**',value=(min_date,date.today()),min_value=min_date, max_value=date.today(),key='dt_range',format='DD/MM/YYYY')
-            date_range_dt=dt_range
+        (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,level_of_detail,sheet,location_global,date_range_dt)
         
     with col2:
         locations=np.append(locations,'All locations')
