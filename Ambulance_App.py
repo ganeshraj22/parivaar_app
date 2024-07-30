@@ -90,6 +90,7 @@ if page=='District Level':
     st.markdown('<p class="title">DISTRICT LEVEL SUMMARY</p>', unsafe_allow_html=True)
     st.markdown(title_css, unsafe_allow_html=True)
     location_global=None
+    flag=True
     #selected_district='Alirajpur-10'
     #level_of_detail='Month'
     def get_data(selected_district,level_of_detail,sheet,location_global,date_range_dt):
@@ -273,7 +274,7 @@ if page=='District Level':
                 Patients_Pie=ambulance_df1.loc[:,location_global].sum()
                 ex_selected_locations_distance=[i.replace('/n','') +' (KM)' for i in ex_selected_locations_patients]
                 ambulance_df1['distance_location_sum']=ambulance_df1.loc[:,ex_selected_locations_distance].sum(axis=1)
-            min_date=ambulance_df1['Date'].min().date()
+            min_date=ambulance_df1['Date'].min().date()f
             max_date=ambulance_df1['Date'].max().date()
             Ambulance_By_Month=ambulance_df1.reset_index(drop=False)
             Ambulance_By_Month['Total Patients Served']=Ambulance_By_Month['Total Patients Served']-Ambulance_By_Month['patients_location_sum']
@@ -437,8 +438,9 @@ if page=='District Level':
             location_global=[location]
         else:
             location_global=[]
+            flag=False
         
-    if (location_global is not None or location=='All locations'):
+    if (location_global is not None or flag==False):
         with col3:
             dt_range=st.date_input('**Enter date range**',value=(min_date,date.today()),min_value=min_date, max_value=date.today(),key='dt_range',format='DD/MM/YYYY')
             date_range_dt=dt_range
