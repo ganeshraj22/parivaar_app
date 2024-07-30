@@ -90,7 +90,6 @@ if page=='District Level':
     st.markdown('<p class="title">DISTRICT LEVEL SUMMARY</p>', unsafe_allow_html=True)
     st.markdown(title_css, unsafe_allow_html=True)
     location_global=None
-    min_date=None
     def get_data(selected_district,level_of_detail,sheet,location_global,date_range):
         start_date=pd.to_datetime(date_range[0])
         end_date=pd.to_datetime(date_range[1])
@@ -418,9 +417,6 @@ if page=='District Level':
     with col1:
         selected_district=st.selectbox('**Select a district**',Districts)
     with col3:
-        if min_date!=None:
-            date_range=st.date_input('**Enter date range**',min_value=min_date,max_value=date.today(),key='date_range',format='DD/MM/YYYY')
-        else:
             date_range=st.date_input('**Enter date range**',min_value=(datetime(2024,1,1)),max_value=date.today(),key='date_range',format='DD/MM/YYYY')
     with col4:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
