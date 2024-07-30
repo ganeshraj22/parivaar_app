@@ -418,10 +418,6 @@ if page=='District Level':
     with col1:
         selected_district=st.selectbox('**Select a district**',Districts)
         
-    with col3:
-        dt_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),min_value=datetime(2020,1,1), max_value=date.today(),key='date_range_dt',format='DD/MM/YYYY')
-        date_range_dt=dt_range 
-        
     with col4:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
