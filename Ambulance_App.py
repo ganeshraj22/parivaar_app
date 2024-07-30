@@ -272,8 +272,7 @@ if page=='District Level':
                 Patients_Pie=ambulance_df1.loc[:,location_global].sum()
                 ex_selected_locations_distance=[i.replace('/n','') +' (KM)' for i in ex_selected_locations_patients]
                 ambulance_df1['distance_location_sum']=ambulance_df1.loc[:,ex_selected_locations_distance].sum(axis=1)
-            global min_date
-            min_date=ambulance_df1['Date'].min().date()
+            global min_date=ambulance_df1['Date'].min().date()
             max_date=ambulance_df1['Date'].max().date()
             Ambulance_By_Month=ambulance_df1.reset_index(drop=False)
             Ambulance_By_Month['Total Patients Served']=Ambulance_By_Month['Total Patients Served']-Ambulance_By_Month['patients_location_sum']
