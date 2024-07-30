@@ -271,8 +271,8 @@ if page=='District Level':
                 Patients_Pie=ambulance_df1.loc[:,location_global].sum()
                 ex_selected_locations_distance=[i.replace('/n','') +' (KM)' for i in ex_selected_locations_patients]
                 ambulance_df1['distance_location_sum']=ambulance_df1.loc[:,ex_selected_locations_distance].sum(axis=1)
-            min_date=ambulance_df1['Date'].min().date().strftime('%d-%b-%Y')
-            max_date=ambulance_df1['Date'].max().date().strftime('%d-%b-%Y')
+            min_date=ambulance_df1['Date'].min().date()
+            max_date=ambulance_df1['Date'].max().date()
             Ambulance_By_Month=ambulance_df1.reset_index(drop=False)
             Ambulance_By_Month['Total Patients Served']=Ambulance_By_Month['Total Patients Served']-Ambulance_By_Month['patients_location_sum']
             Ambulance_By_Month['Total Distance Covered']=Ambulance_By_Month['Total Distance Covered']-Ambulance_By_Month['distance_location_sum']
@@ -422,7 +422,6 @@ if page=='District Level':
     if location_global is None:
         (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
     with col3:
-        min_date=datetime.strptime('min_date', '%d-%b-%Y').date()
         date_range=st.date_input('**Enter date range**',min_value=datetime(2020,1,1),max_value=date.today(),key='date_range',format='DD/MM/YYYY')
         
     with col2:
@@ -479,7 +478,8 @@ if page=='District Level':
                             '</div>', unsafe_allow_html=True)
                 col4.markdown(summary_css, unsafe_allow_html=True)
                 # st.write(f"Number Of Ambulances: {Number_Of_PHC}")
-
+        min_date=min_date.strftime('%d-%b-%Y')
+        max_date=max_date.strftime('%d-%b-%Y')
         graph1,graph2=st.columns(2)#([1.15,1])
         with graph1:
             if val is True:
