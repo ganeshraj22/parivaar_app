@@ -439,6 +439,7 @@ if page=='District Level':
         else:
             location_global=[]
             flag=False
+        st.write(flag)
         
     if (location_global is not None or flag==False):
         with col3:
