@@ -416,14 +416,16 @@ if page=='District Level':
     col1,col2,col3,col4=st.columns([1,1,1,1])
     with col1:
         selected_district=st.selectbox('**Select a district**',Districts)
-    with col3:
-            date_range=st.date_input('**Enter date range**',min_value=(datetime(2020,1,1)),max_value=date.today(),key='date_range',format='DD/MM/YYYY')
+    
     with col4:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
     if location_global is None:
+        date_range=(datetime(2023,1,1),date.today())
         (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,level_of_detail,sheet,location_global,date_range)
-        
+
+    with col3:
+        date_range=st.date_input('**Enter date range**',min_value=(datetime(2020,1,1)),max_value=date.today(),key='date_range',format='DD/MM/YYYY')
     with col2:
         locations=np.append(locations,'All locations')
         st.write([date_range,min_date])
