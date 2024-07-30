@@ -90,9 +90,9 @@ if page=='District Level':
     st.markdown('<p class="title">DISTRICT LEVEL SUMMARY</p>', unsafe_allow_html=True)
     st.markdown(title_css, unsafe_allow_html=True)
     location_global=None
-    def get_data(selected_district,level_of_detail,sheet,location_global,date_range):
-        start_date=pd.to_datetime(date_range[0])
-        end_date=pd.to_datetime(date_range[1])
+    def get_data(selected_district,level_of_detail,sheet,location_global,date_range_dt):
+        start_date=pd.to_datetime(date_range_dt[0])
+        end_date=pd.to_datetime(date_range_dt[1])
         level_of_detail_lower=level_of_detail.lower()
         a='0'
         if level_of_detail_lower=="month":
@@ -421,14 +421,14 @@ if page=='District Level':
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
     if location_global is None:
-        date_range=(datetime(2023,1,1),date.today())
-        (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,level_of_detail,sheet,location_global,date_range)
+        date_range_dt=(datetime(2023,1,1),date.today())
+        (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,level_of_detail,sheet,location_global,date_range_dt)
 
     with col3:
-        date_range=st.date_input('**Enter date range**',min_value=min_date,max_value=date.today(),key='date_range',format='DD/MM/YYYY')
+        date_range_dt=st.date_input('**Enter date range**',min_value=min_date,max_value=date.today(),key='date_range',format='DD/MM/YYYY')
     with col2:
         locations=np.append(locations,'All locations')
-        st.write([date_range,min_date])
+        st.write([date_range_dt,min_date])
         locations=list(set(locations))
         locations.sort()
         location=st.selectbox('**Select a location**', locations, placeholder='All locations')
@@ -438,7 +438,7 @@ if page=='District Level':
             location_global=[]
 
     if location_global!=[]:
-        (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,level_of_detail,sheet,location_global,date_range)
+        (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,level_of_detail,sheet,location_global,date_range_dt)
 
     if location_global==[]:
         col2,col3,col4=st.columns(3)
