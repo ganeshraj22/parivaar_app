@@ -90,6 +90,7 @@ if page=='District Level':
     st.markdown('<p class="title">DISTRICT LEVEL SUMMARY</p>', unsafe_allow_html=True)
     st.markdown(title_css, unsafe_allow_html=True)
     location_global=None
+    date_range_dt=(datetime(2020,1,1),date.today())
     def get_data(selected_district,level_of_detail,sheet,location_global,date_range_dt):
         start_date=pd.to_datetime(date_range_dt[0])
         end_date=pd.to_datetime(date_range_dt[1])
@@ -424,7 +425,8 @@ if page=='District Level':
         (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,level_of_detail,sheet,location_global,date_range_dt)
 
     with col3:
-        date_range_dt=st.date_input('**Enter date range**',value=(datetime(2023,1,1),date.today()),min_value=min_date, max_value=date.today(),key='date_range_dt',format='DD/MM/YYYY')
+        dt_range=st.date_input('**Enter date range**',min_value=min_date, max_value=date.today(),key='date_range_dt',format='DD/MM/YYYY')
+        date_range_dt=dt_range
     with col2:
         locations=np.append(locations,'All locations')
         st.write([date_range_dt,min_date])
