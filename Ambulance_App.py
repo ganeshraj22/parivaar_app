@@ -409,16 +409,16 @@ if page=='District Level':
         Disease_Type_Pie.index=Disease_Type_Pie.index.rename('Ailment Type')
         Disease_Type_Pie.columns=['Patients Served']
 
-    col1,col2,col3,col4=st.columns([1,1,1,1])
-    with col3:
-        dt_range=st.date_input('**Enter date range**',value=(min_date,date.today()),min_value=min_date, max_value=date.today(),key='dt_range',format='DD/MM/YYYY')
-        date_range_dt=dt_range
-
         if (Ambulance_By_Month['Total Distance Covered'].count()==0):
            return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie, Disease_Type_Pie
         else:
             return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie, Disease_Type_Pie
 
+    col1,col2,col3,col4=st.columns([1,1,1,1])
+    with col3:
+        dt_range=st.date_input('**Enter date range**',value=(min_date,date.today()),min_value=min_date, max_value=date.today(),key='dt_range',format='DD/MM/YYYY')
+        date_range_dt=dt_range
+        
     with col1:
         selected_district=st.selectbox('**Select a district**',Districts)
         
