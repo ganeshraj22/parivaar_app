@@ -417,7 +417,6 @@ if page=='District Level':
     with col3:
         dt_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),min_value=datetime(2020,1,1), max_value=date.today(),key='dt_range',format='DD/MM/YYYY')
         date_range_dt=dt_range
-        st.write(min_date,date_range_dt)
         
     with col1:
         selected_district=st.selectbox('**Select a district**',Districts)
