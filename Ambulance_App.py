@@ -426,10 +426,9 @@ if page=='District Level':
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
     if location_global is None:
-        (val,fig1,fig2,fig3,fig4,min_date_loc,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,level_of_detail,sheet,location_global,date_range)
+        (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,level_of_detail,sheet,location_global,date_range)
         
     with col2:
-        min_date=min_date_loc
         locations=np.append(locations,'All locations')
         st.write([date_range,min_date])
         locations=list(set(locations))
