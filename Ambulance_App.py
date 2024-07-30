@@ -89,7 +89,7 @@ if page=='District Level':
     st.markdown('<p class="title">DISTRICT LEVEL SUMMARY</p>', unsafe_allow_html=True)
     st.markdown(title_css, unsafe_allow_html=True)
     location_global=None
-    def get_data(selected_district,date_range=(datetime(2020,1,1),date.today()),level_of_detail,sheet,location_global):
+    def get_data(selected_district,level_of_detail,sheet,location_global,date_range=(datetime(2020,1,1),date.today())):
         start_date=pd.to_datetime(date_range[0])
         end_date=pd.to_datetime(date_range[1])
         level_of_detail_lower=level_of_detail.lower()
@@ -419,7 +419,8 @@ if page=='District Level':
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
     if location_global is None:
-        (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
+        (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,level_of_detail,sheet,
+                                                                                                                                                                    location_global,date_range)
     with col3:
         date_range=st.date_input('**Enter date range**',min_value=datetime(2020,1,1),max_value=date.today(),key='date_range',format='DD/MM/YYYY')
         
@@ -435,7 +436,8 @@ if page=='District Level':
             location_global=[]
 
     if location_global!=[]:
-        (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
+        (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)
+        =get_data(selected_district,level_of_detail,sheet,location_global,date_range)
 
     if location_global==[]:
         col2,col3,col4=st.columns(3)
