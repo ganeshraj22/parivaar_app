@@ -91,7 +91,7 @@ if page=='District Level':
     st.markdown(title_css, unsafe_allow_html=True)
     location_global=None
     min_date=None
-    def get_data(selected_district,level_of_detail,sheet,location_global,date_range=(datetime(2020,1,1),date.today())):
+    def get_data(selected_district,level_of_detail,sheet,location_global,date_range):
         start_date=pd.to_datetime(date_range[0])
         end_date=pd.to_datetime(date_range[1])
         level_of_detail_lower=level_of_detail.lower()
