@@ -438,7 +438,7 @@ if page=='District Level':
         else:
             location_global=[]
         
-    if location_global is not None:
+    if (location_global is not None or location=='All locations'):
         with col3:
             dt_range=st.date_input('**Enter date range**',value=(min_date,date.today()),min_value=min_date, max_value=date.today(),key='dt_range',format='DD/MM/YYYY')
             date_range_dt=dt_range
