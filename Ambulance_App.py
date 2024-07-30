@@ -425,6 +425,7 @@ if page=='District Level':
 
     with col2:
         locations=np.append(locations,'All locations')
+        st.write(date_range)
         locations=list(set(locations))
         locations.sort()
         location=st.selectbox('**Select a location**', locations, placeholder='All locations')
