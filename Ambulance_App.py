@@ -422,7 +422,7 @@ if page=='District Level':
     if location_global is None:
         (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,date_range,level_of_detail,sheet,location_global)
     with col3:
-        #min_date=datetime.strptime('min_date', "%d-%b-%Y").date()
+        min_date=datetime.strptime('min_date', "%d-%b-%Y").date()
         date_range=st.date_input('**Enter date range**',min_value=datetime(2020,1,1),max_value=date.today(),key='date_range',format='DD/MM/YYYY')
         
     with col2:
