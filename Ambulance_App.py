@@ -421,7 +421,7 @@ if page=='District Level':
     with col1:
         selected_dt=st.selectbox('**Select a district**',Districts)
         selected_district=selected_dt
-        st.write(date_range_dt)
+        #st.write(date_range_dt)
     with col4:
         lod=st.selectbox('**Select frequency**',['Month','Year'])
         level_of_detail=lod
