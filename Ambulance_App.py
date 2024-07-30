@@ -429,7 +429,6 @@ if page=='District Level':
         date_range_dt=dt_range
     with col2:
         locations=np.append(locations,'All locations')
-        st.write([date_range_dt,min_date])
         locations=list(set(locations))
         locations.sort()
         location=st.selectbox('**Select a location**', locations, placeholder='All locations')
