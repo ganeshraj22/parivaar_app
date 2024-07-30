@@ -440,6 +440,7 @@ if page=='District Level':
             location_global=[]
             flag=False
         st.write(flag)
+        st.write(date_range_dt,min_date)
         
     if (location_global is not None or flag==False):
         with col3:
