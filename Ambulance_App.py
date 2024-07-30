@@ -271,7 +271,6 @@ if page=='District Level':
                 Patients_Pie=ambulance_df1.loc[:,location_global].sum()
                 ex_selected_locations_distance=[i.replace('/n','') +' (KM)' for i in ex_selected_locations_patients]
                 ambulance_df1['distance_location_sum']=ambulance_df1.loc[:,ex_selected_locations_distance].sum(axis=1)
-            global min_date
             min_date=ambulance_df1['Date'].min().date()
             max_date=ambulance_df1['Date'].max().date()
             Ambulance_By_Month=ambulance_df1.reset_index(drop=False)
@@ -416,7 +415,7 @@ if page=='District Level':
 
     col1,col2,col3,col4=st.columns([1,1,1,1])
     with col3:
-        dt_range=st.date_input('**Enter date range**',value=(min_date,date.today()),min_value=min_date, max_value=date.today(),key='dt_range',format='DD/MM/YYYY')
+        dt_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),min_value=datetime(2020,1,1), max_value=date.today(),key='dt_range',format='DD/MM/YYYY')
         date_range_dt=dt_range
         st.write(min_date,date_range_dt)
         
