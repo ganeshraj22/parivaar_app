@@ -891,13 +891,17 @@ if page=='Overall Summary':
             return True, fig1, fig2, fig3, fig4, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full,Disease_Pie_full
 
     col1,col2=st.columns([1,1])
-    with col1:
-        date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
     with col2:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
 
-    (val,fig5,fig6,fig7,fig8,summary_df,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full,Disease_Pie_full)=get_data_full(date_range,level_of_detail,sheet)
-
+    date_range=(datetime(2020,1,1),date.today())
+    (val,fig5,fig6,fig7,fig8,summary_df,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full,Disease_Pie_full)=get_data_full(date_range_full,level_of_detail,sheet)
+       
+    with col1:
+        date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
+    
+    (val,fig5,fig6,fig7,fig8,summary_df,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full,Disease_Pie_full)=get_data_full(date_range_full,level_of_detail,sheet)
+    
     col2,col3,col4=st.columns(3)
     with col2:
         if val is True:
