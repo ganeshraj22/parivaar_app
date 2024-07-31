@@ -439,7 +439,7 @@ if page=='District Level':
             location_global=[]
         
     with col3:
-        dt_range=st.date_input('**Enter date range**',value=(min_date,max_date),min_value=min_date, max_value=datetime(2024,12,31),key='dt_range',format='DD/MM/YYYY')
+        dt_range=st.date_input('**Enter date range**',value=(min_date,max_date),min_value=min_date, max_value=date.today(),key='dt_range',format='DD/MM/YYYY')
         date_range_dt=dt_range
     
     if location_global!=[]:
@@ -896,7 +896,7 @@ if page=='Overall Summary':
     with col2:
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
     with col1:
-        date_range=st.date_input('**Enter date range**',value=(min_date,max_date),min_value=min_date, max_value=datetime(2024,12,31),key='date_range',format='DD/MM/YYYY')
+        date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),min_value=datetime(2020,1,1), max_value=datetime(2024,12,31),key='date_range',format='DD/MM/YYYY')
         
     (val,fig5,fig6,fig7,fig8,summary_df,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full_1,Disease_Pie_full)=get_data_full(date_range,level_of_detail,sheet)
     
