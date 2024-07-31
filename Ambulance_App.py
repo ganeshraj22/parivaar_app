@@ -775,6 +775,8 @@ if page=='Overall Summary':
             (Ambulance_By_District_pie, Ambulance_By_Month_full, Ambulance_By_Disease_full, Ambulance_By_District_full, Summary_Total_full,min_date_full,max_date_full)=agg_plots_full(result_df)
 
             Patients_Pie_full=Ambulance_By_District_pie[['Total Patients Served','Total Distance Covered(KM)']]
+            Patients_Pie_full_1=Patients_Pie_full
+            
             # Create a new row for "Others" with the sum of values
             sum_values = Patients_Pie_full.iloc[10:, :].sum()
             Patients_Pie_full.loc['Others', :] = sum_values
@@ -886,9 +888,9 @@ if page=='Overall Summary':
             Disease_Pie_full.columns=['Patients Served']
 
         if (Ambulance_By_Month_full['Total Distance Covered(KM)'].count()==0):
-            return False, fig1, fig2, fig3, fig4, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full,Disease_Pie_full
+            return False, fig1, fig2, fig3, fig4, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full_1,Disease_Pie_full
         else:
-            return True, fig1, fig2, fig3, fig4, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full,Disease_Pie_full
+            return True, fig1, fig2, fig3, fig4, Ambulance_By_Month_full,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full_1,Disease_Pie_full
 
     col1,col2=st.columns([1,1])
     with col2:
@@ -896,7 +898,7 @@ if page=='Overall Summary':
     with col1:
         date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),key='date_range',format='DD/MM/YYYY')
         
-    (val,fig5,fig6,fig7,fig8,summary_df,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full,Disease_Pie_full)=get_data_full(date_range,level_of_detail,sheet)
+    (val,fig5,fig6,fig7,fig8,summary_df,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full_1,Disease_Pie_full)=get_data_full(date_range,level_of_detail,sheet)
     
     col2,col3,col4=st.columns(3)
     with col2:
@@ -955,7 +957,7 @@ if page=='Overall Summary':
             st.plotly_chart(fig7)
             graph5,graph6=st.columns([0.3,1])
             with graph6:
-                st.write(Patients_Pie_full)
+                st.write(Patients_Pie_full_1[:-1])
         #else:
             #st.write(f"No data to display. Data for '{selected_district}' is present only between '{min_date}' and '{max_date}'")
     with graph4:
