@@ -444,7 +444,6 @@ if page=='District Level':
         date_range_dt=dt_range
     
     if location_global!=[]:
-        st.write(date_range_dt)
         (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,level_of_detail,sheet,location_global,date_range_dt)
 
     if location_global==[]:
