@@ -267,7 +267,7 @@ if page=='District Level':
             if (location_global is None or location_global==[]):
                 ambulance_df1['patients_location_sum']=0
                 ambulance_df1['distance_location_sum']=0
-                Patients_Pie=ambulance_df1.loc[:,locations].sum()
+                Patients_Pie=ambulance_df1[(ambulance_df1['Date']>=start_date)&(ambulance_df1['Date']<=end_date)].loc[:,locations].sum()
             else:
                 ex_selected_locations_patients=[x for x in locations if x not in location_global]
                 ambulance_df1['patients_location_sum']=ambulance_df1.loc[:,ex_selected_locations_patients].sum(axis=1)
