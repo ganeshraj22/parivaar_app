@@ -439,7 +439,7 @@ if page=='District Level':
             location_global=[]
         
     with col3:
-        dt_range=st.date_input('**Enter date range**',value=(min_date,date.today()),min_value=min_date, max_value=date.today(),key='dt_range',format='DD/MM/YYYY')
+        dt_range=st.date_input('**Enter date range**',value=(min_date,date.today()),min_value=min_date, max_value=datetime(2024,07,31),key='dt_range',format='DD/MM/YYYY')
         date_range_dt=dt_range
     
     if location_global!=[]:
