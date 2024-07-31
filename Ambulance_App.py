@@ -264,7 +264,7 @@ if page=='District Level':
         (ambulance_df1, total_distance_index, no_patients_index, locations)  = preprocess_data(ambulance_df)
 
         def agg_plots(ambulance_df1):
-            if location_global is None:
+            if (location_global is None or location_global==[]):
                 ambulance_df1['patients_location_sum']=0
                 ambulance_df1['distance_location_sum']=0
                 Patients_Pie=ambulance_df1.loc[:,locations].sum()
