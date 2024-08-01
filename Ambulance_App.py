@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 # coding: utf-8
 
@@ -279,7 +280,7 @@ if page=='District Level':
             Ambulance_By_Month=ambulance_df1.reset_index(drop=False)
             Ambulance_By_Month['Total Patients Served']=Ambulance_By_Month['Total Patients Served']-Ambulance_By_Month['patients_location_sum']
             Ambulance_By_Month['Total Distance Covered']=Ambulance_By_Month['Total Distance Covered']-Ambulance_By_Month['distance_location_sum']
-            Ambulance_By_Month=Ambulance_By_Month[(Ambulance_By_Month['Date']>=start_date)&(Ambulance_By_Month['Date']<=end_date)]         
+            Ambulance_By_Month=Ambulance_By_Month[(Ambulance_By_Month['Date']>=start_date)&(Ambulance_By_Month['Date']<=end_date)]
             Ambulance_By_Month['Month']=pd.to_datetime(Ambulance_By_Month['Date']).dt.month.astype(str).str.pad(width=2,side='left',fillchar='0')
             Ambulance_By_Month['Year']=pd.to_datetime(Ambulance_By_Month['Date']).dt.year.astype(str)
             Ambulance_By_Month['Date']=Ambulance_By_Month['Date'].dt.strftime(a)
@@ -415,7 +416,7 @@ if page=='District Level':
            return False, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie, Disease_Type_Pie
         else:
             return True, fig1, fig2, fig3, fig4, min_date, max_date,Number_Of_PHC,Summary_Total,locations,location_global, Ambulance_By_Month, Patients_Pie, Disease_Type_Pie
-    
+
     col1,col2,col3,col4=st.columns([1,1,1,1])
     with col1:
         selected_dt=st.selectbox('**Select a district**',Districts)
@@ -427,21 +428,22 @@ if page=='District Level':
     if location_global is None:
         date_range_dt=(datetime(2020,1,1),date.today())
         (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,level_of_detail,sheet,location_global,date_range_dt)
-        
+
     with col2:
         locations=np.append(locations,'All locations')
         locations=list(set(locations))
         locations.sort()
-        location=st.selectbox('**Select a location**', locations, placeholder='All locations')
+        index_all_locations = locations.index('All locations')
+        location=st.selectbox('**Select a location**', locations,index= index_all_locations, placeholder='All locations')
         if location!='All locations':
             location_global=[location]
         else:
             location_global=[]
-        
+
     with col3:
         dt_range=st.date_input('**Enter date range**',value=(min_date,max_date),min_value=min_date, max_value=datetime(2024,12,31),key='dt_range',format='DD/MM/YYYY')
         date_range_dt=dt_range
-    
+
     if location_global!=[]:
         (val,fig1,fig2,fig3,fig4,min_date,max_date,Number_Of_PHC,Summary_Total,locations,location_global,Ambulance_By_Month,Patients_Pie,Disease_Type_Pie)=get_data(selected_district,level_of_detail,sheet,location_global,date_range_dt)
 
@@ -776,7 +778,7 @@ if page=='Overall Summary':
 
             Patients_Pie_full=Ambulance_By_District_pie[['Total Patients Served','Total Distance Covered(KM)']]
             Patients_Pie_full_1=Patients_Pie_full
-            
+
             # Create a new row for "Others" with the sum of values
             sum_values = Patients_Pie_full.iloc[10:, :].sum()
             Patients_Pie_full.loc['Others', :] = sum_values
@@ -897,9 +899,9 @@ if page=='Overall Summary':
         level_of_detail=st.selectbox('**Select frequency**',['Month','Year'])
     with col1:
         date_range=st.date_input('**Enter date range**',value=(datetime(2020,1,1),date.today()),min_value=datetime(2020,1,1), max_value=datetime(2024,12,31),key='date_range',format='DD/MM/YYYY')
-        
+
     (val,fig5,fig6,fig7,fig8,summary_df,Total_Number_Of_PHC,Summary_Total_full,min_date_full,max_date_full,Ambulance_By_Month_full,Patients_Pie_full_1,Disease_Pie_full)=get_data_full(date_range,level_of_detail,sheet)
-    
+
     col2,col3,col4=st.columns(3)
     with col2:
         if val is True:
@@ -973,3 +975,6 @@ if page=='Overall Summary':
       #  #else:
             #st.write(f"No data to display. Data is present only between '{min_date_full}' and '{max_date_full}'")
        # st.plotly_chart(fig8)
+apps-fileview.texmex_20240725.01_p1
+code.txt
+Displaying code.txt.
