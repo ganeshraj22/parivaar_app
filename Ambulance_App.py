@@ -271,10 +271,10 @@ if page=='District Level':
                 Patients_Pie=ambulance_df1[(ambulance_df1['Date']>=start_date)&(ambulance_df1['Date']<=end_date)].loc[:,locations].sum()
             else:
                 selected_locations_patients=location_global[0]
-                ambulance_df1['patients_location_sum']=ambulance_df1.loc[:,selected_locations_patients].sum(axis=1)
+                ambulance_df1['patients_location_sum']=ambulance_df1.loc[:,selected_locations_patients].sum()
                 Patients_Pie=ambulance_df1[(ambulance_df1['Date']>=start_date)&(ambulance_df1['Date']<=end_date)].loc[:,location_global].sum()
                 selected_locations_distance=[i.replace('/n','') +' (KM)' for i in selected_locations_patients]
-                ambulance_df1['distance_location_sum']=ambulance_df1.loc[:,selected_locations_distance].sum(axis=1)
+                ambulance_df1['distance_location_sum']=ambulance_df1.loc[:,selected_locations_distance].sum()
             min_date=ambulance_df1['Date'].min().date()
             max_date=ambulance_df1['Date'].max().date()
             Ambulance_By_Month=ambulance_df1.reset_index(drop=False)
