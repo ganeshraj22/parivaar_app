@@ -26,7 +26,7 @@ st.set_page_config(
 )
 
 scope=['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-secret_key=os.getenv('parivaar')
+secret_key=os.getenv('PARIVAAR')
 if secret_key:
     st.write(secret_key)
 else:
