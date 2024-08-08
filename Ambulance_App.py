@@ -27,7 +27,7 @@ st.set_page_config(
 scope=['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 creds=ServiceAccountCredentials.from_json_keyfile_name(r'unique-bonbon-304011-585cc22859d3.json',scope)
 client=gspread.authorize(creds)
-sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/1CfLVfjrmV2K6wMEg6G-q2_Im2uP7sZ2GsVw0ZzmiJ0k/edit?usp=sharing').worksheets()
+sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/1jf8-cds-goS99w8UmQG7mgDxwUGqa1BVmADR7rSVy9M/edit?usp=sharing').worksheets()
 Districts=[i.title for i in sheet[6:]]
 
 # Custom CSS for the boxes
