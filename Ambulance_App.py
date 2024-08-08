@@ -26,8 +26,8 @@ st.set_page_config(
 )
 
 scope=['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-key_parivaar=os.getenv('parivaar')
-st.write(key_parivaar)
+secret_key=os.getenv('parivaar')
+st.write(secret_key)
 creds=ServiceAccountCredentials.from_json_keyfile_name(key_parivaar,scope)
 st.write(creds)
 client=gspread.authorize(creds)
