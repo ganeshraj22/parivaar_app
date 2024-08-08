@@ -26,12 +26,7 @@ st.set_page_config(
 )
 
 scope=['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-secret_key=os.getenv('PARIVAAR')
-if secret_key:
-    st.write(secret_key)
-else:
-    st.write('Not found')
-creds=ServiceAccountCredentials.from_json_keyfile_name(secret_key,scope)
+creds=ServiceAccountCredentials.from_json_keyfile_name(os.getenv('PARIVAAR'),scope)
 st.write(creds)
 client=gspread.authorize(creds)
 sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/1CfLVfjrmV2K6wMEg6G-q2_Im2uP7sZ2GsVw0ZzmiJ0k/edit?usp=sharing').worksheets()
