@@ -25,7 +25,10 @@ st.set_page_config(
 )
 
 scope=['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-creds=ServiceAccountCredentials.from_json_keyfile_name(r'unique-bonbon-304011-16ba00c00b65.json',scope)
+key_parivaar=os.getenv('parivaar')
+st.write(key_parivaar)
+creds=ServiceAccountCredentials.from_json_keyfile_name(key_parivaar,scope)
+st.write(creds)
 client=gspread.authorize(creds)
 sheet=client.open_by_url(r'https://docs.google.com/spreadsheets/d/1CfLVfjrmV2K6wMEg6G-q2_Im2uP7sZ2GsVw0ZzmiJ0k/edit?usp=sharing').worksheets()
 Districts=[i.title for i in sheet[6:]]
