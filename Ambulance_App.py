@@ -254,7 +254,9 @@ if page=='District Level':
 
           df_reset = ambulance_df.reset_index(drop=True)
 
-          df_reset=df_reset[df_reset['Date']!='1970-01-01']
+         #if (df_reset['Date'].shift(1)!='1970-01-01' and df_reset['Date'].shift(-1)!='1970-01-01' and df_reset['Date']=='1970-01-01'):
+
+         #df_reset=df_reset[df_reset['Date']!='1970-01-01']
 
           df_reset['District']=selected_district.split('-')[0]
 
