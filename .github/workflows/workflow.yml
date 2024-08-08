@@ -14,4 +14,4 @@ jobs:
       run: printenv
 
     - name: Use secret
-      run: echo "${{ secrets.parivaar }}"
+      run: echo "${{ secrets.PARIVAAR }}"
